@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Format, minify, validate, copy, and download JSON directly in your browser with Tools Astakula.">
+    <meta name="robots" content="index,follow">
+    <meta name="theme-color" content="#f3f0e8">
+
+    <link rel="canonical" href="https://tools.astakula.com/json/">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="JSON Formatter — Tools Astakula">
+    <meta property="og:description" content="Format, minify, and validate JSON directly in your browser.">
+    <meta property="og:url" content="https://tools.astakula.com/json/">
+    <meta property="og:site_name" content="Tools Astakula">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="JSON Formatter — Tools Astakula">
+    <meta name="twitter:description" content="Format, minify, and validate JSON directly in your browser.">
+
+    <title>JSON Formatter — Tools Astakula</title>
+
+    <link rel="stylesheet" href="../assets/css/tokens.css?v=1">
+    <link rel="stylesheet" href="../assets/css/base.css?v=1">
+    <link rel="stylesheet" href="../assets/css/components.css?v=1">
+    <link rel="stylesheet" href="./style.css?v=1">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="site-header">
+            <div class="site-header-inner">
+                <a href="../" class="brand" aria-label="Tools Astakula Home">Tools Astakula</a>
+                <span class="header-badge">JSON Formatter</span>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="hero-section">
+                <div class="hero-copy">
+                    <p class="eyebrow">JSON FORMATTER</p>
+                    <h1>Work with JSON.</h1>
+                    <p class="hero-description">Paste or drop JSON, then format, minify, validate, copy, or download it.</p>
+                </div>
+
+                <div class="hero-decoration" aria-hidden="true">
+                    <span class="code-mark">{ }</span>
+                </div>
+            </section>
+
+            <section class="toolbar-section" aria-label="JSON actions">
+                <div class="toolbar-group">
+                    <button id="formatButton" class="button button-primary" type="button">Format</button>
+                    <button id="minifyButton" class="button button-secondary" type="button">Minify</button>
+                    <button id="validateButton" class="button button-secondary" type="button">Validate</button>
+                </div>
+
+                <div class="toolbar-group toolbar-group-right">
+                    <label class="indent-control" for="indentSelect">
+                        <span>Indent</span>
+                        <select id="indentSelect" class="compact-select">
+                            <option value="2" selected>2 spaces</option>
+                            <option value="4">4 spaces</option>
+                        </select>
+                    </label>
+                    <button id="sampleButton" class="button button-secondary" type="button">Sample</button>
+                    <button id="clearButton" class="button button-secondary" type="button">Clear</button>
+                </div>
+            </section>
+
+            <div id="statusBox" class="status-box is-neutral" role="status" aria-live="polite">
+                Ready.
+            </div>
+
+            <section class="workspace">
+                <article class="workspace-panel">
+                    <div class="panel-heading">
+                        <div>
+                            <p class="section-number">01</p>
+                            <h2>Input</h2>
+                        </div>
+                        <span id="inputMeta" class="panel-meta">0 chars</span>
+                    </div>
+
+                    <label id="dropZone" class="drop-zone" for="jsonFile">
+                        <span>Drop a .json file here</span>
+                        <small>or tap to choose a file</small>
+                    </label>
+                    <input id="jsonFile" class="visually-hidden" type="file" accept="application/json,.json">
+
+                    <textarea
+                        id="jsonInput"
+                        class="json-editor"
+                        spellcheck="false"
+                        autocomplete="off"
+                        autocapitalize="off"
+                        placeholder='{"name":"Astakula","tool":"JSON Formatter"}'
+                        aria-label="JSON input"
+                    ></textarea>
+                </article>
+
+                <article class="workspace-panel output-panel">
+                    <div class="panel-heading">
+                        <div>
+                            <p class="section-number">02</p>
+                            <h2>Output</h2>
+                        </div>
+                        <span id="outputMeta" class="panel-meta">0 chars</span>
+                    </div>
+
+                    <textarea
+                        id="jsonOutput"
+                        class="json-editor output-editor"
+                        readonly
+                        spellcheck="false"
+                        placeholder="Formatted or minified JSON will appear here."
+                        aria-label="JSON output"
+                    ></textarea>
+
+                    <div class="output-actions">
+                        <button id="copyButton" class="button button-primary" type="button">Copy output</button>
+                        <button id="downloadButton" class="button button-secondary" type="button">Download .json</button>
+                    </div>
+                </article>
+            </section>
+
+            <section class="info-section">
+                <article class="info-card">
+                    <span class="info-number">01</span>
+                    <h3>Local</h3>
+                    <p>Parsing and formatting happen in your browser.</p>
+                </article>
+                <article class="info-card">
+                    <span class="info-number">02</span>
+                    <h3>Strict JSON</h3>
+                    <p>Validation follows the browser's native JSON parser.</p>
+                </article>
+                <article class="info-card">
+                    <span class="info-number">03</span>
+                    <h3>No account</h3>
+                    <p>Open the tool and use it. Nothing else is required.</p>
+                </article>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <div class="site-footer-inner">
+                <p>Tools Astakula</p>
+                <p>astakula.com</p>
+            </div>
+        </footer>
+    </div>
+
+    <script type="module" src="./js/app.js?v=1"></script>
+</body>
+</html>
