@@ -808,15 +808,18 @@ class QRRenderer {
         clone.removeAttribute(
             "hidden"
         );
-
+        
         clone.removeAttribute(
             "aria-hidden"
         );
-
+        
+        clone.removeAttribute(
+            "style"
+        );
+        
         clone.classList.remove(
             "qr-renderer-svg"
         );
-
         if (
             !clone.getAttribute(
                 "xmlns"
