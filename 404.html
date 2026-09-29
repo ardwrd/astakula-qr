@@ -7,9 +7,10 @@
     <meta name="theme-color" content="#f3f0e8">
     <title>Page not found — Tools Astakula</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="/assets/css/tokens.css?v=1">
+    <script src="/assets/js/theme.js?v=2"></script>
+    <link rel="stylesheet" href="/assets/css/tokens.css?v=3">
     <link rel="stylesheet" href="/assets/css/base.css?v=1">
-    <link rel="stylesheet" href="/assets/css/components.css?v=1">
+    <link rel="stylesheet" href="/assets/css/components.css?v=4">
     <style>
         .not-found {
             width: min(calc(100% - 40px), 900px);
@@ -20,6 +21,7 @@
         .not-found-card {
             padding: clamp(30px, 7vw, 64px);
             background: var(--ta-yellow);
+            color: var(--ta-on-accent);
             border: var(--ta-border-heavy) solid var(--ta-border);
             box-shadow: var(--ta-shadow-lg);
         }
@@ -29,6 +31,7 @@
             margin: 0 0 22px;
             padding: 6px 10px;
             background: var(--ta-surface);
+            color: var(--ta-text);
             border: var(--ta-border-width) solid var(--ta-border);
             box-shadow: 3px 3px 0 var(--ta-border);
             font-size: 12px;
@@ -63,6 +66,7 @@
         <header class="site-header">
             <div class="site-header-inner">
                 <a class="brand" href="/">Tools Astakula</a>
+                <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme">Dark</button>
             </div>
         </header>
 
