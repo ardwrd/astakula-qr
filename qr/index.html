@@ -10,15 +10,15 @@
 
     <meta
         name="description"
-        content="Astakula QR Tools — Generate QR codes for URLs, text, WhatsApp, Wi-Fi, email, phone, SMS, contacts, locations, and calendar events."
+        content="Tools Astakula QR Generator for URLs, text, WhatsApp, Wi-Fi, email, phone, SMS, contacts, locations, and calendar events."
     >
 
     <meta
         name="theme-color"
-        content="#f5f5f0"
+        content="#f3f0e8"
     >
 
-    <title>QR Generator — Astakula Tools</title>
+    <title>QR Generator — Tools Astakula</title>
 
     <link
         rel="stylesheet"
@@ -30,35 +30,36 @@
 
     <div class="page-shell">
 
+
         <!-- ========================================
              HEADER
         ========================================= -->
 
         <header class="site-header">
+
             <div class="site-header-inner">
 
                 <a
                     href="../"
                     class="brand"
-                    aria-label="Astakula Tools Home"
+                    aria-label="Tools Astakula Home"
                 >
-                    <span class="brand-mark">
-                        A
-                    </span>
-
-                    <span class="brand-text">
-                        <strong>Astakula</strong>
-                        <span>Tools</span>
+                    <span class="brand-wordmark">
+                        Tools Astakula
                     </span>
                 </a>
 
+
                 <div class="header-meta">
+
                     <span class="header-badge">
                         QR Generator
                     </span>
+
                 </div>
 
             </div>
+
         </header>
 
 
@@ -68,7 +69,10 @@
 
         <main class="main-content">
 
-            <!-- Intro -->
+
+            <!-- ========================================
+                 HERO
+            ========================================= -->
 
             <section class="hero-section">
 
@@ -79,25 +83,32 @@
                     </p>
 
                     <h1>
-                        Create QR codes
-                        without the nonsense.
+                        Make a QR code.
                     </h1>
 
                     <p class="hero-description">
-                        Generate QR codes for links, messages,
-                        Wi-Fi networks, contacts, locations,
-                        calendar events, and more.
+                        Choose a type, fill in the details,
+                        and export it as PNG or SVG.
                     </p>
 
                 </div>
+
 
                 <div
                     class="hero-decoration"
                     aria-hidden="true"
                 >
-                    <span class="decoration-box decoration-box-1"></span>
-                    <span class="decoration-box decoration-box-2"></span>
-                    <span class="decoration-box decoration-box-3"></span>
+                    <span
+                        class="decoration-box decoration-box-1"
+                    ></span>
+
+                    <span
+                        class="decoration-box decoration-box-2"
+                    ></span>
+
+                    <span
+                        class="decoration-box decoration-box-3"
+                    ></span>
                 </div>
 
             </section>
@@ -115,17 +126,21 @@
                 <div class="section-heading">
 
                     <div>
+
                         <p class="section-number">
                             01
                         </p>
 
                         <h2 id="generator-type-heading">
-                            Choose QR Type
+                            Choose a QR type
                         </h2>
+
                     </div>
 
+
                     <p>
-                        Select what your QR code should contain.
+                        Pick what you want to put inside
+                        the QR code.
                     </p>
 
                 </div>
@@ -139,7 +154,7 @@
                 >
                     <!--
                         Generator buttons are rendered
-                        dynamically by form-renderer.js
+                        by form-renderer.js
                     -->
                 </div>
 
@@ -152,13 +167,19 @@
 
             <section class="workspace">
 
-                <!-- LEFT: FORM -->
 
-                <div class="workspace-panel generator-panel">
+                <!-- ====================================
+                     GENERATOR FORM
+                ===================================== -->
+
+                <div
+                    class="workspace-panel generator-panel"
+                >
 
                     <div class="panel-header">
 
                         <div>
+
                             <p class="section-number">
                                 02
                             </p>
@@ -166,6 +187,7 @@
                             <h2 id="generatorTitle">
                                 URL
                             </h2>
+
                         </div>
 
                     </div>
@@ -175,7 +197,7 @@
                         id="generatorDescription"
                         class="generator-description"
                     >
-                        Generate a QR code that opens a website or web page.
+                        Link to a website or page.
                     </p>
 
 
@@ -196,13 +218,13 @@
                         class="generator-fields"
                     >
                         <!--
-                            Fields are rendered dynamically
+                            Fields are rendered
                             by form-renderer.js
                         -->
                     </div>
 
 
-                    <!-- Actions -->
+                    <!-- Form Actions -->
 
                     <div class="form-actions">
 
@@ -237,13 +259,18 @@
                 </div>
 
 
-                <!-- RIGHT: RESULT -->
+                <!-- ====================================
+                     PREVIEW
+                ===================================== -->
 
-                <div class="workspace-panel preview-panel">
+                <div
+                    class="workspace-panel preview-panel"
+                >
 
                     <div class="panel-header">
 
                         <div>
+
                             <p class="section-number">
                                 03
                             </p>
@@ -251,18 +278,22 @@
                             <h2>
                                 Preview
                             </h2>
+
                         </div>
 
                     </div>
 
 
-                    <!-- Empty Preview -->
+                    <!-- Empty State -->
 
                     <div
                         class="preview-placeholder"
                         aria-hidden="true"
                     >
-                        <div class="preview-placeholder-grid">
+
+                        <div
+                            class="preview-placeholder-grid"
+                        >
 
                             <span></span>
                             <span></span>
@@ -279,7 +310,7 @@
                         </div>
 
                         <p>
-                            Your QR code will appear here.
+                            QR preview
                         </p>
 
                     </div>
@@ -293,7 +324,8 @@
                         aria-live="polite"
                     >
 
-                        <!-- QR -->
+
+                        <!-- QR Preview -->
 
                         <div class="qr-preview-card">
 
@@ -302,15 +334,16 @@
                                 class="qr-preview"
                             >
                                 <!--
-                                    Canvas + hidden SVG are inserted
-                                    by qr-renderer.js
+                                    Canvas and hidden SVG
+                                    are inserted by
+                                    qr-renderer.js
                                 -->
                             </div>
 
                         </div>
 
 
-                        <!-- Result Metadata -->
+                        <!-- Result Information -->
 
                         <div class="result-info">
 
@@ -351,6 +384,7 @@
                                     QR Payload
                                 </label>
 
+
                                 <button
                                     id="copyPayloadButton"
                                     class="button button-small"
@@ -374,7 +408,7 @@
                         </div>
 
 
-                        <!-- Download -->
+                        <!-- Export -->
 
                         <div class="export-actions">
 
@@ -410,6 +444,7 @@
 
             <section class="info-section">
 
+
                 <article class="info-card">
 
                     <span class="info-number">
@@ -417,12 +452,12 @@
                     </span>
 
                     <h3>
-                        Browser Based
+                        Runs locally
                     </h3>
 
                     <p>
-                        QR codes are generated directly
-                        inside your browser.
+                        QR codes are generated
+                        in your browser.
                     </p>
 
                 </article>
@@ -435,12 +470,12 @@
                     </span>
 
                     <h3>
-                        No Upload
+                        Nothing to upload
                     </h3>
 
                     <p>
-                        Your QR payload does not need to be
-                        uploaded to Astakula's server.
+                        The data you enter stays
+                        in the browser.
                     </p>
 
                 </article>
@@ -453,15 +488,16 @@
                     </span>
 
                     <h3>
-                        PNG & SVG
+                        PNG or SVG
                     </h3>
 
                     <p>
-                        Export QR codes as raster PNG or
-                        scalable SVG.
+                        Download the format
+                        that works for you.
                     </p>
 
                 </article>
+
 
             </section>
 
@@ -477,11 +513,11 @@
             <div class="site-footer-inner">
 
                 <p>
-                    Astakula Tools
+                    Tools Astakula
                 </p>
 
                 <p>
-                    Simple tools. No unnecessary complexity.
+                    astakula.com
                 </p>
 
             </div>
@@ -496,15 +532,17 @@
     ========================================= -->
 
     <noscript>
+
         <div class="noscript-message">
-            JavaScript is required to use the QR Generator.
+            JavaScript is required to use
+            the QR Generator.
         </div>
+
     </noscript>
 
 
     <!-- ========================================
          QR ENGINE
-         qrcode-generator 1.4.4
     ========================================= -->
 
     <script
