@@ -11,6 +11,7 @@ Live site: https://tools.astakula.com/
 - Base64 — https://tools.astakula.com/base64/
 - UUID Generator — https://tools.astakula.com/uuid/
 - Hash Generator — https://tools.astakula.com/hash/
+- Image Tools — https://tools.astakula.com/image/
 
 The QR Generator supports URL, plain text, WhatsApp, Wi-Fi, email, phone, SMS, vCard, location, and calendar event payloads, with PNG and SVG export.
 
@@ -22,7 +23,9 @@ The UUID Generator supports UUID v4 and UUID v7, 1–1000 values per batch, lowe
 
 The Hash Generator supports MD5, SHA-1, SHA-256, SHA-384, and SHA-512 for text or files up to 50 MB, lowercase or uppercase digest output, copy, `.txt` download, and hash comparison.
 
-All five tools process data locally in the browser.
+Image Tools supports local batch conversion to WebP, JPEG, or PNG, optional resize limits, JPEG/WebP quality control, drag-and-drop or pasted images, individual downloads, and batch downloads. Up to 20 files of 25 MB each can be queued.
+
+All six tools process data locally in the browser.
 
 ## UI
 
@@ -36,7 +39,6 @@ Global light/dark mode remains controlled by `assets/js/theme.js`.
 
 ## Planned
 
-- Image Tools
 - PDF Tools
 - GIF Maker
 
@@ -66,6 +68,10 @@ astakula-tools/
 │   ├── style.css
 │   └── js/
 ├── hash/
+│   ├── index.html
+│   ├── style.css
+│   └── js/
+├── image/
 │   ├── index.html
 │   ├── style.css
 │   └── js/
