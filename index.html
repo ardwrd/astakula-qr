@@ -1,1 +1,174 @@
 
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>WhatsApp QR Generator</title>
+
+    <meta
+        name="description"
+        content="Generate WhatsApp links and QR codes directly from your browser."
+    >
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- QR Code Library -->
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+        defer>
+    </script>
+
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <main class="app-container">
+
+        <header class="app-header">
+            <span class="badge">Astakula Tools</span>
+
+            <h1>WhatsApp QR Generator</h1>
+
+            <p>
+                Buat link WhatsApp dan QR Code dengan pesan otomatis.
+            </p>
+        </header>
+
+
+        <section class="generator-card">
+
+            <form id="generatorForm">
+
+                <div class="form-group">
+                    <label for="phone">
+                        Nomor WhatsApp
+                    </label>
+
+                    <div class="phone-input">
+                        <span class="country-code">+62</span>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            placeholder="81234567890"
+                            autocomplete="tel"
+                            required
+                        >
+                    </div>
+
+                    <small>
+                        Bisa masukkan 08xxx, 628xxx, atau langsung 8xxx.
+                    </small>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="message">
+                        Pesan
+                    </label>
+
+                    <textarea
+                        id="message"
+                        rows="5"
+                        placeholder="Halo, saya ingin bertanya mengenai..."
+                    ></textarea>
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="primary-button"
+                >
+                    Generate
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <section
+            id="resultSection"
+            class="result-card hidden"
+        >
+
+            <div class="result-header">
+                <h2>Hasil</h2>
+
+                <p>
+                    Scan QR Code atau salin link WhatsApp.
+                </p>
+            </div>
+
+
+            <div
+                id="qrCode"
+                class="qr-container"
+            ></div>
+
+
+            <div class="link-result">
+
+                <label for="generatedLink">
+                    WhatsApp Link
+                </label>
+
+                <div class="copy-group">
+
+                    <input
+                        type="text"
+                        id="generatedLink"
+                        readonly
+                    >
+
+                    <button
+                        type="button"
+                        id="copyButton"
+                        class="secondary-button"
+                    >
+                        Copy
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="result-actions">
+
+                <a
+                    id="openWhatsAppButton"
+                    class="primary-button"
+                    href="#"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Open WhatsApp
+                </a>
+
+                <button
+                    type="button"
+                    id="downloadButton"
+                    class="secondary-button"
+                >
+                    Download QR
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <footer>
+            <p>
+                Built with HTML, CSS & JavaScript · Astakula Tools
+            </p>
+        </footer>
+
+    </main>
+
+</body>
+</html>
