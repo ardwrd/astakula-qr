@@ -48,7 +48,7 @@
 
 .theme-toggle:hover {
     background: var(--ta-yellow);
-    color: #111111;
+    color: var(--ta-on-accent);
     transform: translate(-2px, -2px);
     box-shadow: 5px 5px 0 var(--ta-border);
 }
@@ -80,7 +80,7 @@
     box-shadow: var(--ta-shadow-sm);
     font-size: 13px;
     font-weight: 850;
-    transition: transform var(--ta-transition), box-shadow var(--ta-transition), background var(--ta-transition);
+    transition: transform var(--ta-transition), box-shadow var(--ta-transition), background var(--ta-transition), color var(--ta-transition);
 }
 
 .button:hover:not(:disabled),
@@ -134,40 +134,121 @@ select:focus-visible {
     color: #bdbdbd;
 }
 
+/* =========================================================
+   GLOBAL DARK MODE NORMALIZATION
+   Keep page-specific CSS intact while preventing bright/light
+   values from colliding with the shared dark palette.
+   ========================================================= */
+
 html[data-theme="dark"] .site-footer {
-    background: #0d0d0d;
+    background: #090b0c;
     color: var(--ta-text);
+    border-color: var(--ta-border);
 }
 
 html[data-theme="dark"] .site-footer p:last-child {
     color: var(--ta-muted);
 }
 
-/* Shared dark-mode normalization for bright neobrutalist surfaces. */
-html[data-theme="dark"] .hero-section,
-html[data-theme="dark"] .header-badge,
-html[data-theme="dark"] .info-card,
-html[data-theme="dark"] .tool-card:not(.tool-white) {
-    color: #111111;
+html[data-theme="dark"] body .hero-section,
+html[data-theme="dark"] body .header-badge,
+html[data-theme="dark"] body .code-mark,
+html[data-theme="dark"] body .info-card,
+html[data-theme="dark"] body .tool-card:not(.tool-white),
+html[data-theme="dark"] body .drop-zone,
+html[data-theme="dark"] body .status-box.is-success,
+html[data-theme="dark"] body .button-primary,
+html[data-theme="dark"] body .generator-selector-button.is-active,
+html[data-theme="dark"] body .generator-selector-button:hover {
+    color: var(--ta-on-accent);
 }
 
-html[data-theme="dark"] .tool-card:not(.tool-white) p {
-    color: #242424;
+html[data-theme="dark"] body .tool-card:not(.tool-white) p {
+    color: #e5e0d7;
 }
 
-html[data-theme="dark"] .tool-white,
-html[data-theme="dark"] .tool-white p {
+html[data-theme="dark"] body .tool-white,
+html[data-theme="dark"] body .tool-white p {
+    color: var(--ta-text);
+    background: var(--ta-surface);
+}
+
+html[data-theme="dark"] body .tool-status {
+    background: rgba(5, 6, 7, 0.24);
+    color: var(--ta-on-accent);
+    border-color: rgba(245, 241, 233, 0.42);
+}
+
+html[data-theme="dark"] body .tool-status.available {
+    background: #090b0c;
+    color: var(--ta-text);
+    border-color: var(--ta-border);
+}
+
+html[data-theme="dark"] body .eyebrow,
+html[data-theme="dark"] body .button-secondary,
+html[data-theme="dark"] body .theme-toggle,
+html[data-theme="dark"] body .compact-select {
+    background: var(--ta-surface);
     color: var(--ta-text);
 }
 
-html[data-theme="dark"] .tool-status.available {
-    background: #111111;
-    color: #ffffff;
-    border-color: #111111;
+html[data-theme="dark"] body .button-secondary:hover:not(:disabled),
+html[data-theme="dark"] body .theme-toggle:hover {
+    background: var(--ta-blue);
+    color: var(--ta-on-accent);
 }
 
-html[data-theme="dark"] .preview-panel {
-    background: #1b2930;
+html[data-theme="dark"] body .preview-panel,
+html[data-theme="dark"] body .output-panel {
+    background: #1d2428;
+    color: var(--ta-text);
+}
+
+html[data-theme="dark"] body .workspace-panel,
+html[data-theme="dark"] body .toolbar-section,
+html[data-theme="dark"] body .about-section,
+html[data-theme="dark"] body .status-box.is-neutral {
+    background: var(--ta-surface);
+    color: var(--ta-text);
+}
+
+html[data-theme="dark"] body .form-control {
+    background: #171a1c;
+    color: var(--ta-text);
+    box-shadow: 3px 3px 0 #070809;
+}
+
+html[data-theme="dark"] body .form-control:hover,
+html[data-theme="dark"] body .form-control:focus {
+    background: #1f2326;
+    color: var(--ta-text);
+}
+
+html[data-theme="dark"] body .form-control::placeholder,
+html[data-theme="dark"] body .json-editor::placeholder {
+    color: #858a8e;
+}
+
+html[data-theme="dark"] body .compact-select {
+    box-shadow: 3px 3px 0 #070809;
+}
+
+html[data-theme="dark"] body .json-editor {
+    background: #0b0d0e;
+    color: #ece8df;
+    border-color: var(--ta-border);
+}
+
+html[data-theme="dark"] body .status-box.is-error,
+html[data-theme="dark"] body .error-box {
+    color: #f2dfdf;
+}
+
+/* QR canvas itself stays white intentionally for reliable scanning. */
+html[data-theme="dark"] body .qr-preview,
+html[data-theme="dark"] body .qr-preview-card {
+    background: #ffffff;
 }
 
 @media (max-width: 600px) {
