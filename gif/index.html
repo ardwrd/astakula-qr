@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Create animated GIFs from images directly in your browser with Tools Astakula.">
+    <meta name="robots" content="index,follow">
+    <meta name="theme-color" content="#f3f0e8">
+
+    <link rel="canonical" href="https://tools.astakula.com/gif/">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="GIF Maker — Tools Astakula">
+    <meta property="og:description" content="Turn a sequence of images into an animated GIF locally in your browser.">
+    <meta property="og:url" content="https://tools.astakula.com/gif/">
+    <meta property="og:site_name" content="Tools Astakula">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="GIF Maker — Tools Astakula">
+    <meta name="twitter:description" content="Create animated GIFs from images directly in your browser.">
+
+    <title>GIF Maker — Tools Astakula</title>
+
+    <script src="../assets/js/theme.js?v=2"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sprtn/ui@1.3.2/dist/brut.css">
+    <link rel="stylesheet" href="../assets/css/astakula.css?v=2">
+    <link rel="stylesheet" href="./style.css?v=1">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="site-header">
+            <div class="site-header-inner">
+                <a href="../" class="brand" aria-label="Tools Astakula Home">Tools Astakula</a>
+                <div class="header-actions">
+                    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme">Dark</button>
+                    <span class="header-badge">GIF Maker</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="hero-section">
+                <div class="hero-copy">
+                    <p class="eyebrow">GIF MAKER</p>
+                    <h1>Turn images into a GIF.</h1>
+                    <p class="hero-description">Arrange frames, set timing, and export an animated GIF without uploading the source images anywhere.</p>
+                </div>
+                <div class="hero-decoration" aria-hidden="true">
+                    <span class="gif-mark">GIF</span>
+                </div>
+            </section>
+
+            <section class="frames-section" aria-labelledby="frames-heading">
+                <div class="section-heading">
+                    <div>
+                        <p class="section-number">01</p>
+                        <h2 id="frames-heading">Add frames</h2>
+                    </div>
+                    <p>PNG, JPEG, WebP, or AVIF. Up to 30 frames, 15 MB each.</p>
+                </div>
+
+                <label id="dropZone" class="drop-zone" for="imageInput">
+                    <strong>Drop, paste, or choose images</strong>
+                    <span>Frame order follows the list below and can be changed before export.</span>
+                </label>
+                <input id="imageInput" class="visually-hidden" type="file" accept="image/png,image/jpeg,image/webp,image/avif" multiple>
+
+                <div id="queuePanel" class="queue-panel hidden" aria-live="polite">
+                    <div class="queue-heading">
+                        <span id="queueMeta">0 frames</span>
+                        <button id="clearFramesButton" class="brut-btn brut-btn--sm" type="button">Clear frames</button>
+                    </div>
+                    <div id="frameQueue" class="frame-queue"></div>
+                </div>
+            </section>
+
+            <section class="settings-section" aria-labelledby="settings-heading">
+                <div class="section-heading">
+                    <div>
+                        <p class="section-number">02</p>
+                        <h2 id="settings-heading">GIF settings</h2>
+                    </div>
+                    <p>Leave width and height empty to use the first frame size, capped at 1200 px.</p>
+                </div>
+
+                <div class="settings-grid">
+                    <label class="setting-field" for="delayInput">
+                        <span>Frame delay</span>
+                        <div class="input-with-unit">
+                            <input id="delayInput" class="brut-input" type="number" min="20" max="10000" step="10" value="250" inputmode="numeric">
+                            <span>ms</span>
+                        </div>
+                    </label>
+
+                    <label class="setting-field" for="colorsSelect">
+                        <span>Colors</span>
+                        <select id="colorsSelect" class="brut-select">
+                            <option value="64">64 · smaller</option>
+                            <option value="128" selected>128 · balanced</option>
+                            <option value="256">256 · higher quality</option>
+                        </select>
+                    </label>
+
+                    <label class="setting-field" for="widthInput">
+                        <span>Width</span>
+                        <div class="input-with-unit">
+                            <input id="widthInput" class="brut-input" type="number" min="1" max="1200" step="1" inputmode="numeric" placeholder="Auto">
+                            <span>px</span>
+                        </div>
+                    </label>
+
+                    <label class="setting-field" for="heightInput">
+                        <span>Height</span>
+                        <div class="input-with-unit">
+                            <input id="heightInput" class="brut-input" type="number" min="1" max="1200" step="1" inputmode="numeric" placeholder="Auto">
+                            <span>px</span>
+                        </div>
+                    </label>
+
+                    <label class="setting-field" for="fitSelect">
+                        <span>Frame fit</span>
+                        <select id="fitSelect" class="brut-select">
+                            <option value="contain" selected>Contain</option>
+                            <option value="cover">Cover</option>
+                        </select>
+                    </label>
+
+                    <label class="setting-field color-field" for="backgroundInput">
+                        <span>Background</span>
+                        <div class="color-control">
+                            <input id="backgroundInput" type="color" value="#ffffff" aria-label="GIF background color">
+                            <code id="backgroundValue">#ffffff</code>
+                        </div>
+                    </label>
+
+                    <label class="checkbox-row">
+                        <input id="loopToggle" type="checkbox" checked>
+                        <span>Loop forever</span>
+                    </label>
+                </div>
+
+                <div class="settings-actions">
+                    <button id="generateButton" class="brut-btn brut-btn--primary" type="button">Create GIF</button>
+                    <button id="resetSettingsButton" class="brut-btn" type="button">Reset settings</button>
+                </div>
+            </section>
+
+            <div id="statusBox" class="status-box is-neutral" role="status" aria-live="polite">Add at least two images to begin.</div>
+
+            <section id="resultSection" class="result-section hidden" aria-labelledby="result-heading">
+                <div class="section-heading result-heading">
+                    <div>
+                        <p class="section-number">03</p>
+                        <h2 id="result-heading">Result</h2>
+                    </div>
+                    <span id="resultMeta" class="panel-meta">Ready</span>
+                </div>
+
+                <div class="result-grid">
+                    <div class="preview-card">
+                        <img id="gifPreview" alt="Generated animated GIF preview">
+                    </div>
+                    <div class="result-copy">
+                        <div class="result-summary">
+                            <div><span>Frames</span><strong id="resultFrames">0</strong></div>
+                            <div><span>Dimensions</span><strong id="resultDimensions">0 × 0</strong></div>
+                            <div><span>File size</span><strong id="resultSize">0 B</strong></div>
+                            <div><span>Duration</span><strong id="resultDuration">0 s</strong></div>
+                        </div>
+                        <button id="downloadButton" class="brut-btn brut-btn--primary" type="button">Download GIF</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="info-section">
+                <article class="info-card">
+                    <span class="info-number">01</span>
+                    <h3>Runs locally</h3>
+                    <p>Source images and the generated GIF stay inside your browser.</p>
+                </article>
+                <article class="info-card">
+                    <span class="info-number">02</span>
+                    <h3>Frame order</h3>
+                    <p>Move frames up or down before encoding to control the animation sequence.</p>
+                </article>
+                <article class="info-card">
+                    <span class="info-number">03</span>
+                    <h3>GIF palette</h3>
+                    <p>GIF supports up to 256 colors per frame, so photos may show some color reduction.</p>
+                </article>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <div class="site-footer-inner">
+                <p>Tools Astakula</p>
+                <p>astakula.com</p>
+            </div>
+        </footer>
+    </div>
+
+    <script type="module" src="./js/app.js?v=1"></script>
+</body>
+</html>
