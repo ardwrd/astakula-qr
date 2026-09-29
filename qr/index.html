@@ -1,174 +1,525 @@
-
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>WhatsApp QR Generator</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <meta
         name="description"
-        content="Generate WhatsApp links and QR codes directly from your browser."
+        content="Astakula QR Tools — Generate QR codes for URLs, text, WhatsApp, Wi-Fi, email, phone, SMS, contacts, locations, and calendar events."
     >
 
-    <link rel="stylesheet" href="style.css">
+    <meta
+        name="theme-color"
+        content="#f5f5f0"
+    >
 
-    <!-- QR Code Library -->
-    <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
-        defer>
-    </script>
+    <title>QR Generator — Astakula Tools</title>
 
-    <script src="script.js" defer></script>
+    <link
+        rel="stylesheet"
+        href="./style.css"
+    >
 </head>
 
 <body>
 
-    <main class="app-container">
+    <div class="page-shell">
 
-        <header class="app-header">
-            <span class="badge">Astakula Tools</span>
+        <!-- ========================================
+             HEADER
+        ========================================= -->
 
-            <h1>WhatsApp QR Generator</h1>
+        <header class="site-header">
+            <div class="site-header-inner">
 
-            <p>
-                Buat link WhatsApp dan QR Code dengan pesan otomatis.
-            </p>
+                <a
+                    href="../"
+                    class="brand"
+                    aria-label="Astakula Tools Home"
+                >
+                    <span class="brand-mark">
+                        A
+                    </span>
+
+                    <span class="brand-text">
+                        <strong>Astakula</strong>
+                        <span>Tools</span>
+                    </span>
+                </a>
+
+                <div class="header-meta">
+                    <span class="header-badge">
+                        QR Generator
+                    </span>
+                </div>
+
+            </div>
         </header>
 
 
-        <section class="generator-card">
+        <!-- ========================================
+             MAIN
+        ========================================= -->
 
-            <form id="generatorForm">
+        <main class="main-content">
 
-                <div class="form-group">
-                    <label for="phone">
-                        Nomor WhatsApp
-                    </label>
+            <!-- Intro -->
 
-                    <div class="phone-input">
-                        <span class="country-code">+62</span>
+            <section class="hero-section">
 
-                        <input
-                            type="tel"
-                            id="phone"
-                            placeholder="81234567890"
-                            autocomplete="tel"
-                            required
-                        >
+                <div class="hero-copy">
+
+                    <p class="eyebrow">
+                        QR GENERATOR
+                    </p>
+
+                    <h1>
+                        Create QR codes
+                        without the nonsense.
+                    </h1>
+
+                    <p class="hero-description">
+                        Generate QR codes for links, messages,
+                        Wi-Fi networks, contacts, locations,
+                        calendar events, and more.
+                    </p>
+
+                </div>
+
+                <div
+                    class="hero-decoration"
+                    aria-hidden="true"
+                >
+                    <span class="decoration-box decoration-box-1"></span>
+                    <span class="decoration-box decoration-box-2"></span>
+                    <span class="decoration-box decoration-box-3"></span>
+                </div>
+
+            </section>
+
+
+            <!-- ========================================
+                 GENERATOR SELECTOR
+            ========================================= -->
+
+            <section
+                class="generator-type-section"
+                aria-labelledby="generator-type-heading"
+            >
+
+                <div class="section-heading">
+
+                    <div>
+                        <p class="section-number">
+                            01
+                        </p>
+
+                        <h2 id="generator-type-heading">
+                            Choose QR Type
+                        </h2>
                     </div>
 
-                    <small>
-                        Bisa masukkan 08xxx, 628xxx, atau langsung 8xxx.
-                    </small>
+                    <p>
+                        Select what your QR code should contain.
+                    </p>
+
                 </div>
 
 
-                <div class="form-group">
-                    <label for="message">
-                        Pesan
-                    </label>
-
-                    <textarea
-                        id="message"
-                        rows="5"
-                        placeholder="Halo, saya ingin bertanya mengenai..."
-                    ></textarea>
-                </div>
-
-
-                <button
-                    type="submit"
-                    class="primary-button"
+                <div
+                    id="generatorSelector"
+                    class="generator-selector"
+                    role="group"
+                    aria-label="QR Code Type"
                 >
-                    Generate
-                </button>
+                    <!--
+                        Generator buttons are rendered
+                        dynamically by form-renderer.js
+                    -->
+                </div>
 
-            </form>
-
-        </section>
+            </section>
 
 
-        <section
-            id="resultSection"
-            class="result-card hidden"
-        >
+            <!-- ========================================
+                 WORKSPACE
+            ========================================= -->
 
-            <div class="result-header">
-                <h2>Hasil</h2>
+            <section class="workspace">
+
+                <!-- LEFT: FORM -->
+
+                <div class="workspace-panel generator-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <p class="section-number">
+                                02
+                            </p>
+
+                            <h2 id="generatorTitle">
+                                URL
+                            </h2>
+                        </div>
+
+                    </div>
+
+
+                    <p
+                        id="generatorDescription"
+                        class="generator-description"
+                    >
+                        Generate a QR code that opens a website or web page.
+                    </p>
+
+
+                    <!-- Error -->
+
+                    <div
+                        id="errorBox"
+                        class="error-box hidden"
+                        role="alert"
+                        aria-live="assertive"
+                    ></div>
+
+
+                    <!-- Dynamic Fields -->
+
+                    <div
+                        id="generatorFields"
+                        class="generator-fields"
+                    >
+                        <!--
+                            Fields are rendered dynamically
+                            by form-renderer.js
+                        -->
+                    </div>
+
+
+                    <!-- Actions -->
+
+                    <div class="form-actions">
+
+                        <button
+                            id="generateButton"
+                            class="button button-primary"
+                            type="button"
+                        >
+                            <span>
+                                Generate QR
+                            </span>
+
+                            <span
+                                class="button-arrow"
+                                aria-hidden="true"
+                            >
+                                →
+                            </span>
+                        </button>
+
+
+                        <button
+                            id="resetButton"
+                            class="button button-secondary"
+                            type="button"
+                        >
+                            Reset
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RIGHT: RESULT -->
+
+                <div class="workspace-panel preview-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <p class="section-number">
+                                03
+                            </p>
+
+                            <h2>
+                                Preview
+                            </h2>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Empty Preview -->
+
+                    <div
+                        class="preview-placeholder"
+                        aria-hidden="true"
+                    >
+                        <div class="preview-placeholder-grid">
+
+                            <span></span>
+                            <span></span>
+                            <span></span>
+
+                            <span></span>
+                            <span></span>
+                            <span></span>
+
+                            <span></span>
+                            <span></span>
+                            <span></span>
+
+                        </div>
+
+                        <p>
+                            Your QR code will appear here.
+                        </p>
+
+                    </div>
+
+
+                    <!-- Generated Result -->
+
+                    <div
+                        id="resultSection"
+                        class="result-section hidden"
+                        aria-live="polite"
+                    >
+
+                        <!-- QR -->
+
+                        <div class="qr-preview-card">
+
+                            <div
+                                id="qrPreview"
+                                class="qr-preview"
+                            >
+                                <!--
+                                    Canvas + hidden SVG are inserted
+                                    by qr-renderer.js
+                                -->
+                            </div>
+
+                        </div>
+
+
+                        <!-- Result Metadata -->
+
+                        <div class="result-info">
+
+                            <div class="result-heading">
+
+                                <span
+                                    id="resultTitle"
+                                    class="result-type"
+                                ></span>
+
+                                <strong
+                                    id="resultValue"
+                                    class="result-value"
+                                ></strong>
+
+                            </div>
+
+
+                            <div
+                                id="resultDetails"
+                                class="result-details"
+                                hidden
+                            ></div>
+
+                        </div>
+
+
+                        <!-- Payload -->
+
+                        <div class="payload-section">
+
+                            <div class="payload-header">
+
+                                <label
+                                    for="payloadOutput"
+                                    class="payload-label"
+                                >
+                                    QR Payload
+                                </label>
+
+                                <button
+                                    id="copyPayloadButton"
+                                    class="button button-small"
+                                    type="button"
+                                >
+                                    Copy
+                                </button>
+
+                            </div>
+
+
+                            <textarea
+                                id="payloadOutput"
+                                class="payload-output"
+                                rows="5"
+                                readonly
+                                spellcheck="false"
+                                aria-label="Generated QR payload"
+                            ></textarea>
+
+                        </div>
+
+
+                        <!-- Download -->
+
+                        <div class="export-actions">
+
+                            <button
+                                id="downloadPngButton"
+                                class="button button-primary"
+                                type="button"
+                            >
+                                Download PNG
+                            </button>
+
+
+                            <button
+                                id="downloadSvgButton"
+                                class="button button-secondary"
+                                type="button"
+                            >
+                                Download SVG
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ========================================
+                 INFO
+            ========================================= -->
+
+            <section class="info-section">
+
+                <article class="info-card">
+
+                    <span class="info-number">
+                        01
+                    </span>
+
+                    <h3>
+                        Browser Based
+                    </h3>
+
+                    <p>
+                        QR codes are generated directly
+                        inside your browser.
+                    </p>
+
+                </article>
+
+
+                <article class="info-card">
+
+                    <span class="info-number">
+                        02
+                    </span>
+
+                    <h3>
+                        No Upload
+                    </h3>
+
+                    <p>
+                        Your QR payload does not need to be
+                        uploaded to Astakula's server.
+                    </p>
+
+                </article>
+
+
+                <article class="info-card">
+
+                    <span class="info-number">
+                        03
+                    </span>
+
+                    <h3>
+                        PNG & SVG
+                    </h3>
+
+                    <p>
+                        Export QR codes as raster PNG or
+                        scalable SVG.
+                    </p>
+
+                </article>
+
+            </section>
+
+        </main>
+
+
+        <!-- ========================================
+             FOOTER
+        ========================================= -->
+
+        <footer class="site-footer">
+
+            <div class="site-footer-inner">
 
                 <p>
-                    Scan QR Code atau salin link WhatsApp.
+                    Astakula Tools
                 </p>
-            </div>
 
-
-            <div
-                id="qrCode"
-                class="qr-container"
-            ></div>
-
-
-            <div class="link-result">
-
-                <label for="generatedLink">
-                    WhatsApp Link
-                </label>
-
-                <div class="copy-group">
-
-                    <input
-                        type="text"
-                        id="generatedLink"
-                        readonly
-                    >
-
-                    <button
-                        type="button"
-                        id="copyButton"
-                        class="secondary-button"
-                    >
-                        Copy
-                    </button>
-
-                </div>
+                <p>
+                    Simple tools. No unnecessary complexity.
+                </p>
 
             </div>
 
-
-            <div class="result-actions">
-
-                <a
-                    id="openWhatsAppButton"
-                    class="primary-button"
-                    href="#"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Open WhatsApp
-                </a>
-
-                <button
-                    type="button"
-                    id="downloadButton"
-                    class="secondary-button"
-                >
-                    Download QR
-                </button>
-
-            </div>
-
-        </section>
-
-
-        <footer>
-            <p>
-                Built with HTML, CSS & JavaScript · Astakula Tools
-            </p>
         </footer>
 
-    </main>
+    </div>
+
+
+    <!-- ========================================
+         NOSCRIPT
+    ========================================= -->
+
+    <noscript>
+        <div class="noscript-message">
+            JavaScript is required to use the QR Generator.
+        </div>
+    </noscript>
+
+
+    <!-- ========================================
+         QR ENGINE
+         qrcode-generator 1.4.4
+    ========================================= -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"
+    ></script>
+
+
+    <!-- ========================================
+         APPLICATION
+    ========================================= -->
+
+    <script
+        type="module"
+        src="./js/app.js"
+    ></script>
 
 </body>
 </html>
