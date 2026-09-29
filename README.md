@@ -31,9 +31,11 @@ All six tools process data locally in the browser.
 
 The neobrutalist design-system foundation is loaded directly on each page from the pinned BRUT package `@sprtn/ui@1.3.2` through jsDelivr.
 
-Shared local styling has been consolidated into a single `assets/css/astakula.css` adapter. It only contains Tools Astakula aliases, site chrome, the global light/dark bridge, compatibility rules, and responsive behavior that is specific to this site.
+Shared local styling is consolidated in `assets/css/astakula.css`. It owns the authoritative Astakula token bridge, site chrome, global light/dark normalization, keyboard-focus treatment, BRUT compatibility, and shared responsive behavior.
 
-Each tool keeps a local `style.css` only for tool-specific layout and presentation. The old shared `tokens.css`, `base.css`, and `components.css` files have been removed.
+Tool-level `style.css` files are reserved for tool-specific layout and presentation. Older page-local color aliases may still exist for compatibility, but the shared adapter is authoritative so they cannot drift between tools.
+
+Keyboard focus uses a neutral high-contrast outline in both light and dark modes. Blue and other accent colors are reserved for the visual palette and interaction states rather than browser focus rings.
 
 Global light/dark mode remains controlled by `assets/js/theme.js`.
 
