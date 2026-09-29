@@ -1,7 +1,7 @@
 (() => {
     const STORAGE_KEY = "tools-astakula-theme";
     const LEGACY_KEY = "tools-astakula-json-theme";
-    const DARK_COLOR = "#171717";
+    const DARK_COLOR = "#101214";
     const LIGHT_COLOR = "#f3f0e8";
 
     function getStoredTheme() {
