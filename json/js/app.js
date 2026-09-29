@@ -1,4 +1,3 @@
-const THEME_STORAGE_KEY = "tools-astakula-json-theme";
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
 
 const elements = {
@@ -17,9 +16,7 @@ const elements = {
     dropZone: document.querySelector("#dropZone"),
     fileInput: document.querySelector("#jsonFile"),
     inputMeta: document.querySelector("#inputMeta"),
-    outputMeta: document.querySelector("#outputMeta"),
-    themeButton: document.querySelector("#themeButton"),
-    themeColorMeta: document.querySelector("#themeColorMeta")
+    outputMeta: document.querySelector("#outputMeta")
 };
 
 const SAMPLE_JSON = {
@@ -316,37 +313,6 @@ function getClipboardFile(clipboardData) {
     return null;
 }
 
-function getCurrentTheme() {
-    return document.documentElement.dataset.theme === "dark" ? "dark" : "light";
-}
-
-function applyTheme(theme, persist = false) {
-    const normalizedTheme = theme === "dark" ? "dark" : "light";
-    const isDark = normalizedTheme === "dark";
-
-    document.documentElement.dataset.theme = normalizedTheme;
-    elements.themeButton.textContent = isDark ? "Light" : "Dark";
-    elements.themeButton.setAttribute("aria-pressed", String(isDark));
-    elements.themeButton.setAttribute(
-        "aria-label",
-        isDark ? "Switch to light mode" : "Switch to dark mode"
-    );
-    elements.themeColorMeta.setAttribute("content", isDark ? "#171717" : "#f3f0e8");
-
-    if (persist) {
-        try {
-            localStorage.setItem(THEME_STORAGE_KEY, normalizedTheme);
-        } catch {
-            // Theme still works for the current session if storage is unavailable.
-        }
-    }
-}
-
-function toggleTheme() {
-    const nextTheme = getCurrentTheme() === "dark" ? "light" : "dark";
-    applyTheme(nextTheme, true);
-}
-
 elements.formatButton.addEventListener("click", formatJson);
 elements.minifyButton.addEventListener("click", minifyJson);
 elements.validateButton.addEventListener("click", validateJson);
@@ -355,7 +321,6 @@ elements.clearButton.addEventListener("click", clearAll);
 elements.sampleButton.addEventListener("click", loadSample);
 elements.copyButton.addEventListener("click", copyOutput);
 elements.downloadButton.addEventListener("click", downloadOutput);
-elements.themeButton.addEventListener("click", toggleTheme);
 
 elements.input.addEventListener("input", updateMeta);
 elements.output.addEventListener("input", updateMeta);
@@ -410,5 +375,4 @@ document.addEventListener("keydown", (event) => {
     }
 });
 
-applyTheme(getCurrentTheme());
 updateMeta();
