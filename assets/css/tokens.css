@@ -1,4 +1,0 @@
-/* Compatibility loader for existing pages.
-   New pages should link BRUT UI and astakula.css directly. */
-@import url("https://cdn.jsdelivr.net/npm/@sprtn/ui@1.3.2/dist/brut.css");
-@import url("./astakula.css?v=1");
