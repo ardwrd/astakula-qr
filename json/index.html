@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Format, minify, validate, copy, and download JSON directly in your browser with Tools Astakula.">
     <meta name="robots" content="index,follow">
-    <meta name="theme-color" content="#f3f0e8">
+    <meta name="theme-color" content="#f3f0e8" id="themeColorMeta">
 
     <link rel="canonical" href="https://tools.astakula.com/json/">
     <link rel="icon" href="../favicon.svg" type="image/svg+xml">
@@ -22,17 +22,44 @@
 
     <title>JSON Formatter — Tools Astakula</title>
 
+    <script>
+        (() => {
+            try {
+                const savedTheme = localStorage.getItem("tools-astakula-json-theme");
+                const preferredTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
+                    ? "dark"
+                    : "light";
+
+                document.documentElement.dataset.theme = savedTheme || preferredTheme;
+            } catch {
+                document.documentElement.dataset.theme = "light";
+            }
+        })();
+    </script>
+
     <link rel="stylesheet" href="../assets/css/tokens.css?v=1">
     <link rel="stylesheet" href="../assets/css/base.css?v=1">
     <link rel="stylesheet" href="../assets/css/components.css?v=1">
-    <link rel="stylesheet" href="./style.css?v=1">
+    <link rel="stylesheet" href="./style.css?v=2">
 </head>
 <body>
     <div class="page-shell">
         <header class="site-header">
             <div class="site-header-inner">
                 <a href="../" class="brand" aria-label="Tools Astakula Home">Tools Astakula</a>
-                <span class="header-badge">JSON Formatter</span>
+
+                <div class="header-actions">
+                    <button
+                        id="themeButton"
+                        class="theme-button"
+                        type="button"
+                        aria-label="Switch color theme"
+                        aria-pressed="false"
+                    >
+                        Dark
+                    </button>
+                    <span class="header-badge">JSON Formatter</span>
+                </div>
             </div>
         </header>
 
@@ -41,7 +68,7 @@
                 <div class="hero-copy">
                     <p class="eyebrow">JSON FORMATTER</p>
                     <h1>Work with JSON.</h1>
-                    <p class="hero-description">Paste or drop JSON, then format, minify, validate, copy, or download it.</p>
+                    <p class="hero-description">Paste text or a JSON file, then format, minify, validate, copy, or download it.</p>
                 </div>
 
                 <div class="hero-decoration" aria-hidden="true">
@@ -50,7 +77,7 @@
             </section>
 
             <section class="toolbar-section" aria-label="JSON actions">
-                <div class="toolbar-group">
+                <div class="toolbar-group toolbar-primary-actions">
                     <button id="formatButton" class="button button-primary" type="button">Format</button>
                     <button id="minifyButton" class="button button-secondary" type="button">Minify</button>
                     <button id="validateButton" class="button button-secondary" type="button">Validate</button>
@@ -64,6 +91,7 @@
                             <option value="4">4 spaces</option>
                         </select>
                     </label>
+                    <button id="swapButton" class="button button-secondary" type="button">Swap input ↔ output</button>
                     <button id="sampleButton" class="button button-secondary" type="button">Sample</button>
                     <button id="clearButton" class="button button-secondary" type="button">Clear</button>
                 </div>
@@ -84,8 +112,8 @@
                     </div>
 
                     <label id="dropZone" class="drop-zone" for="jsonFile">
-                        <span>Drop a .json file here</span>
-                        <small>or tap to choose a file</small>
+                        <span>Drop, paste, or choose a .json file</span>
+                        <small>Copied JSON files can be pasted with Ctrl/Cmd + V</small>
                     </label>
                     <input id="jsonFile" class="visually-hidden" type="file" accept="application/json,.json">
 
@@ -152,6 +180,6 @@
         </footer>
     </div>
 
-    <script type="module" src="./js/app.js?v=1"></script>
+    <script type="module" src="./js/app.js?v=2"></script>
 </body>
 </html>
