@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Generate favicon ICO and PNG assets directly in your browser with Tools Astakula.">
+    <meta name="robots" content="index,follow">
+    <meta name="theme-color" content="#f3f0e8">
+
+    <link rel="canonical" href="https://tools.astakula.com/favicon/">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Favicon Generator — Tools Astakula">
+    <meta property="og:description" content="Create favicon.ico, PNG icons, Apple touch icons, and a web app icon package locally in your browser.">
+    <meta property="og:url" content="https://tools.astakula.com/favicon/">
+    <meta property="og:site_name" content="Tools Astakula">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Favicon Generator — Tools Astakula">
+    <meta name="twitter:description" content="Generate a complete favicon package directly in your browser.">
+
+    <title>Favicon Generator — Tools Astakula</title>
+
+    <script src="../assets/js/theme.js?v=2"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sprtn/ui@1.3.2/dist/brut.css">
+    <link rel="stylesheet" href="../assets/css/astakula.css?v=2">
+    <link rel="stylesheet" href="./style.css?v=1">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="site-header">
+            <div class="site-header-inner">
+                <a href="../" class="brand" aria-label="Tools Astakula Home">Tools Astakula</a>
+                <div class="header-actions">
+                    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme">Dark</button>
+                    <span class="header-badge">Favicon Generator</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="hero-section">
+                <div class="hero-copy">
+                    <p class="eyebrow">FAVICON GENERATOR</p>
+                    <h1>Make a favicon package.</h1>
+                    <p class="hero-description">Turn one image into favicon.ico, browser PNGs, an Apple touch icon, and web app icons without uploading it anywhere.</p>
+                </div>
+                <div class="hero-decoration" aria-hidden="true">
+                    <span class="favicon-mark">16</span>
+                    <span class="favicon-mark favicon-mark-small">32</span>
+                </div>
+            </section>
+
+            <section class="source-section" aria-labelledby="source-heading">
+                <div class="section-heading">
+                    <div>
+                        <p class="section-number">01</p>
+                        <h2 id="source-heading">Choose an image</h2>
+                    </div>
+                    <p>PNG, JPEG, WebP, AVIF, or SVG · maximum 15 MB.</p>
+                </div>
+
+                <label id="dropZone" class="drop-zone" for="sourceInput">
+                    <strong>Drop, paste, or choose an image</strong>
+                    <span>A square source works best, but non-square images can be fitted automatically.</span>
+                </label>
+                <input id="sourceInput" class="visually-hidden" type="file" accept="image/png,image/jpeg,image/webp,image/avif,image/svg+xml,.svg">
+
+                <div id="sourcePreviewPanel" class="source-preview-panel hidden" aria-live="polite">
+                    <div class="source-preview-frame">
+                        <img id="sourcePreview" alt="Selected favicon source preview">
+                    </div>
+                    <div class="source-meta">
+                        <span>Source</span>
+                        <strong id="sourceName">No file</strong>
+                        <p id="sourceDetails">0 × 0 · 0 B</p>
+                    </div>
+                    <button id="removeSourceButton" class="brut-btn brut-btn--sm" type="button">Remove</button>
+                </div>
+            </section>
+
+            <section class="settings-section" aria-labelledby="settings-heading">
+                <div class="section-heading">
+                    <div>
+                        <p class="section-number">02</p>
+                        <h2 id="settings-heading">Output settings</h2>
+                    </div>
+                    <p>The package uses standard browser, Apple, and web app icon sizes.</p>
+                </div>
+
+                <div class="settings-grid">
+                    <label class="setting-field" for="fitSelect">
+                        <span>Image fit</span>
+                        <select id="fitSelect" class="brut-select">
+                            <option value="contain" selected>Contain</option>
+                            <option value="cover">Cover</option>
+                        </select>
+                    </label>
+
+                    <label class="setting-field" for="paddingInput">
+                        <span>Padding <strong id="paddingValue">8%</strong></span>
+                        <input id="paddingInput" class="setting-range" type="range" min="0" max="40" step="1" value="8">
+                    </label>
+
+                    <label class="setting-field background-field" for="backgroundColor">
+                        <span>Background</span>
+                        <div class="background-control">
+                            <input id="backgroundColor" type="color" value="#ffffff" aria-label="Favicon background color">
+                            <strong id="backgroundValue">#ffffff</strong>
+                        </div>
+                    </label>
+
+                    <label class="checkbox-row">
+                        <input id="transparentToggle" type="checkbox" checked>
+                        <span>Transparent background</span>
+                    </label>
+                </div>
+
+                <div class="package-list" aria-label="Generated favicon files">
+                    <span>favicon.ico</span>
+                    <span>16×16 PNG</span>
+                    <span>32×32 PNG</span>
+                    <span>48×48 PNG</span>
+                    <span>Apple 180×180</span>
+                    <span>Web app 192×192</span>
+                    <span>Web app 512×512</span>
+                    <span>site.webmanifest</span>
+                </div>
+
+                <div class="settings-actions">
+                    <button id="generateButton" class="brut-btn brut-btn--primary" type="button">Generate favicons</button>
+                    <button id="resetSettingsButton" class="brut-btn" type="button">Reset settings</button>
+                </div>
+            </section>
+
+            <div id="statusBox" class="status-box is-neutral" role="status" aria-live="polite">Choose an image to begin.</div>
+
+            <section id="resultSection" class="result-section hidden" aria-labelledby="result-heading">
+                <div class="section-heading results-heading">
+                    <div>
+                        <p class="section-number">03</p>
+                        <h2 id="result-heading">Favicon package</h2>
+                    </div>
+                    <span id="resultMeta" class="result-meta">Ready</span>
+                </div>
+
+                <div class="preview-strip" aria-label="Favicon preview sizes">
+                    <div class="preview-sample preview-light"><img id="preview16" alt="16 pixel favicon preview"><span>16</span></div>
+                    <div class="preview-sample preview-dark"><img id="preview32" alt="32 pixel favicon preview"><span>32</span></div>
+                    <div class="preview-sample preview-light preview-large"><img id="preview180" alt="180 pixel Apple touch icon preview"><span>180</span></div>
+                </div>
+
+                <div class="download-actions">
+                    <button id="downloadIcoButton" class="brut-btn brut-btn--primary" type="button">Download favicon.ico</button>
+                    <button id="downloadZipButton" class="brut-btn" type="button">Download package .zip</button>
+                </div>
+
+                <div id="assetGrid" class="asset-grid"></div>
+
+                <div class="snippet-panel">
+                    <div class="snippet-heading">
+                        <div>
+                            <span>HTML</span>
+                            <strong>Recommended tags</strong>
+                        </div>
+                        <button id="copySnippetButton" class="brut-btn brut-btn--sm" type="button">Copy</button>
+                    </div>
+                    <textarea id="snippetOutput" readonly spellcheck="false" aria-label="Recommended favicon HTML tags"></textarea>
+                </div>
+            </section>
+
+            <section class="info-section">
+                <article class="info-card">
+                    <span class="info-number">01</span>
+                    <h3>Complete package</h3>
+                    <p>Get ICO, browser PNGs, an Apple touch icon, web app icons, and a manifest together.</p>
+                </article>
+                <article class="info-card">
+                    <span class="info-number">02</span>
+                    <h3>Local processing</h3>
+                    <p>The source image is rendered in this browser and is not uploaded to an Astakula server.</p>
+                </article>
+                <article class="info-card">
+                    <span class="info-number">03</span>
+                    <h3>Ready to wire up</h3>
+                    <p>The generated package includes the markup needed to reference the common favicon files.</p>
+                </article>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <div class="site-footer-inner">
+                <p>Tools Astakula</p>
+                <p>astakula.com</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+    <script type="module" src="./js/app.js?v=1"></script>
+</body>
+</html>
