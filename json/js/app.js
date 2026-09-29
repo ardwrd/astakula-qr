@@ -1,9 +1,13 @@
+const THEME_STORAGE_KEY = "tools-astakula-json-theme";
+const MAX_FILE_SIZE = 5 * 1024 * 1024;
+
 const elements = {
     input: document.querySelector("#jsonInput"),
     output: document.querySelector("#jsonOutput"),
     formatButton: document.querySelector("#formatButton"),
     minifyButton: document.querySelector("#minifyButton"),
     validateButton: document.querySelector("#validateButton"),
+    swapButton: document.querySelector("#swapButton"),
     clearButton: document.querySelector("#clearButton"),
     sampleButton: document.querySelector("#sampleButton"),
     copyButton: document.querySelector("#copyButton"),
@@ -13,7 +17,9 @@ const elements = {
     dropZone: document.querySelector("#dropZone"),
     fileInput: document.querySelector("#jsonFile"),
     inputMeta: document.querySelector("#inputMeta"),
-    outputMeta: document.querySelector("#outputMeta")
+    outputMeta: document.querySelector("#outputMeta"),
+    themeButton: document.querySelector("#themeButton"),
+    themeColorMeta: document.querySelector("#themeColorMeta")
 };
 
 const SAMPLE_JSON = {
@@ -23,6 +29,9 @@ const SAMPLE_JSON = {
         "format",
         "minify",
         "validate",
+        "swap",
+        "file paste",
+        "dark mode",
         "copy",
         "download"
     ],
@@ -151,6 +160,25 @@ function validateJson() {
     }
 }
 
+function swapInputOutput() {
+    const outputValue = elements.output.value;
+
+    if (!outputValue) {
+        setStatus("Generate output before swapping.", "error");
+        return;
+    }
+
+    const inputValue = elements.input.value;
+
+    elements.input.value = outputValue;
+    elements.output.value = inputValue;
+    elements.fileInput.value = "";
+
+    setStatus("Input and output swapped.", "neutral");
+    updateMeta();
+    elements.input.focus();
+}
+
 function clearAll() {
     elements.input.value = "";
     elements.output.value = "";
@@ -163,6 +191,7 @@ function clearAll() {
 function loadSample() {
     elements.input.value = JSON.stringify(SAMPLE_JSON, null, 2);
     elements.output.value = "";
+    elements.fileInput.value = "";
     setStatus("Sample loaded.", "neutral");
     updateMeta();
 }
@@ -215,44 +244,118 @@ function downloadOutput() {
     setStatus("JSON file downloaded.", "success");
 }
 
-async function loadFile(file) {
+function isJsonFile(file) {
     if (!file) {
-        return;
+        return false;
     }
 
-    const maxSize = 5 * 1024 * 1024;
+    const fileName = String(file.name || "").toLowerCase();
+    const fileType = String(file.type || "").toLowerCase();
 
-    if (file.size > maxSize) {
+    return (
+        fileType === "application/json" ||
+        fileType === "text/json" ||
+        fileName.endsWith(".json")
+    );
+}
+
+async function loadFile(file, source = "selected") {
+    if (!file) {
+        return false;
+    }
+
+    if (file.size > MAX_FILE_SIZE) {
         setStatus("File is too large. Maximum size is 5 MB.", "error");
-        return;
+        return false;
     }
 
-    const isJsonFile =
-        file.type === "application/json" ||
-        file.name.toLowerCase().endsWith(".json");
-
-    if (!isJsonFile) {
-        setStatus("Choose a .json file.", "error");
-        return;
+    if (!isJsonFile(file)) {
+        setStatus("Choose or paste a .json file.", "error");
+        return false;
     }
 
     try {
         elements.input.value = await file.text();
         elements.output.value = "";
-        setStatus(`${file.name} loaded.`, "neutral");
+        elements.fileInput.value = "";
+
+        const fileName = file.name || "JSON file";
+        const verb = source === "pasted" ? "pasted" : "loaded";
+
+        setStatus(`${fileName} ${verb}.`, "neutral");
         updateMeta();
+        return true;
     } catch {
         setStatus("Could not read that file.", "error");
+        return false;
     }
+}
+
+function getClipboardFile(clipboardData) {
+    if (!clipboardData) {
+        return null;
+    }
+
+    if (clipboardData.files?.length) {
+        return Array.from(clipboardData.files).find(isJsonFile) || clipboardData.files[0];
+    }
+
+    if (clipboardData.items?.length) {
+        for (const item of clipboardData.items) {
+            if (item.kind !== "file") {
+                continue;
+            }
+
+            const file = item.getAsFile();
+            if (file) {
+                return file;
+            }
+        }
+    }
+
+    return null;
+}
+
+function getCurrentTheme() {
+    return document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+}
+
+function applyTheme(theme, persist = false) {
+    const normalizedTheme = theme === "dark" ? "dark" : "light";
+    const isDark = normalizedTheme === "dark";
+
+    document.documentElement.dataset.theme = normalizedTheme;
+    elements.themeButton.textContent = isDark ? "Light" : "Dark";
+    elements.themeButton.setAttribute("aria-pressed", String(isDark));
+    elements.themeButton.setAttribute(
+        "aria-label",
+        isDark ? "Switch to light mode" : "Switch to dark mode"
+    );
+    elements.themeColorMeta.setAttribute("content", isDark ? "#171717" : "#f3f0e8");
+
+    if (persist) {
+        try {
+            localStorage.setItem(THEME_STORAGE_KEY, normalizedTheme);
+        } catch {
+            // Theme still works for the current session if storage is unavailable.
+        }
+    }
+}
+
+function toggleTheme() {
+    const nextTheme = getCurrentTheme() === "dark" ? "light" : "dark";
+    applyTheme(nextTheme, true);
 }
 
 elements.formatButton.addEventListener("click", formatJson);
 elements.minifyButton.addEventListener("click", minifyJson);
 elements.validateButton.addEventListener("click", validateJson);
+elements.swapButton.addEventListener("click", swapInputOutput);
 elements.clearButton.addEventListener("click", clearAll);
 elements.sampleButton.addEventListener("click", loadSample);
 elements.copyButton.addEventListener("click", copyOutput);
 elements.downloadButton.addEventListener("click", downloadOutput);
+elements.themeButton.addEventListener("click", toggleTheme);
 
 elements.input.addEventListener("input", updateMeta);
 elements.output.addEventListener("input", updateMeta);
@@ -281,6 +384,25 @@ elements.dropZone.addEventListener("drop", (event) => {
     loadFile(event.dataTransfer?.files?.[0]);
 });
 
+document.addEventListener("paste", async (event) => {
+    const file = getClipboardFile(event.clipboardData);
+
+    if (!file) {
+        return;
+    }
+
+    event.preventDefault();
+    elements.dropZone.classList.add("is-pasting");
+
+    try {
+        await loadFile(file, "pasted");
+    } finally {
+        window.setTimeout(() => {
+            elements.dropZone.classList.remove("is-pasting");
+        }, 350);
+    }
+});
+
 document.addEventListener("keydown", (event) => {
     if ((event.ctrlKey || event.metaKey) && event.key === "Enter") {
         event.preventDefault();
@@ -288,4 +410,5 @@ document.addEventListener("keydown", (event) => {
     }
 });
 
+applyTheme(getCurrentTheme());
 updateMeta();
