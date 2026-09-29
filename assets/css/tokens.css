@@ -35,6 +35,11 @@
     --pink: var(--ta-pink);
     --orange: var(--ta-orange);
     --purple: var(--ta-purple);
+    --border-width: var(--ta-border-width);
+    --border-heavy: var(--ta-border-heavy);
+    --shadow-sm: var(--ta-shadow-sm);
+    --shadow-md: var(--ta-shadow-md);
+    --shadow-lg: var(--ta-shadow-lg);
     --container: var(--ta-container);
     --font: var(--ta-font);
     --transition: var(--ta-transition);
@@ -54,12 +59,41 @@
     --color-error: var(--ta-error);
     --color-error-light: var(--ta-error-light);
     --color-border: var(--ta-border);
-    --border-width: var(--ta-border-width);
     --border-width-heavy: var(--ta-border-heavy);
-    --shadow-sm: var(--ta-shadow-sm);
-    --shadow-md: var(--ta-shadow-md);
-    --shadow-lg: var(--ta-shadow-lg);
     --font-family: var(--ta-font);
     --container-width: var(--ta-container);
     --transition-fast: var(--ta-transition);
+}
+
+html[data-theme="dark"] {
+    color-scheme: dark;
+
+    --ta-bg: #171717;
+    --ta-surface: #232323;
+    --ta-text: #f3f0e8;
+    --ta-muted: #b8b4aa;
+    --ta-border: #f3f0e8;
+    --ta-error-light: #442525;
+    --ta-shadow-sm: 4px 4px 0 #f3f0e8;
+    --ta-shadow-md: 6px 6px 0 #f3f0e8;
+    --ta-shadow-lg: 8px 8px 0 #f3f0e8;
+
+    /* Keep legacy aliases synced even on pages with local :root declarations. */
+    --bg: var(--ta-bg);
+    --surface: var(--ta-surface);
+    --text: var(--ta-text);
+    --muted: var(--ta-muted);
+    --border: var(--ta-border);
+    --border-width: var(--ta-border-width);
+    --border-heavy: var(--ta-border-heavy);
+    --shadow-sm: var(--ta-shadow-sm);
+    --shadow-md: var(--ta-shadow-md);
+    --shadow-lg: var(--ta-shadow-lg);
+
+    --color-bg: var(--ta-bg);
+    --color-surface: var(--ta-surface);
+    --color-text: var(--ta-text);
+    --color-muted: var(--ta-muted);
+    --color-error-light: var(--ta-error-light);
+    --color-border: var(--ta-border);
 }
