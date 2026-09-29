@@ -7,12 +7,14 @@ Live site: https://tools.astakula.com/
 ## Available
 
 - QR Generator — https://tools.astakula.com/qr/
+- JSON Formatter — https://tools.astakula.com/json/
 
-The QR Generator currently supports URL, plain text, WhatsApp, Wi-Fi, email, phone, SMS, vCard, location, and calendar event payloads, with PNG and SVG export.
+The QR Generator supports URL, plain text, WhatsApp, Wi-Fi, email, phone, SMS, vCard, location, and calendar event payloads, with PNG and SVG export.
+
+The JSON Formatter supports formatting, minifying, validation, copy, download, drag-and-drop `.json` files, and 2/4-space indentation. Processing happens locally in the browser.
 
 ## Planned
 
-- JSON Formatter
 - Base64
 - UUID Generator
 - Hash Generator
@@ -30,6 +32,10 @@ astakula-tools/
 │       ├── base.css
 │       └── components.css
 ├── qr/
+│   ├── index.html
+│   ├── style.css
+│   └── js/
+├── json/
 │   ├── index.html
 │   ├── style.css
 │   └── js/
