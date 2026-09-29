@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View, convert, clean, split, merge, and inspect spreadsheet files directly in your browser with Tools Astakula.">
+    <meta name="robots" content="index,follow">
+    <meta name="theme-color" content="#f3f0e8">
+
+    <link rel="canonical" href="https://tools.astakula.com/excel/">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Excel Tools — Tools Astakula">
+    <meta property="og:description" content="View, convert, clean, split, merge, and inspect XLSX, XLS, CSV, and JSON files locally in your browser.">
+    <meta property="og:url" content="https://tools.astakula.com/excel/">
+    <meta property="og:site_name" content="Tools Astakula">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Excel Tools — Tools Astakula">
+    <meta name="twitter:description" content="Work with spreadsheet data directly in your browser.">
+
+    <title>Excel Tools — Tools Astakula</title>
+
+    <script src="../assets/js/theme.js?v=2"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sprtn/ui@1.3.2/dist/brut.css">
+    <link rel="stylesheet" href="../assets/css/astakula.css?v=2">
+    <link rel="stylesheet" href="./style.css?v=1">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="site-header">
+            <div class="site-header-inner">
+                <a href="../" class="brand" aria-label="Tools Astakula Home">Tools Astakula</a>
+                <div class="header-actions">
+                    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme">Dark</button>
+                    <span class="header-badge">Excel Tools</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="hero-section">
+                <div class="hero-copy">
+                    <p class="eyebrow">EXCEL TOOLS</p>
+                    <h1>Work with spreadsheet data.</h1>
+                    <p class="hero-description">View, convert, clean, split, merge, and inspect XLSX, XLS, CSV, or JSON files without uploading them anywhere.</p>
+                </div>
+                <div class="hero-decoration" aria-hidden="true">
+                    <span class="excel-mark">XLS</span>
+                </div>
+            </section>
+
+            <section class="source-section" aria-labelledby="source-heading">
+                <div class="section-heading">
+                    <div>
+                        <p class="section-number">01</p>
+                        <h2 id="source-heading">Open a spreadsheet</h2>
+                    </div>
+                    <p>XLSX, XLS, CSV, or JSON · maximum 50 MB.</p>
+                </div>
+
+                <label id="dropZone" class="drop-zone" for="sourceInput">
+                    <strong>Drop, paste, or choose a spreadsheet</strong>
+                    <span>The file stays in this browser while you work.</span>
+                </label>
+                <input id="sourceInput" class="visually-hidden" type="file" accept=".xlsx,.xls,.csv,.json,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,text/csv,application/json">
+
+                <div id="filePanel" class="file-panel hidden" aria-live="polite">
+                    <div class="file-copy">
+                        <span>Source</span>
+                        <strong id="fileName">No file</strong>
+                        <p id="fileMeta">0 B</p>
+                    </div>
+                    <div class="file-actions">
+                        <button id="resetWorkbookButton" class="brut-btn brut-btn--sm" type="button">Reset workbook</button>
+                        <button id="removeFileButton" class="brut-btn brut-btn--sm" type="button">Remove</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="workspace-section" aria-labelledby="workspace-heading">
+                <div class="section-heading">
+                    <div>
+                        <p class="section-number">02</p>
+                        <h2 id="workspace-heading">Workspace</h2>
+                    </div>
+                    <p>Choose a mode. Changes stay in a working copy until you export.</p>
+                </div>
+
+                <div class="mode-tabs" role="tablist" aria-label="Excel tool mode">
+                    <button class="mode-tab is-active" type="button" role="tab" aria-selected="true" data-mode="viewer">Viewer</button>
+                    <button class="mode-tab" type="button" role="tab" aria-selected="false" data-mode="convert">Convert</button>
+                    <button class="mode-tab" type="button" role="tab" aria-selected="false" data-mode="workbook">Workbook</button>
+                    <button class="mode-tab" type="button" role="tab" aria-selected="false" data-mode="clean">Clean data</button>
+                    <button class="mode-tab" type="button" role="tab" aria-selected="false" data-mode="duplicates">Duplicates</button>
+                </div>
+
+                <div id="statusBox" class="status-box is-neutral" role="status" aria-live="polite">Choose a spreadsheet to begin.</div>
+
+                <div id="sheetToolbar" class="sheet-toolbar hidden">
+                    <label for="sheetSelect">
+                        <span>Sheet</span>
+                        <select id="sheetSelect" class="brut-select"></select>
+                    </label>
+                    <div class="sheet-stats">
+                        <span id="sheetRows">0 rows</span>
+                        <span id="sheetColumns">0 columns</span>
+                    </div>
+                </div>
+
+                <section class="tool-panel" data-panel="viewer">
+                    <div class="panel-heading">
+                        <div>
+                            <p class="section-number">03</p>
+                            <h2>Spreadsheet viewer</h2>
+                        </div>
+                        <label class="search-field" for="searchInput">
+                            <span>Search rows</span>
+                            <input id="searchInput" class="brut-input" type="search" autocomplete="off" placeholder="Search visible data">
+                        </label>
+                    </div>
+                    <p class="panel-note">Preview is limited to the first 300 matching rows to keep large files responsive.</p>
+                </section>
+
+                <section class="tool-panel hidden" data-panel="convert">
+                    <div class="panel-heading">
+                        <div>
+                            <p class="section-number">03</p>
+                            <h2>Convert</h2>
+                        </div>
+                        <p class="panel-meta">Exports use the active sheet unless noted.</p>
+                    </div>
+                    <div class="action-grid">
+                        <button id="exportXlsxButton" class="action-card" type="button"><strong>Export XLSX</strong><span>Active sheet → .xlsx</span></button>
+                        <button id="exportCsvButton" class="action-card" type="button"><strong>Export CSV</strong><span>Active sheet → .csv</span></button>
+                        <button id="exportJsonButton" class="action-card" type="button"><strong>Export JSON</strong><span>Active sheet → .json</span></button>
+                        <button id="exportWorkbookButton" class="action-card" type="button"><strong>Download workbook</strong><span>All current sheets → .xlsx</span></button>
+                    </div>
+                </section>
+
+                <section class="tool-panel hidden" data-panel="workbook">
+                    <div class="panel-heading">
+                        <div>
+                            <p class="section-number">03</p>
+                            <h2>Workbook tools</h2>
+                        </div>
+                        <p class="panel-meta">Split, extract, combine, or merge files.</p>
+                    </div>
+
+                    <div class="action-grid workbook-actions">
+                        <button id="extractSheetButton" class="action-card" type="button"><strong>Extract active sheet</strong><span>Save this sheet as a new XLSX</span></button>
+                        <button id="splitWorkbookButton" class="action-card" type="button"><strong>Split by sheet</strong><span>One XLSX per sheet in a ZIP</span></button>
+                        <button id="combineSheetsButton" class="action-card" type="button"><strong>Combine sheets</strong><span>Append all sheets into one sheet</span></button>
+                    </div>
+
+                    <div class="merge-panel">
+                        <div>
+                            <span class="field-label">Merge workbooks</span>
+                            <p>Choose several XLSX, XLS, CSV, or JSON files. Every sheet is copied into one new workbook.</p>
+                        </div>
+                        <input id="mergeInput" class="brut-input file-control" type="file" accept=".xlsx,.xls,.csv,.json" multiple>
+                        <button id="mergeWorkbooksButton" class="brut-btn brut-btn--primary" type="button">Merge selected files</button>
+                    </div>
+                </section>
+
+                <section class="tool-panel hidden" data-panel="clean">
+                    <div class="panel-heading">
+                        <div>
+                            <p class="section-number">03</p>
+                            <h2>Clean data</h2>
+                        </div>
+                        <p class="panel-meta">Applies to the active sheet.</p>
+                    </div>
+
+                    <div class="clean-grid">
+                        <label class="check-card"><input id="removeEmptyRows" type="checkbox" checked><span><strong>Remove empty rows</strong><small>Delete rows where every cell is blank.</small></span></label>
+                        <label class="check-card"><input id="removeEmptyColumns" type="checkbox"><span><strong>Remove empty columns</strong><small>Delete columns with no values.</small></span></label>
+                        <label class="check-card"><input id="trimWhitespace" type="checkbox" checked><span><strong>Trim whitespace</strong><small>Trim leading/trailing spaces in text cells.</small></span></label>
+                    </div>
+
+                    <div class="form-grid form-grid-two">
+                        <label class="field-group" for="findText"><span>Find</span><input id="findText" class="brut-input" type="text" autocomplete="off" placeholder="Text to find"></label>
+                        <label class="field-group" for="replaceText"><span>Replace with</span><input id="replaceText" class="brut-input" type="text" autocomplete="off" placeholder="Replacement"></label>
+                    </div>
+
+                    <div class="form-grid form-grid-three">
+                        <label class="field-group" for="renameColumnSelect"><span>Rename column</span><select id="renameColumnSelect" class="brut-select"></select></label>
+                        <label class="field-group" for="renameColumnValue"><span>New header</span><input id="renameColumnValue" class="brut-input" type="text" autocomplete="off" placeholder="New column name"></label>
+                        <button id="renameColumnButton" class="brut-btn inline-action" type="button">Rename</button>
+                    </div>
+
+                    <div class="form-grid form-grid-three">
+                        <label class="field-group" for="sortColumnSelect"><span>Sort by</span><select id="sortColumnSelect" class="brut-select"></select></label>
+                        <label class="field-group" for="sortOrderSelect"><span>Order</span><select id="sortOrderSelect" class="brut-select"><option value="asc">Ascending</option><option value="desc">Descending</option></select></label>
+                        <button id="sortRowsButton" class="brut-btn inline-action" type="button">Sort rows</button>
+                    </div>
+
+                    <div class="panel-actions">
+                        <button id="applyCleaningButton" class="brut-btn brut-btn--primary" type="button">Apply cleaning</button>
+                    </div>
+                </section>
+
+                <section class="tool-panel hidden" data-panel="duplicates">
+                    <div class="panel-heading">
+                        <div>
+                            <p class="section-number">03</p>
+                            <h2>Duplicate finder</h2>
+                        </div>
+                        <span id="duplicateMeta" class="panel-meta">Not checked</span>
+                    </div>
+
+                    <div class="duplicate-controls">
+                        <label class="radio-card"><input type="radio" name="duplicateMode" value="row" checked><span><strong>Entire row</strong><small>Compare all columns.</small></span></label>
+                        <label class="radio-card"><input type="radio" name="duplicateMode" value="columns"><span><strong>Selected columns</strong><small>Compare one or several columns.</small></span></label>
+                    </div>
+
+                    <label class="field-group" for="duplicateColumns">
+                        <span>Columns</span>
+                        <select id="duplicateColumns" class="brut-select multi-select" multiple size="5"></select>
+                        <small>Hold Ctrl/Cmd to select multiple columns.</small>
+                    </label>
+
+                    <div class="panel-actions">
+                        <button id="findDuplicatesButton" class="brut-btn brut-btn--primary" type="button">Find duplicates</button>
+                        <button id="removeDuplicatesButton" class="brut-btn" type="button" disabled>Remove duplicates</button>
+                    </div>
+                </section>
+
+                <section id="previewSection" class="preview-section hidden" aria-labelledby="preview-heading">
+                    <div class="preview-heading">
+                        <div>
+                            <p class="section-number">04</p>
+                            <h2 id="preview-heading">Preview</h2>
+                        </div>
+                        <span id="previewMeta" class="panel-meta">0 rows</span>
+                    </div>
+                    <div class="table-wrap">
+                        <table id="previewTable"></table>
+                    </div>
+                </section>
+            </section>
+
+            <section class="info-section">
+                <article class="info-card"><span class="info-number">01</span><h3>Local processing</h3><p>Spreadsheet contents stay in this browser and are not uploaded to an Astakula server.</p></article>
+                <article class="info-card"><span class="info-number">02</span><h3>Data-first</h3><p>This tool focuses on workbook data. Complex macros, charts, pivot tables, and advanced formatting may not survive transformations.</p></article>
+                <article class="info-card"><span class="info-number">03</span><h3>Multiple formats</h3><p>Open XLSX, XLS, CSV, or JSON and export clean data back to XLSX, CSV, or JSON.</p></article>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <div class="site-footer-inner"><p>Tools Astakula</p><p>astakula.com</p></div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+    <script type="module" src="./js/app.js?v=1"></script>
+</body>
+</html>
