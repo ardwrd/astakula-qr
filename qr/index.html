@@ -2,562 +2,104 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <meta
-        name="description"
-        content="Tools Astakula QR Generator for URLs, text, WhatsApp, Wi-Fi, email, phone, SMS, contacts, locations, and calendar events."
-    >
-
-    <meta
-        name="theme-color"
-        content="#f3f0e8"
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tools Astakula QR Generator for URLs, text, WhatsApp, Wi-Fi, email, phone, SMS, contacts, locations, and calendar events.">
+    <meta name="robots" content="index,follow">
+    <meta name="theme-color" content="#f3f0e8">
+    <link rel="canonical" href="https://tools.astakula.com/qr/">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="QR Generator — Tools Astakula">
+    <meta property="og:description" content="Create QR codes for links, Wi-Fi, messages, contacts, locations, and events.">
+    <meta property="og:url" content="https://tools.astakula.com/qr/">
+    <meta property="og:site_name" content="Tools Astakula">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="QR Generator — Tools Astakula">
+    <meta name="twitter:description" content="Create QR codes directly in your browser.">
     <title>QR Generator — Tools Astakula</title>
-
-    <link
-        rel="stylesheet"
-        href="./style.css"
-    >
+    <link rel="stylesheet" href="../assets/css/tokens.css?v=1">
+    <link rel="stylesheet" href="../assets/css/base.css?v=1">
+    <link rel="stylesheet" href="../assets/css/components.css?v=1">
+    <link rel="stylesheet" href="./style.css?v=2">
 </head>
-
 <body>
-
     <div class="page-shell">
-
-
-        <!-- ========================================
-             HEADER
-        ========================================= -->
-
         <header class="site-header">
-
             <div class="site-header-inner">
-
-                <a
-                    href="../"
-                    class="brand"
-                    aria-label="Tools Astakula Home"
-                >
-                    <span class="brand-wordmark">
-                        Tools Astakula
-                    </span>
-                </a>
-
-
-                <div class="header-meta">
-
-                    <span class="header-badge">
-                        QR Generator
-                    </span>
-
-                </div>
-
+                <a href="../" class="brand" aria-label="Tools Astakula Home"><span class="brand-wordmark">Tools Astakula</span></a>
+                <div class="header-meta"><span class="header-badge">QR Generator</span></div>
             </div>
-
         </header>
 
-
-        <!-- ========================================
-             MAIN
-        ========================================= -->
-
         <main class="main-content">
-
-
-            <!-- ========================================
-                 HERO
-            ========================================= -->
-
             <section class="hero-section">
-
                 <div class="hero-copy">
-
-                    <p class="eyebrow">
-                        QR GENERATOR
-                    </p>
-
-                    <h1>
-                        Make a QR code.
-                    </h1>
-
-                    <p class="hero-description">
-                        Choose a type, fill in the details,
-                        and export it as PNG or SVG.
-                    </p>
-
+                    <p class="eyebrow">QR GENERATOR</p>
+                    <h1>Make a QR code.</h1>
+                    <p class="hero-description">Choose a type, fill in the details, and export it as PNG or SVG.</p>
                 </div>
-
-
-                <div
-                    class="hero-decoration"
-                    aria-hidden="true"
-                >
-                    <span
-                        class="decoration-box decoration-box-1"
-                    ></span>
-
-                    <span
-                        class="decoration-box decoration-box-2"
-                    ></span>
-
-                    <span
-                        class="decoration-box decoration-box-3"
-                    ></span>
+                <div class="hero-decoration" aria-hidden="true">
+                    <span class="decoration-box decoration-box-1"></span>
+                    <span class="decoration-box decoration-box-2"></span>
+                    <span class="decoration-box decoration-box-3"></span>
                 </div>
-
             </section>
 
-
-            <!-- ========================================
-                 GENERATOR SELECTOR
-            ========================================= -->
-
-            <section
-                class="generator-type-section"
-                aria-labelledby="generator-type-heading"
-            >
-
+            <section class="generator-type-section" aria-labelledby="generator-type-heading">
                 <div class="section-heading">
-
-                    <div>
-
-                        <p class="section-number">
-                            01
-                        </p>
-
-                        <h2 id="generator-type-heading">
-                            Choose a QR type
-                        </h2>
-
-                    </div>
-
-
-                    <p>
-                        Pick what you want to put inside
-                        the QR code.
-                    </p>
-
+                    <div><p class="section-number">01</p><h2 id="generator-type-heading">Choose a QR type</h2></div>
+                    <p>Pick what you want to put inside the QR code.</p>
                 </div>
-
-
-                <div
-                    id="generatorSelector"
-                    class="generator-selector"
-                    role="group"
-                    aria-label="QR Code Type"
-                >
-                    <!--
-                        Generator buttons are rendered
-                        by form-renderer.js
-                    -->
-                </div>
-
+                <div id="generatorSelector" class="generator-selector" role="group" aria-label="QR Code Type"></div>
             </section>
-
-
-            <!-- ========================================
-                 WORKSPACE
-            ========================================= -->
 
             <section class="workspace">
-
-
-                <!-- ====================================
-                     GENERATOR FORM
-                ===================================== -->
-
-                <div
-                    class="workspace-panel generator-panel"
-                >
-
-                    <div class="panel-header">
-
-                        <div>
-
-                            <p class="section-number">
-                                02
-                            </p>
-
-                            <h2 id="generatorTitle">
-                                URL
-                            </h2>
-
-                        </div>
-
-                    </div>
-
-
-                    <p
-                        id="generatorDescription"
-                        class="generator-description"
-                    >
-                        Link to a website or page.
-                    </p>
-
-
-                    <!-- Error -->
-
-                    <div
-                        id="errorBox"
-                        class="error-box hidden"
-                        role="alert"
-                        aria-live="assertive"
-                    ></div>
-
-
-                    <!-- Dynamic Fields -->
-
-                    <div
-                        id="generatorFields"
-                        class="generator-fields"
-                    >
-                        <!--
-                            Fields are rendered
-                            by form-renderer.js
-                        -->
-                    </div>
-
-
-                    <!-- Form Actions -->
-
+                <div class="workspace-panel generator-panel">
+                    <div class="panel-header"><div><p class="section-number">02</p><h2 id="generatorTitle">URL</h2></div></div>
+                    <p id="generatorDescription" class="generator-description">Link to a website or page.</p>
+                    <div id="errorBox" class="error-box hidden" role="alert" aria-live="assertive"></div>
+                    <div id="generatorFields" class="generator-fields"></div>
                     <div class="form-actions">
-
-                        <button
-                            id="generateButton"
-                            class="button button-primary"
-                            type="button"
-                        >
-                            <span>
-                                Generate QR
-                            </span>
-
-                            <span
-                                class="button-arrow"
-                                aria-hidden="true"
-                            >
-                                →
-                            </span>
-                        </button>
-
-
-                        <button
-                            id="resetButton"
-                            class="button button-secondary"
-                            type="button"
-                        >
-                            Reset
-                        </button>
-
+                        <button id="generateButton" class="button button-primary" type="button"><span>Generate QR</span><span class="button-arrow" aria-hidden="true">→</span></button>
+                        <button id="resetButton" class="button button-secondary" type="button">Reset</button>
                     </div>
-
                 </div>
 
-
-                <!-- ====================================
-                     PREVIEW
-                ===================================== -->
-
-                <div
-                    class="workspace-panel preview-panel"
-                >
-
-                    <div class="panel-header">
-
-                        <div>
-
-                            <p class="section-number">
-                                03
-                            </p>
-
-                            <h2>
-                                Preview
-                            </h2>
-
-                        </div>
-
+                <div class="workspace-panel preview-panel">
+                    <div class="panel-header"><div><p class="section-number">03</p><h2>Preview</h2></div></div>
+                    <div class="preview-placeholder" aria-hidden="true">
+                        <div class="preview-placeholder-grid"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                        <p>QR preview</p>
                     </div>
-
-
-                    <!-- Empty State -->
-
-                    <div
-                        class="preview-placeholder"
-                        aria-hidden="true"
-                    >
-
-                        <div
-                            class="preview-placeholder-grid"
-                        >
-
-                            <span></span>
-                            <span></span>
-                            <span></span>
-
-                            <span></span>
-                            <span></span>
-                            <span></span>
-
-                            <span></span>
-                            <span></span>
-                            <span></span>
-
-                        </div>
-
-                        <p>
-                            QR preview
-                        </p>
-
-                    </div>
-
-
-                    <!-- Generated Result -->
-
-                    <div
-                        id="resultSection"
-                        class="result-section hidden"
-                        aria-live="polite"
-                    >
-
-
-                        <!-- QR Preview -->
-
-                        <div class="qr-preview-card">
-
-                            <div
-                                id="qrPreview"
-                                class="qr-preview"
-                            >
-                                <!--
-                                    Canvas and hidden SVG
-                                    are inserted by
-                                    qr-renderer.js
-                                -->
-                            </div>
-
-                        </div>
-
-
-                        <!-- Result Information -->
-
+                    <div id="resultSection" class="result-section hidden" aria-live="polite">
+                        <div class="qr-preview-card"><div id="qrPreview" class="qr-preview"></div></div>
                         <div class="result-info">
-
-                            <div class="result-heading">
-
-                                <span
-                                    id="resultTitle"
-                                    class="result-type"
-                                ></span>
-
-                                <strong
-                                    id="resultValue"
-                                    class="result-value"
-                                ></strong>
-
-                            </div>
-
-
-                            <div
-                                id="resultDetails"
-                                class="result-details"
-                                hidden
-                            ></div>
-
+                            <div class="result-heading"><span id="resultTitle" class="result-type"></span><strong id="resultValue" class="result-value"></strong></div>
+                            <div id="resultDetails" class="result-details" hidden></div>
                         </div>
-
-
-                        <!-- Payload -->
-
                         <div class="payload-section">
-
-                            <div class="payload-header">
-
-                                <label
-                                    for="payloadOutput"
-                                    class="payload-label"
-                                >
-                                    QR Payload
-                                </label>
-
-
-                                <button
-                                    id="copyPayloadButton"
-                                    class="button button-small"
-                                    type="button"
-                                >
-                                    Copy
-                                </button>
-
-                            </div>
-
-
-                            <textarea
-                                id="payloadOutput"
-                                class="payload-output"
-                                rows="5"
-                                readonly
-                                spellcheck="false"
-                                aria-label="Generated QR payload"
-                            ></textarea>
-
+                            <div class="payload-header"><label for="payloadOutput" class="payload-label">QR Payload</label><button id="copyPayloadButton" class="button button-small" type="button">Copy</button></div>
+                            <textarea id="payloadOutput" class="payload-output" rows="5" readonly spellcheck="false" aria-label="Generated QR payload"></textarea>
                         </div>
-
-
-                        <!-- Export -->
-
                         <div class="export-actions">
-
-                            <button
-                                id="downloadPngButton"
-                                class="button button-primary"
-                                type="button"
-                            >
-                                Download PNG
-                            </button>
-
-
-                            <button
-                                id="downloadSvgButton"
-                                class="button button-secondary"
-                                type="button"
-                            >
-                                Download SVG
-                            </button>
-
+                            <button id="downloadPngButton" class="button button-primary" type="button">Download PNG</button>
+                            <button id="downloadSvgButton" class="button button-secondary" type="button">Download SVG</button>
                         </div>
-
                     </div>
-
                 </div>
-
             </section>
-
-
-            <!-- ========================================
-                 INFO
-            ========================================= -->
 
             <section class="info-section">
-
-
-                <article class="info-card">
-
-                    <span class="info-number">
-                        01
-                    </span>
-
-                    <h3>
-                        Runs locally
-                    </h3>
-
-                    <p>
-                        QR codes are generated
-                        in your browser.
-                    </p>
-
-                </article>
-
-
-                <article class="info-card">
-
-                    <span class="info-number">
-                        02
-                    </span>
-
-                    <h3>
-                        Nothing to upload
-                    </h3>
-
-                    <p>
-                        The data you enter stays
-                        in the browser.
-                    </p>
-
-                </article>
-
-
-                <article class="info-card">
-
-                    <span class="info-number">
-                        03
-                    </span>
-
-                    <h3>
-                        PNG or SVG
-                    </h3>
-
-                    <p>
-                        Download the format
-                        that works for you.
-                    </p>
-
-                </article>
-
-
+                <article class="info-card"><span class="info-number">01</span><h3>Runs locally</h3><p>QR codes are generated in your browser.</p></article>
+                <article class="info-card"><span class="info-number">02</span><h3>Nothing to upload</h3><p>The data you enter stays in the browser.</p></article>
+                <article class="info-card"><span class="info-number">03</span><h3>PNG or SVG</h3><p>Download the format that works for you.</p></article>
             </section>
-
         </main>
 
-
-        <!-- ========================================
-             FOOTER
-        ========================================= -->
-
-        <footer class="site-footer">
-
-            <div class="site-footer-inner">
-
-                <p>
-                    Tools Astakula
-                </p>
-
-                <p>
-                    astakula.com
-                </p>
-
-            </div>
-
-        </footer>
-
+        <footer class="site-footer"><div class="site-footer-inner"><p>Tools Astakula</p><p>astakula.com</p></div></footer>
     </div>
-
-
-    <!-- ========================================
-         NOSCRIPT
-    ========================================= -->
-
-    <noscript>
-
-        <div class="noscript-message">
-            JavaScript is required to use
-            the QR Generator.
-        </div>
-
-    </noscript>
-
-
-    <!-- ========================================
-         QR ENGINE
-    ========================================= -->
-
-    <script
-        src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"
-    ></script>
-
-
-    <!-- ========================================
-         APPLICATION
-    ========================================= -->
-
-    <script
-        type="module"
-        src="./js/app.js"
-    ></script>
-
+    <noscript><div class="noscript-message">JavaScript is required to use the QR Generator.</div></noscript>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
+    <script type="module" src="./js/app.js?v=2"></script>
 </body>
 </html>
