@@ -12,6 +12,7 @@ Live site: https://tools.astakula.com/
 - UUID Generator — https://tools.astakula.com/uuid/
 - Hash Generator — https://tools.astakula.com/hash/
 - Image Tools — https://tools.astakula.com/image/
+- PDF Tools — https://tools.astakula.com/pdf/
 
 The QR Generator supports URL, plain text, WhatsApp, Wi-Fi, email, phone, SMS, vCard, location, and calendar event payloads, with PNG and SVG export.
 
@@ -25,7 +26,9 @@ The Hash Generator supports MD5, SHA-1, SHA-256, SHA-384, and SHA-512 for text o
 
 Image Tools supports local batch conversion to WebP, JPEG, or PNG, optional resize limits, JPEG/WebP quality control, drag-and-drop or pasted images, individual downloads, and batch downloads. Up to 20 files of 25 MB each can be queued.
 
-All six tools process data locally in the browser.
+PDF Tools supports local PDF merge, page extraction, page reordering, and page rotation. Merge mode supports up to 12 PDFs, with 50 MB per-file and 150 MB aggregate limits. Password-protected PDFs are not supported.
+
+All seven tools process data locally in the browser.
 
 ## UI
 
@@ -39,9 +42,10 @@ Keyboard focus uses a neutral high-contrast outline in both light and dark modes
 
 Global light/dark mode remains controlled by `assets/js/theme.js`.
 
+PDF operations use the pinned browser build of `pdf-lib@1.17.1` from jsDelivr.
+
 ## Planned
 
-- PDF Tools
 - GIF Maker
 
 ## Structure
@@ -74,6 +78,10 @@ astakula-tools/
 │   ├── style.css
 │   └── js/
 ├── image/
+│   ├── index.html
+│   ├── style.css
+│   └── js/
+├── pdf/
 │   ├── index.html
 │   ├── style.css
 │   └── js/
