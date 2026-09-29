@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <meta name="theme-color" content="#f3f0e8">
+    <title>Page not found — Tools Astakula</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/assets/css/tokens.css?v=1">
+    <link rel="stylesheet" href="/assets/css/base.css?v=1">
+    <link rel="stylesheet" href="/assets/css/components.css?v=1">
+    <style>
+        .not-found {
+            width: min(calc(100% - 40px), 900px);
+            margin: auto;
+            padding: 70px 0;
+        }
+
+        .not-found-card {
+            padding: clamp(30px, 7vw, 64px);
+            background: var(--ta-yellow);
+            border: var(--ta-border-heavy) solid var(--ta-border);
+            box-shadow: var(--ta-shadow-lg);
+        }
+
+        .not-found-code {
+            display: inline-block;
+            margin: 0 0 22px;
+            padding: 6px 10px;
+            background: var(--ta-surface);
+            border: var(--ta-border-width) solid var(--ta-border);
+            box-shadow: 3px 3px 0 var(--ta-border);
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: .12em;
+        }
+
+        h1 {
+            max-width: 650px;
+            margin: 0;
+            font-size: clamp(44px, 9vw, 82px);
+            line-height: .96;
+            letter-spacing: -.055em;
+        }
+
+        p {
+            max-width: 560px;
+            margin: 26px 0 32px;
+            font-size: 16px;
+        }
+
+        @media (max-width: 600px) {
+            .not-found {
+                width: calc(100% - 28px);
+                padding: 36px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-shell">
+        <header class="site-header">
+            <div class="site-header-inner">
+                <a class="brand" href="/">Tools Astakula</a>
+            </div>
+        </header>
+
+        <main class="not-found">
+            <section class="not-found-card">
+                <span class="not-found-code">404</span>
+                <h1>Nothing here.</h1>
+                <p>The page you opened does not exist, or it may have moved.</p>
+                <a class="ta-button" href="/">Back to Tools</a>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <div class="site-footer-inner">
+                <p>Tools Astakula</p>
+                <p>astakula.com</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
