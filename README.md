@@ -14,6 +14,7 @@ Live site: https://tools.astakula.com/
 - Image Tools — https://tools.astakula.com/image/
 - PDF Tools — https://tools.astakula.com/pdf/
 - GIF Maker — https://tools.astakula.com/gif/
+- Favicon Generator — https://tools.astakula.com/favicon/
 
 The QR Generator supports URL, plain text, WhatsApp, Wi-Fi, email, phone, SMS, vCard, location, and calendar event payloads, with PNG and SVG export.
 
@@ -31,7 +32,9 @@ PDF Tools supports local PDF merge, page extraction, page reordering, and page r
 
 GIF Maker supports PNG, JPEG, WebP, and AVIF source frames, drag-and-drop or pasted images, frame reordering, configurable delay, 64/128/256-color palettes, contain/cover fitting, custom output dimensions up to 1200 px, background color, loop control, preview, and GIF download. Up to 30 source frames of 15 MB each can be queued, with a 180 MB aggregate source limit.
 
-All eight tools process data locally in the browser.
+Favicon Generator accepts PNG, JPEG, WebP, AVIF, and SVG sources up to 15 MB. It generates a multi-size `favicon.ico`, 16/32/48 px browser PNGs, a 180 px Apple touch icon, 192/512 px web app icons, `site.webmanifest`, recommended HTML tags, and a downloadable ZIP package. Contain/cover fitting, padding, transparent or custom-color backgrounds, drag-and-drop, and pasted images are supported.
+
+All nine tools process user data locally in the browser.
 
 ## UI
 
@@ -45,7 +48,7 @@ Keyboard focus uses a neutral high-contrast outline in both light and dark modes
 
 Global light/dark mode remains controlled by `assets/js/theme.js`.
 
-PDF operations use the pinned browser build of `pdf-lib@1.17.1` from jsDelivr. GIF encoding uses `gifenc@1.0.3` as a browser-side ES module from jsDelivr.
+PDF operations use the pinned browser build of `pdf-lib@1.17.1` from jsDelivr. GIF encoding uses `gifenc@1.0.3` as a browser-side ES module from jsDelivr. Favicon ZIP packaging uses `jszip@3.10.1` from jsDelivr; ICO and PNG assets are rendered directly in the browser.
 
 ## Structure
 
@@ -85,6 +88,10 @@ astakula-tools/
 │   ├── style.css
 │   └── js/
 ├── gif/
+│   ├── index.html
+│   ├── style.css
+│   └── js/
+├── favicon/
 │   ├── index.html
 │   ├── style.css
 │   └── js/
