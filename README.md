@@ -13,6 +13,7 @@ Live site: https://tools.astakula.com/
 - Hash Generator — https://tools.astakula.com/hash/
 - Image Tools — https://tools.astakula.com/image/
 - PDF Tools — https://tools.astakula.com/pdf/
+- GIF Maker — https://tools.astakula.com/gif/
 
 The QR Generator supports URL, plain text, WhatsApp, Wi-Fi, email, phone, SMS, vCard, location, and calendar event payloads, with PNG and SVG export.
 
@@ -28,7 +29,9 @@ Image Tools supports local batch conversion to WebP, JPEG, or PNG, optional resi
 
 PDF Tools supports local PDF merge, page extraction, page reordering, and page rotation. Merge mode supports up to 12 PDFs, with 50 MB per-file and 150 MB aggregate limits. Password-protected PDFs are not supported.
 
-All seven tools process data locally in the browser.
+GIF Maker supports PNG, JPEG, WebP, and AVIF source frames, drag-and-drop or pasted images, frame reordering, configurable delay, 64/128/256-color palettes, contain/cover fitting, custom output dimensions up to 1200 px, background color, loop control, preview, and GIF download. Up to 30 source frames of 15 MB each can be queued, with a 180 MB aggregate source limit.
+
+All eight tools process data locally in the browser.
 
 ## UI
 
@@ -42,11 +45,7 @@ Keyboard focus uses a neutral high-contrast outline in both light and dark modes
 
 Global light/dark mode remains controlled by `assets/js/theme.js`.
 
-PDF operations use the pinned browser build of `pdf-lib@1.17.1` from jsDelivr.
-
-## Planned
-
-- GIF Maker
+PDF operations use the pinned browser build of `pdf-lib@1.17.1` from jsDelivr. GIF encoding uses `gifenc@1.0.3` as a browser-side ES module from jsDelivr.
 
 ## Structure
 
@@ -82,6 +81,10 @@ astakula-tools/
 │   ├── style.css
 │   └── js/
 ├── pdf/
+│   ├── index.html
+│   ├── style.css
+│   └── js/
+├── gif/
 │   ├── index.html
 │   ├── style.css
 │   └── js/
