@@ -24,6 +24,12 @@ The Hash Generator supports MD5, SHA-1, SHA-256, SHA-384, and SHA-512 for text o
 
 All five tools process data locally in the browser.
 
+## UI
+
+The neobrutalist UI foundation is loaded from the pinned BRUT CDN package `@sprtn/ui@1.3.2` via jsDelivr. Local CSS is kept only for Tools Astakula compatibility, page layout, responsive behavior, and tool-specific presentation.
+
+Global light/dark mode remains controlled by `assets/js/theme.js`, with a small token bridge in `assets/css/tokens.css` so the CDN components follow the same theme.
+
 ## Planned
 
 - Image Tools
