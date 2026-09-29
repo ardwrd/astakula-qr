@@ -10,6 +10,7 @@ Live site: https://tools.astakula.com/
 - JSON Formatter — https://tools.astakula.com/json/
 - Base64 — https://tools.astakula.com/base64/
 - UUID Generator — https://tools.astakula.com/uuid/
+- Hash Generator — https://tools.astakula.com/hash/
 
 The QR Generator supports URL, plain text, WhatsApp, Wi-Fi, email, phone, SMS, vCard, location, and calendar event payloads, with PNG and SVG export.
 
@@ -19,11 +20,12 @@ The Base64 tool supports UTF-8 text encode/decode, input/output swap, file-to-Ba
 
 The UUID Generator supports UUID v4 and UUID v7, 1–1000 values per batch, lowercase or uppercase output, optional hyphen removal, copy, regeneration, and `.txt` download.
 
-All four tools process data locally in the browser.
+The Hash Generator supports MD5, SHA-1, SHA-256, SHA-384, and SHA-512 for text or files up to 50 MB, lowercase or uppercase digest output, copy, `.txt` download, and hash comparison.
+
+All five tools process data locally in the browser.
 
 ## Planned
 
-- Hash Generator
 - Image Tools
 - PDF Tools
 - GIF Maker
@@ -52,6 +54,10 @@ astakula-tools/
 │   ├── style.css
 │   └── js/
 ├── uuid/
+│   ├── index.html
+│   ├── style.css
+│   └── js/
+├── hash/
 │   ├── index.html
 │   ├── style.css
 │   └── js/
