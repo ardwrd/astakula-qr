@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Subnet, IP range, IPv4, MAC, bandwidth, port, and DNS utilities in the browser with Tools Astakula.">
+    <meta name="robots" content="index,follow">
+    <meta name="theme-color" content="#f3f0e8">
+
+    <link rel="canonical" href="https://tools.astakula.com/network/">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Network Tools — Tools Astakula">
+    <meta property="og:description" content="Subnet, CIDR, IPv4, MAC, bandwidth, port, and DNS tools in one place.">
+    <meta property="og:url" content="https://tools.astakula.com/network/">
+    <meta property="og:site_name" content="Tools Astakula">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Network Tools — Tools Astakula">
+    <meta name="twitter:description" content="Practical browser-based network utilities.">
+
+    <title>Network Tools — Tools Astakula</title>
+
+    <script src="../assets/js/theme.js?v=2"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sprtn/ui@1.3.2/dist/brut.css">
+    <link rel="stylesheet" href="../assets/css/astakula.css?v=2">
+    <link rel="stylesheet" href="./style.css?v=1">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="site-header">
+            <div class="site-header-inner">
+                <a href="../" class="brand" aria-label="Tools Astakula Home">Tools Astakula</a>
+                <div class="header-actions">
+                    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme">Dark</button>
+                    <span class="header-badge">Network Tools</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="hero-section">
+                <div class="hero-copy">
+                    <p class="eyebrow">NETWORK TOOLS</p>
+                    <h1>Calculate networks without guesswork.</h1>
+                    <p class="hero-description">Subnet, IP range, CIDR, IPv4, MAC, bandwidth, port, and DNS utilities in one browser workspace.</p>
+                </div>
+                <div class="hero-decoration" aria-hidden="true">
+                    <span class="network-mark">/24</span>
+                </div>
+            </section>
+
+            <section class="workspace-section" aria-labelledby="workspace-heading">
+                <div class="section-heading">
+                    <div>
+                        <p class="section-number">01</p>
+                        <h2 id="workspace-heading">Choose a tool</h2>
+                    </div>
+                    <p>Most calculations run locally. DNS lookup uses a public DNS-over-HTTPS resolver.</p>
+                </div>
+
+                <div class="mode-tabs" role="tablist" aria-label="Network tool modes">
+                    <button class="mode-tab is-active" type="button" data-mode="subnet">Subnet</button>
+                    <button class="mode-tab" type="button" data-mode="range">IP Range</button>
+                    <button class="mode-tab" type="button" data-mode="splitter">Subnet Splitter</button>
+                    <button class="mode-tab" type="button" data-mode="ipv4">IPv4</button>
+                    <button class="mode-tab" type="button" data-mode="mac">MAC</button>
+                    <button class="mode-tab" type="button" data-mode="bandwidth">Bandwidth</button>
+                    <button class="mode-tab" type="button" data-mode="ports">Ports</button>
+                    <button class="mode-tab" type="button" data-mode="dns">DNS</button>
+                </div>
+
+                <div id="statusBox" class="status-box is-neutral" role="status" aria-live="polite">Ready.</div>
+
+                <section class="tool-panel" data-panel="subnet">
+                    <div class="panel-heading">
+                        <div><p class="section-number">SUBNET</p><h2>Subnet Calculator</h2></div>
+                        <p>IPv4 + CIDR</p>
+                    </div>
+                    <div class="form-grid form-grid-three">
+                        <label class="field-group"><span>IPv4 address</span><input id="subnetIp" class="brut-input" type="text" value="192.168.1.10" inputmode="decimal" autocomplete="off"></label>
+                        <label class="field-group"><span>CIDR prefix</span><input id="subnetCidr" class="brut-input" type="number" min="0" max="32" value="24"></label>
+                        <button id="subnetCalculate" class="brut-btn brut-btn--primary inline-action" type="button">Calculate</button>
+                    </div>
+                    <div id="subnetResults" class="result-grid"></div>
+                    <div class="cidr-reference" aria-label="CIDR quick reference">
+                        <strong>Quick reference</strong>
+                        <div class="cidr-chips">
+                            <button type="button" data-cidr="8">/8</button><button type="button" data-cidr="16">/16</button><button type="button" data-cidr="20">/20</button><button type="button" data-cidr="22">/22</button><button type="button" data-cidr="24">/24</button><button type="button" data-cidr="25">/25</button><button type="button" data-cidr="26">/26</button><button type="button" data-cidr="27">/27</button><button type="button" data-cidr="28">/28</button><button type="button" data-cidr="29">/29</button><button type="button" data-cidr="30">/30</button><button type="button" data-cidr="32">/32</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="tool-panel hidden" data-panel="range">
+                    <div class="panel-heading">
+                        <div><p class="section-number">RANGE</p><h2>IP Range Calculator</h2></div>
+                        <p>Count addresses and summarize an exact range into CIDR blocks.</p>
+                    </div>
+                    <div class="form-grid form-grid-three">
+                        <label class="field-group"><span>Start IPv4</span><input id="rangeStart" class="brut-input" type="text" value="192.168.1.0" autocomplete="off"></label>
+                        <label class="field-group"><span>End IPv4</span><input id="rangeEnd" class="brut-input" type="text" value="192.168.1.255" autocomplete="off"></label>
+                        <button id="rangeCalculate" class="brut-btn brut-btn--primary inline-action" type="button">Calculate</button>
+                    </div>
+                    <div id="rangeResults" class="result-grid"></div>
+                    <div class="output-block"><div class="output-heading"><strong>Exact CIDR blocks</strong><button id="copyRangeCidrs" class="brut-btn brut-btn--sm" type="button">Copy</button></div><textarea id="rangeCidrs" readonly spellcheck="false"></textarea></div>
+                </section>
+
+                <section class="tool-panel hidden" data-panel="splitter">
+                    <div class="panel-heading">
+                        <div><p class="section-number">SPLIT</p><h2>Subnet Splitter</h2></div>
+                        <p>Split one network into smaller equal-size networks.</p>
+                    </div>
+                    <div class="form-grid form-grid-three">
+                        <label class="field-group"><span>Network</span><input id="splitNetwork" class="brut-input" type="text" value="192.168.1.0/24" autocomplete="off"></label>
+                        <label class="field-group"><span>Target prefix</span><input id="splitTarget" class="brut-input" type="number" min="1" max="32" value="26"></label>
+                        <button id="splitCalculate" class="brut-btn brut-btn--primary inline-action" type="button">Split</button>
+                    </div>
+                    <div id="splitResults" class="result-grid"></div>
+                    <div class="table-wrap compact-table-wrap"><table id="splitTable"><thead><tr><th>#</th><th>Network</th><th>Host range</th><th>Broadcast</th><th>Addresses</th></tr></thead><tbody></tbody></table></div>
+                </section>
+
+                <section class="tool-panel hidden" data-panel="ipv4">
+                    <div class="panel-heading">
+                        <div><p class="section-number">IPV4</p><h2>IPv4 Converter</h2></div>
+                        <p>Convert dotted IPv4 to binary, hexadecimal, and unsigned integer forms.</p>
+                    </div>
+                    <div class="form-grid form-grid-two">
+                        <label class="field-group"><span>IPv4 address</span><input id="ipv4Input" class="brut-input" type="text" value="192.168.1.1" autocomplete="off"></label>
+                        <label class="field-group"><span>Unsigned integer</span><input id="integerInput" class="brut-input" type="text" placeholder="3232235777" inputmode="numeric" autocomplete="off"></label>
+                    </div>
+                    <div class="panel-actions"><button id="ipv4Convert" class="brut-btn brut-btn--primary" type="button">Convert IPv4</button><button id="integerConvert" class="brut-btn" type="button">Integer → IPv4</button></div>
+                    <div id="ipv4Results" class="result-grid"></div>
+                </section>
+
+                <section class="tool-panel hidden" data-panel="mac">
+                    <div class="panel-heading">
+                        <div><p class="section-number">MAC</p><h2>MAC Address Tools</h2></div>
+                        <p>Validate and normalize common MAC address formats.</p>
+                    </div>
+                    <div class="form-grid form-grid-two">
+                        <label class="field-group"><span>MAC address</span><input id="macInput" class="brut-input" type="text" value="AA-BB-CC-DD-EE-FF" autocomplete="off"></label>
+                        <label class="field-group"><span>Output format</span><select id="macFormat" class="brut-select"><option value="colon">aa:bb:cc:dd:ee:ff</option><option value="hyphen">AA-BB-CC-DD-EE-FF</option><option value="cisco">aabb.ccdd.eeff</option><option value="plain">AABBCCDDEEFF</option></select></label>
+                    </div>
+                    <div class="panel-actions"><button id="macNormalize" class="brut-btn brut-btn--primary" type="button">Normalize</button><button id="copyMac" class="brut-btn" type="button">Copy</button></div>
+                    <div id="macResults" class="result-grid"></div>
+                </section>
+
+                <section class="tool-panel hidden" data-panel="bandwidth">
+                    <div class="panel-heading">
+                        <div><p class="section-number">BANDWIDTH</p><h2>Bandwidth Calculator</h2></div>
+                        <p>Convert network rates and estimate transfer time.</p>
+                    </div>
+                    <div class="form-grid form-grid-three">
+                        <label class="field-group"><span>Rate</span><input id="bandwidthValue" class="brut-input" type="number" min="0" step="any" value="100"></label>
+                        <label class="field-group"><span>Unit</span><select id="bandwidthUnit" class="brut-select"><option value="bps">bit/s</option><option value="Kbps">Kbit/s</option><option value="Mbps" selected>Mbit/s</option><option value="Gbps">Gbit/s</option><option value="Bps">B/s</option><option value="KBps">KB/s</option><option value="MBps">MB/s</option><option value="GBps">GB/s</option></select></label>
+                        <button id="bandwidthConvert" class="brut-btn brut-btn--primary inline-action" type="button">Convert</button>
+                    </div>
+                    <div id="bandwidthResults" class="result-grid"></div>
+                    <div class="transfer-panel">
+                        <div class="form-grid form-grid-three">
+                            <label class="field-group"><span>File size</span><input id="fileSizeValue" class="brut-input" type="number" min="0" step="any" value="1"></label>
+                            <label class="field-group"><span>File unit</span><select id="fileSizeUnit" class="brut-select"><option value="MB">MB</option><option value="GB" selected>GB</option><option value="TB">TB</option></select></label>
+                            <button id="transferCalculate" class="brut-btn inline-action" type="button">Estimate transfer</button>
+                        </div>
+                        <div id="transferResult" class="transfer-result">At 100 Mbit/s, 1 GB takes about 1m 20s.</div>
+                    </div>
+                </section>
+
+                <section class="tool-panel hidden" data-panel="ports">
+                    <div class="panel-heading">
+                        <div><p class="section-number">PORTS</p><h2>Port Reference</h2></div>
+                        <p>Common TCP and UDP ports used in day-to-day infrastructure work.</p>
+                    </div>
+                    <label class="search-field"><span>Search by port, service, or protocol</span><input id="portSearch" class="brut-input" type="search" placeholder="22, SSH, HTTPS, PostgreSQL..."></label>
+                    <div class="table-wrap"><table id="portTable"><thead><tr><th>Port</th><th>Protocol</th><th>Service</th><th>Notes</th></tr></thead><tbody></tbody></table></div>
+                </section>
+
+                <section class="tool-panel hidden" data-panel="dns">
+                    <div class="panel-heading">
+                        <div><p class="section-number">DNS</p><h2>DNS Inspector</h2></div>
+                        <p>Queries are sent to Cloudflare's public DNS-over-HTTPS resolver.</p>
+                    </div>
+                    <div class="form-grid dns-grid">
+                        <label class="field-group"><span>Domain</span><input id="dnsDomain" class="brut-input" type="text" value="example.com" autocomplete="off"></label>
+                        <label class="field-group"><span>Record type</span><select id="dnsType" class="brut-select"><option>A</option><option>AAAA</option><option>MX</option><option>TXT</option><option>CNAME</option><option>NS</option><option>SOA</option></select></label>
+                        <button id="dnsLookup" class="brut-btn brut-btn--primary inline-action" type="button">Lookup</button>
+                    </div>
+                    <div id="dnsMeta" class="result-grid"></div>
+                    <div class="table-wrap"><table id="dnsTable"><thead><tr><th>Name</th><th>Type</th><th>TTL</th><th>Data</th></tr></thead><tbody></tbody></table></div>
+                </section>
+            </section>
+
+            <section class="info-section">
+                <article class="info-card"><span class="info-number">01</span><h3>Fast calculations</h3><p>Subnet, range, IPv4, MAC, and bandwidth calculations stay in the browser.</p></article>
+                <article class="info-card"><span class="info-number">02</span><h3>Useful for infrastructure</h3><p>Common network tasks are grouped into one workspace instead of separate single-purpose pages.</p></article>
+                <article class="info-card"><span class="info-number">03</span><h3>No account needed</h3><p>There is no database, login, or stored network history.</p></article>
+            </section>
+        </main>
+
+        <footer class="site-footer"><div class="site-footer-inner"><p>Tools Astakula</p><p>astakula.com</p></div></footer>
+    </div>
+
+    <script type="module" src="./js/app.js?v=1"></script>
+</body>
+</html>
