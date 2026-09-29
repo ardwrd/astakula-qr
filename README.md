@@ -15,6 +15,7 @@ Live site: https://tools.astakula.com/
 - PDF Tools — https://tools.astakula.com/pdf/
 - GIF Maker — https://tools.astakula.com/gif/
 - Favicon Generator — https://tools.astakula.com/favicon/
+- Excel Tools — https://tools.astakula.com/excel/
 
 The QR Generator supports URL, plain text, WhatsApp, Wi-Fi, email, phone, SMS, vCard, location, and calendar event payloads, with PNG and SVG export.
 
@@ -34,7 +35,9 @@ GIF Maker supports PNG, JPEG, WebP, and AVIF source frames, drag-and-drop or pas
 
 Favicon Generator accepts PNG, JPEG, WebP, AVIF, and SVG sources up to 15 MB. It generates a multi-size `favicon.ico`, 16/32/48 px browser PNGs, a 180 px Apple touch icon, 192/512 px web app icons, `site.webmanifest`, recommended HTML tags, and a downloadable ZIP package. Contain/cover fitting, padding, transparent or custom-color backgrounds, drag-and-drop, and pasted images are supported.
 
-All nine tools process user data locally in the browser.
+Excel Tools accepts XLSX, XLS, CSV, and JSON files up to 50 MB. It includes a spreadsheet viewer with sheet switching and search, XLSX/CSV/JSON export, active-sheet extraction, workbook splitting into a ZIP, multi-workbook merge, sheet combining, empty row/column cleanup, whitespace trimming, find/replace, column renaming, row sorting, duplicate detection, and duplicate removal. Workbook merge supports up to 10 files and 250 MB aggregate source data. The tool is intentionally data-first; macros, charts, pivot tables, and advanced workbook formatting are not guaranteed to survive transformations.
+
+All ten tools process user data locally in the browser.
 
 ## UI
 
@@ -48,7 +51,7 @@ Keyboard focus uses a neutral high-contrast outline in both light and dark modes
 
 Global light/dark mode remains controlled by `assets/js/theme.js`.
 
-PDF operations use the pinned browser build of `pdf-lib@1.17.1` from jsDelivr. GIF encoding uses `gifenc@1.0.3` as a browser-side ES module from jsDelivr. Favicon ZIP packaging uses `jszip@3.10.1` from jsDelivr; ICO and PNG assets are rendered directly in the browser.
+PDF operations use the pinned browser build of `pdf-lib@1.17.1` from jsDelivr. GIF encoding uses `gifenc@1.0.3` as a browser-side ES module from jsDelivr. Favicon ZIP packaging uses `jszip@3.10.1` from jsDelivr; ICO and PNG assets are rendered directly in the browser. Excel Tools uses `xlsx@0.18.5` for spreadsheet parsing/writing and `jszip@3.10.1` for split-workbook ZIP packages.
 
 ## Structure
 
@@ -92,6 +95,10 @@ astakula-tools/
 │   ├── style.css
 │   └── js/
 ├── favicon/
+│   ├── index.html
+│   ├── style.css
+│   └── js/
+├── excel/
 │   ├── index.html
 │   ├── style.css
 │   └── js/
