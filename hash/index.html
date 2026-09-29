@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Generate and compare MD5, SHA-1, SHA-256, SHA-384, and SHA-512 hashes directly in your browser with Tools Astakula.">
+    <meta name="robots" content="index,follow">
+    <meta name="theme-color" content="#f3f0e8">
+
+    <link rel="canonical" href="https://tools.astakula.com/hash/">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Hash Generator — Tools Astakula">
+    <meta property="og:description" content="Generate and compare common hashes directly in your browser.">
+    <meta property="og:url" content="https://tools.astakula.com/hash/">
+    <meta property="og:site_name" content="Tools Astakula">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Hash Generator — Tools Astakula">
+    <meta name="twitter:description" content="Generate MD5 and SHA hashes directly in your browser.">
+
+    <title>Hash Generator — Tools Astakula</title>
+
+    <script src="../assets/js/theme.js?v=2"></script>
+    <link rel="stylesheet" href="../assets/css/tokens.css?v=3">
+    <link rel="stylesheet" href="../assets/css/base.css?v=1">
+    <link rel="stylesheet" href="../assets/css/components.css?v=4">
+    <link rel="stylesheet" href="./style.css?v=1">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="site-header">
+            <div class="site-header-inner">
+                <a href="../" class="brand" aria-label="Tools Astakula Home">Tools Astakula</a>
+                <div class="header-actions">
+                    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme">Dark</button>
+                    <span class="header-badge">Hash Generator</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="hero-section">
+                <div class="hero-copy">
+                    <p class="eyebrow">HASH GENERATOR</p>
+                    <h1>Generate a hash.</h1>
+                    <p class="hero-description">Hash text or files with MD5, SHA-1, SHA-256, SHA-384, or SHA-512 without uploading anything.</p>
+                </div>
+                <div class="hero-decoration" aria-hidden="true">
+                    <span class="code-mark">#</span>
+                </div>
+            </section>
+
+            <section class="controls-section" aria-label="Hash options">
+                <div class="mode-tabs" role="tablist" aria-label="Choose hash input mode">
+                    <button id="textModeButton" class="mode-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="textMode">Text</button>
+                    <button id="fileModeButton" class="mode-tab" type="button" role="tab" aria-selected="false" aria-controls="fileMode">File</button>
+                </div>
+
+                <label class="control-group" for="algorithmSelect">
+                    <span>Algorithm</span>
+                    <select id="algorithmSelect" class="form-control">
+                        <option value="MD5">MD5</option>
+                        <option value="SHA-1">SHA-1</option>
+                        <option value="SHA-256" selected>SHA-256</option>
+                        <option value="SHA-384">SHA-384</option>
+                        <option value="SHA-512">SHA-512</option>
+                    </select>
+                </label>
+
+                <label class="control-group" for="caseSelect">
+                    <span>Output case</span>
+                    <select id="caseSelect" class="form-control">
+                        <option value="lower" selected>Lowercase</option>
+                        <option value="upper">Uppercase</option>
+                    </select>
+                </label>
+
+                <div class="control-actions">
+                    <button id="generateButton" class="button button-primary" type="button">Generate hash</button>
+                    <button id="clearButton" class="button button-secondary" type="button">Clear</button>
+                </div>
+            </section>
+
+            <div id="statusBox" class="status-box is-neutral" role="status" aria-live="polite">Ready.</div>
+
+            <section class="workspace">
+                <article id="textMode" class="workspace-panel input-panel" role="tabpanel" aria-labelledby="textModeButton">
+                    <div class="panel-heading">
+                        <div>
+                            <p class="section-number">01</p>
+                            <h2>Text input</h2>
+                        </div>
+                        <span id="textMeta" class="panel-meta">0 chars</span>
+                    </div>
+
+                    <textarea
+                        id="textInput"
+                        class="code-editor"
+                        spellcheck="false"
+                        autocomplete="off"
+                        autocapitalize="off"
+                        placeholder="Type or paste text here."
+                        aria-label="Text to hash"
+                    ></textarea>
+                </article>
+
+                <article id="fileMode" class="workspace-panel input-panel hidden" role="tabpanel" aria-labelledby="fileModeButton">
+                    <div class="panel-heading">
+                        <div>
+                            <p class="section-number">01</p>
+                            <h2>File input</h2>
+                        </div>
+                        <span id="fileMeta" class="panel-meta">No file</span>
+                    </div>
+
+                    <label id="fileDropZone" class="drop-zone" for="sourceFile">
+                        <span>Drop, paste, or choose a file</span>
+                        <small>Files up to 50 MB are hashed locally</small>
+                    </label>
+                    <input id="sourceFile" class="visually-hidden" type="file">
+
+                    <div id="fileSummary" class="file-summary">
+                        <span class="file-summary-label">Selected file</span>
+                        <strong id="fileName">None</strong>
+                        <span id="fileSize">0 B</span>
+                    </div>
+                </article>
+
+                <article class="workspace-panel result-panel">
+                    <div class="panel-heading">
+                        <div>
+                            <p class="section-number">02</p>
+                            <h2>Hash output</h2>
+                        </div>
+                        <span id="resultMeta" class="panel-meta">SHA-256</span>
+                    </div>
+
+                    <textarea
+                        id="hashOutput"
+                        class="hash-output"
+                        readonly
+                        spellcheck="false"
+                        placeholder="Generated hash will appear here."
+                        aria-label="Generated hash"
+                    ></textarea>
+
+                    <div class="output-actions">
+                        <button id="copyButton" class="button button-primary" type="button">Copy hash</button>
+                        <button id="downloadButton" class="button button-secondary" type="button">Download .txt</button>
+                    </div>
+
+                    <div class="verify-box">
+                        <label class="verify-field" for="expectedHash">
+                            <span>Compare with another hash</span>
+                            <input id="expectedHash" class="form-control mono-control" type="text" autocomplete="off" spellcheck="false" placeholder="Paste an expected hash">
+                        </label>
+                        <button id="verifyButton" class="button button-secondary" type="button">Compare</button>
+                        <p id="verifyResult" class="verify-result" aria-live="polite">No comparison yet.</p>
+                    </div>
+                </article>
+            </section>
+
+            <section class="info-section">
+                <article class="info-card">
+                    <span class="info-number">01</span>
+                    <h3>Common algorithms</h3>
+                    <p>MD5, SHA-1, SHA-256, SHA-384, and SHA-512 are available.</p>
+                </article>
+                <article class="info-card">
+                    <span class="info-number">02</span>
+                    <h3>Files stay local</h3>
+                    <p>File contents are read and hashed directly inside your browser.</p>
+                </article>
+                <article class="info-card">
+                    <span class="info-number">03</span>
+                    <h3>Quick check</h3>
+                    <p>Paste an expected digest and compare it with the generated result.</p>
+                </article>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <div class="site-footer-inner">
+                <p>Tools Astakula</p>
+                <p>astakula.com</p>
+            </div>
+        </footer>
+    </div>
+
+    <script type="module" src="./js/app.js?v=1"></script>
+</body>
+</html>
