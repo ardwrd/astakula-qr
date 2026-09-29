@@ -4,6 +4,41 @@
     const DARK_COLOR = "#101214";
     const LIGHT_COLOR = "#f3f0e8";
 
+    function installResponsiveTypographyFix() {
+        if (document.getElementById("tools-astakula-responsive-type")) {
+            return;
+        }
+
+        const style = document.createElement("style");
+        style.id = "tools-astakula-responsive-type";
+        style.textContent = `
+            @media (max-width: 680px) {
+                body .hero-copy {
+                    min-width: 0 !important;
+                    width: 100% !important;
+                    max-width: 100% !important;
+                }
+
+                body .hero-section h1 {
+                    max-width: 100% !important;
+                    font-size: clamp(34px, 10vw, 46px) !important;
+                    line-height: 1.04 !important;
+                    letter-spacing: -0.04em !important;
+                    overflow-wrap: anywhere !important;
+                    word-break: normal !important;
+                    text-wrap: balance;
+                }
+            }
+
+            @media (max-width: 360px) {
+                body .hero-section h1 {
+                    font-size: clamp(31px, 9.5vw, 36px) !important;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
     function getStoredTheme() {
         try {
             const stored = localStorage.getItem(STORAGE_KEY);
@@ -87,6 +122,8 @@
         updateToggleButtons(getTheme());
         updateThemeMeta(getTheme());
     }
+
+    installResponsiveTypographyFix();
 
     const storedTheme = getStoredTheme();
     applyTheme(storedTheme || getPreferredTheme());
