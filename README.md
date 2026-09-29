@@ -16,6 +16,7 @@ Live site: https://tools.astakula.com/
 - GIF Maker — https://tools.astakula.com/gif/
 - Favicon Generator — https://tools.astakula.com/favicon/
 - Excel Tools — https://tools.astakula.com/excel/
+- Network Tools — https://tools.astakula.com/network/
 
 The QR Generator supports URL, plain text, WhatsApp, Wi-Fi, email, phone, SMS, vCard, location, and calendar event payloads, with PNG and SVG export.
 
@@ -37,7 +38,9 @@ Favicon Generator accepts PNG, JPEG, WebP, AVIF, and SVG sources up to 15 MB. It
 
 Excel Tools accepts XLSX, XLS, CSV, and JSON files up to 50 MB. It includes a spreadsheet viewer with sheet switching and search, XLSX/CSV/JSON export, active-sheet extraction, workbook splitting into a ZIP, multi-workbook merge, sheet combining, empty row/column cleanup, whitespace trimming, find/replace, column renaming, row sorting, duplicate detection, and duplicate removal. Workbook merge supports up to 10 files and 250 MB aggregate source data. The tool is intentionally data-first; macros, charts, pivot tables, and advanced workbook formatting are not guaranteed to survive transformations.
 
-All ten tools process user data locally in the browser.
+Network Tools includes an IPv4 subnet calculator, CIDR quick reference, exact IP-range-to-CIDR summarization, subnet splitting, IPv4 binary/hex/integer conversion, MAC address normalization and flag inspection, bandwidth conversion and ideal transfer-time estimation, a common port reference, and DNS record inspection. Network calculations run locally; DNS inspection sends the requested domain and record type to Cloudflare's public DNS-over-HTTPS resolver.
+
+Most tools process user data locally in the browser. Features that require a public network service, such as DNS inspection, are labeled in the interface.
 
 ## UI
 
@@ -99,6 +102,10 @@ astakula-tools/
 │   ├── style.css
 │   └── js/
 ├── excel/
+│   ├── index.html
+│   ├── style.css
+│   └── js/
+├── network/
 │   ├── index.html
 │   ├── style.css
 │   └── js/
