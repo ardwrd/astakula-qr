@@ -1,0 +1,545 @@
+/* Tools Astakula adapter layer.
+   BRUT UI is loaded from CDN before this file. Keep this file limited to
+   Astakula aliases, global chrome, theme bridging, and compatibility rules. */
+
+:root {
+    --ta-bg: var(--bg-1, #faf7f0);
+    --ta-surface: var(--bg-3, #ffffff);
+    --ta-text: var(--fg-1, #000000);
+    --ta-muted: var(--fg-2, #4f4d45);
+    --ta-border: var(--border, #000000);
+    --ta-on-accent: #111111;
+
+    --ta-yellow: var(--primary, #ffd23f);
+    --ta-yellow-hover: var(--primary-deep, #e0b400);
+    --ta-blue: var(--pop-blue, #4d7cff);
+    --ta-blue-hover: #3d6de0;
+    --ta-green: var(--pop-mint, #7fe3c4);
+    --ta-pink: var(--pop-pink, #ff6b9d);
+    --ta-orange: var(--pop-orange, #ff7a2e);
+    --ta-purple: var(--pop-purple, #b57bff);
+
+    --ta-error: var(--danger, #ff3b30);
+    --ta-error-light: var(--danger-bg, #ffd9d6);
+
+    --ta-border-width: 2px;
+    --ta-border-heavy: 3px;
+    --ta-shadow-sm: var(--shadow-sm, 4px 4px 0 #000000);
+    --ta-shadow-md: var(--shadow-md, 6px 6px 0 #000000);
+    --ta-shadow-lg: var(--shadow-lg, 8px 8px 0 #000000);
+
+    --ta-container: 1240px;
+    --ta-font: var(--font-sans, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif);
+    --ta-transition: 120ms ease;
+
+    /* Compatibility aliases for existing tool CSS. */
+    --bg: var(--ta-bg);
+    --surface: var(--ta-surface);
+    --text: var(--ta-text);
+    --muted: var(--ta-muted);
+    --border: var(--ta-border);
+    --yellow: var(--ta-yellow);
+    --blue: var(--ta-blue);
+    --green: var(--ta-green);
+    --pink: var(--ta-pink);
+    --orange: var(--ta-orange);
+    --purple: var(--ta-purple);
+    --border-width: var(--ta-border-width);
+    --border-heavy: var(--ta-border-heavy);
+    --shadow-sm: var(--ta-shadow-sm);
+    --shadow-md: var(--ta-shadow-md);
+    --shadow-lg: var(--ta-shadow-lg);
+    --container: var(--ta-container);
+    --font: var(--ta-font);
+    --transition: var(--ta-transition);
+
+    --color-bg: var(--ta-bg);
+    --color-surface: var(--ta-surface);
+    --color-text: var(--ta-text);
+    --color-muted: var(--ta-muted);
+    --color-primary: var(--ta-yellow);
+    --color-primary-hover: var(--ta-yellow-hover);
+    --color-blue: var(--ta-blue);
+    --color-blue-hover: var(--ta-blue-hover);
+    --color-green: var(--ta-green);
+    --color-pink: var(--ta-pink);
+    --color-orange: var(--ta-orange);
+    --color-purple: var(--ta-purple);
+    --color-error: var(--ta-error);
+    --color-error-light: var(--ta-error-light);
+    --color-border: var(--ta-border);
+    --border-width-heavy: var(--ta-border-heavy);
+    --font-family: var(--ta-font);
+    --container-width: var(--ta-container);
+    --transition-fast: var(--ta-transition);
+}
+
+html[data-theme="light"] {
+    color-scheme: light;
+}
+
+html[data-theme="dark"] {
+    color-scheme: dark;
+
+    /* BRUT semantic token bridge for the global Astakula dark theme. */
+    --ink: #d8d4cc;
+    --paper: #101214;
+    --paper-2: #15181a;
+    --bone: #1b1e21;
+
+    --primary: #75611f;
+    --primary-soft: #8a7228;
+    --primary-deep: #9b812e;
+
+    --concrete-300: #777b80;
+    --concrete-400: #aaa69f;
+
+    --pop-blue: #315a72;
+    --pop-mint: #3b6549;
+    --pop-pink: #744458;
+    --pop-orange: #7c4d30;
+    --pop-purple: #594976;
+
+    --danger: #bd5d5d;
+    --danger-bg: #3c2525;
+
+    --bg-1: var(--paper);
+    --bg-2: var(--paper-2);
+    --bg-3: var(--bone);
+    --fg-1: #f1eee7;
+    --fg-2: #aaa69f;
+    --fg-3: #777b80;
+    --border: #777b80;
+    --accent: var(--primary);
+    --accent-soft: var(--primary-soft);
+    --accent-deep: var(--primary-deep);
+
+    --shadow-2xs: 3px 3px 0 0 #050607;
+    --shadow-xs: 2px 2px 0 0 #050607;
+    --shadow-sm: 4px 4px 0 0 #050607;
+    --shadow-md: 6px 6px 0 0 #050607;
+    --shadow-lg: 8px 8px 0 0 #050607;
+    --shadow-xl: 12px 12px 0 0 #050607;
+    --shadow-2xl: 16px 16px 0 0 #050607;
+
+    --ta-bg: var(--bg-1);
+    --ta-surface: var(--bg-3);
+    --ta-text: var(--fg-1);
+    --ta-muted: var(--fg-2);
+    --ta-border: var(--border);
+    --ta-on-accent: #f5f1e9;
+
+    --ta-yellow: var(--primary);
+    --ta-yellow-hover: var(--primary-soft);
+    --ta-blue: var(--pop-blue);
+    --ta-blue-hover: #3d6d89;
+    --ta-green: var(--pop-mint);
+    --ta-pink: var(--pop-pink);
+    --ta-orange: var(--pop-orange);
+    --ta-purple: var(--pop-purple);
+
+    --ta-error: var(--danger);
+    --ta-error-light: var(--danger-bg);
+    --ta-shadow-sm: var(--shadow-sm);
+    --ta-shadow-md: var(--shadow-md);
+    --ta-shadow-lg: var(--shadow-lg);
+
+    --bg: var(--ta-bg);
+    --surface: var(--ta-surface);
+    --text: var(--ta-text);
+    --muted: var(--ta-muted);
+    --border: var(--ta-border);
+    --yellow: var(--ta-yellow);
+    --blue: var(--ta-blue);
+    --green: var(--ta-green);
+    --pink: var(--ta-pink);
+    --orange: var(--ta-orange);
+    --purple: var(--ta-purple);
+    --shadow-sm: var(--ta-shadow-sm);
+    --shadow-md: var(--ta-shadow-md);
+    --shadow-lg: var(--ta-shadow-lg);
+
+    --color-bg: var(--ta-bg);
+    --color-surface: var(--ta-surface);
+    --color-text: var(--ta-text);
+    --color-muted: var(--ta-muted);
+    --color-primary: var(--ta-yellow);
+    --color-primary-hover: var(--ta-yellow-hover);
+    --color-blue: var(--ta-blue);
+    --color-blue-hover: var(--ta-blue-hover);
+    --color-green: var(--ta-green);
+    --color-pink: var(--ta-pink);
+    --color-orange: var(--ta-orange);
+    --color-purple: var(--ta-purple);
+    --color-error: var(--ta-error);
+    --color-error-light: var(--ta-error-light);
+    --color-border: var(--ta-border);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-width: 320px;
+    background: var(--ta-bg);
+    color: var(--ta-text);
+    font-family: var(--ta-font);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button {
+    color: inherit;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+textarea {
+    resize: vertical;
+}
+
+[hidden],
+.hidden {
+    display: none !important;
+}
+
+.page-shell {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.ta-container {
+    width: min(calc(100% - 40px), var(--ta-container));
+    margin-inline: auto;
+}
+
+::selection {
+    background: var(--ta-yellow);
+    color: var(--ta-text);
+}
+
+.site-header {
+    background: var(--ta-surface);
+    border-bottom: var(--ta-border-heavy) solid var(--ta-border);
+}
+
+.site-header-inner,
+.site-footer-inner {
+    width: min(calc(100% - 40px), var(--ta-container));
+    margin-inline: auto;
+}
+
+.site-header-inner {
+    min-height: 78px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.brand,
+.brand-wordmark {
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 1;
+}
+
+.header-actions,
+.header-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.theme-toggle {
+    min-height: 36px;
+    padding: 6px 12px;
+    cursor: pointer;
+    background: var(--ta-surface);
+    color: var(--ta-text);
+    border: var(--ta-border-width) solid var(--ta-border);
+    border-radius: 0;
+    box-shadow: 3px 3px 0 var(--ta-border);
+    font-size: 12px;
+    font-weight: 850;
+    transition: transform var(--ta-transition), box-shadow var(--ta-transition), background var(--ta-transition), color var(--ta-transition);
+}
+
+.theme-toggle:hover {
+    background: var(--ta-yellow);
+    color: var(--ta-on-accent);
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 var(--ta-border);
+}
+
+.theme-toggle:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 var(--ta-border);
+}
+
+.section-number {
+    margin: 0;
+    color: var(--ta-muted);
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.14em;
+}
+
+/* Existing tool markup keeps these compatibility hooks while BRUT provides
+   the underlying design-system tokens and future component primitives. */
+.button,
+.ta-button {
+    min-height: 46px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 10px 18px;
+    cursor: pointer;
+    border: var(--ta-border-width) solid var(--ta-border);
+    border-radius: 0;
+    box-shadow: var(--ta-shadow-sm);
+    font-size: 13px;
+    font-weight: 850;
+    transition: transform var(--ta-transition), box-shadow var(--ta-transition), background var(--ta-transition), color var(--ta-transition);
+}
+
+.button:hover:not(:disabled),
+.ta-button:hover:not(:disabled) {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--ta-border);
+}
+
+.button:active:not(:disabled),
+.ta-button:active:not(:disabled) {
+    transform: translate(3px, 3px);
+    box-shadow: 1px 1px 0 var(--ta-border);
+}
+
+.button:focus-visible,
+.ta-button:focus-visible,
+.theme-toggle:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: 4px solid var(--ta-blue);
+    outline-offset: 3px;
+}
+
+.site-footer {
+    margin-top: auto;
+    background: var(--ta-text);
+    color: var(--ta-surface);
+    border-top: var(--ta-border-heavy) solid var(--ta-border);
+}
+
+.site-footer-inner {
+    min-height: 94px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.site-footer p {
+    margin: 0;
+    font-size: 12px;
+}
+
+.site-footer p:first-child {
+    font-weight: 900;
+}
+
+.site-footer p:last-child {
+    color: #bdbdbd;
+}
+
+html[data-theme="dark"] .site-footer {
+    background: #090b0c;
+    color: var(--ta-text);
+    border-color: var(--ta-border);
+}
+
+html[data-theme="dark"] .site-footer p:last-child {
+    color: var(--ta-muted);
+}
+
+html[data-theme="dark"] body .hero-section,
+html[data-theme="dark"] body .header-badge,
+html[data-theme="dark"] body .code-mark,
+html[data-theme="dark"] body .info-card,
+html[data-theme="dark"] body .tool-card:not(.tool-white),
+html[data-theme="dark"] body .drop-zone,
+html[data-theme="dark"] body .status-box.is-success,
+html[data-theme="dark"] body .button-primary,
+html[data-theme="dark"] body .generator-selector-button.is-active,
+html[data-theme="dark"] body .generator-selector-button:hover {
+    color: var(--ta-on-accent);
+}
+
+html[data-theme="dark"] body .tool-card:not(.tool-white) p {
+    color: #e5e0d7;
+}
+
+html[data-theme="dark"] body .tool-white,
+html[data-theme="dark"] body .tool-white p {
+    color: var(--ta-text);
+    background: var(--ta-surface);
+}
+
+html[data-theme="dark"] body .tool-status {
+    background: rgba(5, 6, 7, 0.24);
+    color: var(--ta-on-accent);
+    border-color: rgba(245, 241, 233, 0.42);
+}
+
+html[data-theme="dark"] body .tool-status.available {
+    background: #090b0c;
+    color: var(--ta-text);
+    border-color: var(--ta-border);
+}
+
+html[data-theme="dark"] body .eyebrow,
+html[data-theme="dark"] body .button-secondary,
+html[data-theme="dark"] body .theme-toggle,
+html[data-theme="dark"] body .compact-select {
+    background: var(--ta-surface);
+    color: var(--ta-text);
+}
+
+html[data-theme="dark"] body .button-secondary:hover:not(:disabled),
+html[data-theme="dark"] body .theme-toggle:hover {
+    background: var(--ta-blue);
+    color: var(--ta-on-accent);
+}
+
+html[data-theme="dark"] body .preview-panel,
+html[data-theme="dark"] body .output-panel {
+    background: #1d2428;
+    color: var(--ta-text);
+}
+
+html[data-theme="dark"] body .workspace-panel,
+html[data-theme="dark"] body .toolbar-section,
+html[data-theme="dark"] body .about-section,
+html[data-theme="dark"] body .status-box.is-neutral {
+    background: var(--ta-surface);
+    color: var(--ta-text);
+}
+
+html[data-theme="dark"] body .form-control {
+    background: #171a1c;
+    color: var(--ta-text);
+    box-shadow: 3px 3px 0 #070809;
+}
+
+html[data-theme="dark"] body .form-control:hover,
+html[data-theme="dark"] body .form-control:focus {
+    background: #1f2326;
+    color: var(--ta-text);
+}
+
+html[data-theme="dark"] body .form-control::placeholder,
+html[data-theme="dark"] body .json-editor::placeholder {
+    color: #858a8e;
+}
+
+html[data-theme="dark"] body .compact-select {
+    box-shadow: 3px 3px 0 #070809;
+}
+
+html[data-theme="dark"] body .json-editor {
+    background: #0b0d0e;
+    color: #ece8df;
+    border-color: var(--ta-border);
+}
+
+html[data-theme="dark"] body .status-box.is-error,
+html[data-theme="dark"] body .error-box {
+    color: #f2dfdf;
+}
+
+/* QR canvas stays white intentionally for reliable scanning. */
+html[data-theme="dark"] body .qr-preview,
+html[data-theme="dark"] body .qr-preview-card {
+    background: #ffffff;
+}
+
+@media (max-width: 600px) {
+    .ta-container,
+    .site-header-inner,
+    .site-footer-inner {
+        width: calc(100% - 28px);
+    }
+
+    .site-header-inner {
+        min-height: 68px;
+    }
+
+    .brand,
+    .brand-wordmark {
+        font-size: 18px;
+    }
+
+    .header-actions,
+    .header-meta {
+        gap: 6px;
+    }
+
+    .theme-toggle {
+        min-height: 32px;
+        padding: 5px 9px;
+        font-size: 10px;
+    }
+
+    .site-footer-inner {
+        min-height: 106px;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 5px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
