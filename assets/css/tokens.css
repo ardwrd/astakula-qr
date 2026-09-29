@@ -1,0 +1,65 @@
+:root {
+    --ta-bg: #f3f0e8;
+    --ta-surface: #ffffff;
+    --ta-text: #111111;
+    --ta-muted: #66645f;
+    --ta-border: #111111;
+    --ta-yellow: #ffd84d;
+    --ta-yellow-hover: #ffcc19;
+    --ta-blue: #8ec5ff;
+    --ta-blue-hover: #72b5ff;
+    --ta-green: #a7e89d;
+    --ta-pink: #ff9eb5;
+    --ta-orange: #ffad66;
+    --ta-purple: #c8adff;
+    --ta-error: #ff7f7f;
+    --ta-error-light: #ffe1e1;
+    --ta-border-width: 2px;
+    --ta-border-heavy: 3px;
+    --ta-shadow-sm: 4px 4px 0 #111111;
+    --ta-shadow-md: 6px 6px 0 #111111;
+    --ta-shadow-lg: 8px 8px 0 #111111;
+    --ta-container: 1240px;
+    --ta-font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --ta-transition: 120ms ease;
+
+    /* Compatibility aliases used by existing pages. */
+    --bg: var(--ta-bg);
+    --surface: var(--ta-surface);
+    --text: var(--ta-text);
+    --muted: var(--ta-muted);
+    --border: var(--ta-border);
+    --yellow: var(--ta-yellow);
+    --blue: var(--ta-blue);
+    --green: var(--ta-green);
+    --pink: var(--ta-pink);
+    --orange: var(--ta-orange);
+    --purple: var(--ta-purple);
+    --container: var(--ta-container);
+    --font: var(--ta-font);
+    --transition: var(--ta-transition);
+
+    --color-bg: var(--ta-bg);
+    --color-surface: var(--ta-surface);
+    --color-text: var(--ta-text);
+    --color-muted: var(--ta-muted);
+    --color-primary: var(--ta-yellow);
+    --color-primary-hover: var(--ta-yellow-hover);
+    --color-blue: var(--ta-blue);
+    --color-blue-hover: var(--ta-blue-hover);
+    --color-green: var(--ta-green);
+    --color-pink: var(--ta-pink);
+    --color-orange: var(--ta-orange);
+    --color-purple: var(--ta-purple);
+    --color-error: var(--ta-error);
+    --color-error-light: var(--ta-error-light);
+    --color-border: var(--ta-border);
+    --border-width: var(--ta-border-width);
+    --border-width-heavy: var(--ta-border-heavy);
+    --shadow-sm: var(--ta-shadow-sm);
+    --shadow-md: var(--ta-shadow-md);
+    --shadow-lg: var(--ta-shadow-lg);
+    --font-family: var(--ta-font);
+    --container-width: var(--ta-container);
+    --transition-fast: var(--ta-transition);
+}
