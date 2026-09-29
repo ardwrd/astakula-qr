@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Encode and decode Base64 text and files directly in your browser with Tools Astakula.">
+    <meta name="robots" content="index,follow">
+    <meta name="theme-color" content="#f3f0e8">
+
+    <link rel="canonical" href="https://tools.astakula.com/base64/">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Base64 — Tools Astakula">
+    <meta property="og:description" content="Encode and decode Base64 text and files directly in your browser.">
+    <meta property="og:url" content="https://tools.astakula.com/base64/">
+    <meta property="og:site_name" content="Tools Astakula">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Base64 — Tools Astakula">
+    <meta name="twitter:description" content="Encode and decode Base64 text and files directly in your browser.">
+
+    <title>Base64 — Tools Astakula</title>
+
+    <script src="../assets/js/theme.js?v=2"></script>
+    <link rel="stylesheet" href="../assets/css/tokens.css?v=3">
+    <link rel="stylesheet" href="../assets/css/base.css?v=1">
+    <link rel="stylesheet" href="../assets/css/components.css?v=4">
+    <link rel="stylesheet" href="./style.css?v=1">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="site-header">
+            <div class="site-header-inner">
+                <a href="../" class="brand" aria-label="Tools Astakula Home">Tools Astakula</a>
+                <div class="header-actions">
+                    <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme">Dark</button>
+                    <span class="header-badge">Base64</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="hero-section">
+                <div class="hero-copy">
+                    <p class="eyebrow">BASE64</p>
+                    <h1>Encode or decode Base64.</h1>
+                    <p class="hero-description">Use text directly, or work with files without uploading them anywhere.</p>
+                </div>
+                <div class="hero-decoration" aria-hidden="true">
+                    <span class="code-mark">64</span>
+                </div>
+            </section>
+
+            <section class="mode-section" aria-label="Base64 mode">
+                <div class="mode-tabs" role="tablist" aria-label="Choose Base64 mode">
+                    <button id="textModeButton" class="mode-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="textMode">Text</button>
+                    <button id="fileModeButton" class="mode-tab" type="button" role="tab" aria-selected="false" aria-controls="fileMode">File</button>
+                </div>
+            </section>
+
+            <div id="statusBox" class="status-box is-neutral" role="status" aria-live="polite">Ready.</div>
+
+            <section id="textMode" class="mode-panel" role="tabpanel" aria-labelledby="textModeButton">
+                <div class="toolbar-section" aria-label="Text Base64 actions">
+                    <div class="toolbar-group toolbar-primary-actions">
+                        <button id="encodeTextButton" class="button button-primary" type="button">Encode</button>
+                        <button id="decodeTextButton" class="button button-secondary" type="button">Decode</button>
+                    </div>
+                    <div class="toolbar-group toolbar-group-right">
+                        <button id="swapTextButton" class="button button-secondary" type="button">Swap input ↔ output</button>
+                        <button id="clearTextButton" class="button button-secondary" type="button">Clear</button>
+                    </div>
+                </div>
+
+                <div class="workspace">
+                    <article class="workspace-panel">
+                        <div class="panel-heading">
+                            <div>
+                                <p class="section-number">01</p>
+                                <h2>Input</h2>
+                            </div>
+                            <span id="textInputMeta" class="panel-meta">0 chars</span>
+                        </div>
+
+                        <textarea
+                            id="textInput"
+                            class="code-editor"
+                            spellcheck="false"
+                            autocomplete="off"
+                            autocapitalize="off"
+                            placeholder="Type text or paste Base64 here."
+                            aria-label="Text or Base64 input"
+                        ></textarea>
+                    </article>
+
+                    <article class="workspace-panel output-panel">
+                        <div class="panel-heading">
+                            <div>
+                                <p class="section-number">02</p>
+                                <h2>Output</h2>
+                            </div>
+                            <span id="textOutputMeta" class="panel-meta">0 chars</span>
+                        </div>
+
+                        <textarea
+                            id="textOutput"
+                            class="code-editor output-editor"
+                            readonly
+                            spellcheck="false"
+                            placeholder="Result will appear here."
+                            aria-label="Base64 text output"
+                        ></textarea>
+
+                        <div class="output-actions">
+                            <button id="copyTextButton" class="button button-primary" type="button">Copy output</button>
+                            <button id="downloadTextButton" class="button button-secondary" type="button">Download .txt</button>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section id="fileMode" class="mode-panel hidden" role="tabpanel" aria-labelledby="fileModeButton">
+                <div class="file-grid">
+                    <article class="workspace-panel file-panel">
+                        <div class="panel-heading">
+                            <div>
+                                <p class="section-number">01</p>
+                                <h2>File to Base64</h2>
+                            </div>
+                            <span id="fileMeta" class="panel-meta">No file</span>
+                        </div>
+
+                        <label id="fileDropZone" class="drop-zone" for="sourceFile">
+                            <span>Drop, paste, or choose a file</span>
+                            <small>Files up to 20 MB are processed locally</small>
+                        </label>
+                        <input id="sourceFile" class="visually-hidden" type="file">
+
+                        <label class="checkbox-row">
+                            <input id="includeDataUrl" type="checkbox">
+                            <span>Include Data URL prefix</span>
+                        </label>
+
+                        <textarea
+                            id="fileBase64Output"
+                            class="code-editor file-output-editor"
+                            readonly
+                            spellcheck="false"
+                            placeholder="Base64 output will appear here after you choose a file."
+                            aria-label="Encoded file Base64 output"
+                        ></textarea>
+
+                        <div class="output-actions">
+                            <button id="copyFileBase64Button" class="button button-primary" type="button">Copy Base64</button>
+                            <button id="downloadFileBase64Button" class="button button-secondary" type="button">Download .txt</button>
+                            <button id="clearFileButton" class="button button-secondary" type="button">Clear</button>
+                        </div>
+                    </article>
+
+                    <article class="workspace-panel decode-file-panel">
+                        <div class="panel-heading">
+                            <div>
+                                <p class="section-number">02</p>
+                                <h2>Base64 to File</h2>
+                            </div>
+                            <span id="decodeMeta" class="panel-meta">0 chars</span>
+                        </div>
+
+                        <textarea
+                            id="fileBase64Input"
+                            class="code-editor decode-input-editor"
+                            spellcheck="false"
+                            autocomplete="off"
+                            autocapitalize="off"
+                            placeholder="Paste Base64 or a data:...;base64,... value here."
+                            aria-label="Base64 file input"
+                        ></textarea>
+
+                        <div class="file-options">
+                            <label class="field-group" for="decodedFilename">
+                                <span>Filename</span>
+                                <input id="decodedFilename" class="form-control" type="text" value="decoded-file" autocomplete="off">
+                            </label>
+
+                            <label class="field-group" for="decodedMime">
+                                <span>MIME type</span>
+                                <input id="decodedMime" class="form-control" type="text" placeholder="application/octet-stream" autocomplete="off">
+                            </label>
+                        </div>
+
+                        <div class="output-actions">
+                            <button id="downloadDecodedFileButton" class="button button-primary" type="button">Download decoded file</button>
+                            <button id="clearDecodeButton" class="button button-secondary" type="button">Clear</button>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="info-section">
+                <article class="info-card">
+                    <span class="info-number">01</span>
+                    <h3>UTF-8 text</h3>
+                    <p>Text encoding handles normal Unicode characters, not only ASCII.</p>
+                </article>
+                <article class="info-card">
+                    <span class="info-number">02</span>
+                    <h3>Files stay local</h3>
+                    <p>File encoding and decoding happen inside your browser.</p>
+                </article>
+                <article class="info-card">
+                    <span class="info-number">03</span>
+                    <h3>Data URLs</h3>
+                    <p>File mode can include or read a Base64 Data URL prefix.</p>
+                </article>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <div class="site-footer-inner">
+                <p>Tools Astakula</p>
+                <p>astakula.com</p>
+            </div>
+        </footer>
+    </div>
+
+    <script type="module" src="./js/app.js?v=1"></script>
+</body>
+</html>
