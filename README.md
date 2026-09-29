@@ -26,9 +26,13 @@ All five tools process data locally in the browser.
 
 ## UI
 
-The neobrutalist UI foundation is loaded from the pinned BRUT CDN package `@sprtn/ui@1.3.2` via jsDelivr. Local CSS is kept only for Tools Astakula compatibility, page layout, responsive behavior, and tool-specific presentation.
+The neobrutalist design-system foundation is loaded directly on each page from the pinned BRUT package `@sprtn/ui@1.3.2` through jsDelivr.
 
-Global light/dark mode remains controlled by `assets/js/theme.js`, with a small token bridge in `assets/css/tokens.css` so the CDN components follow the same theme.
+Shared local styling has been consolidated into a single `assets/css/astakula.css` adapter. It only contains Tools Astakula aliases, site chrome, the global light/dark bridge, compatibility rules, and responsive behavior that is specific to this site.
+
+Each tool keeps a local `style.css` only for tool-specific layout and presentation. The old shared `tokens.css`, `base.css`, and `components.css` files have been removed.
+
+Global light/dark mode remains controlled by `assets/js/theme.js`.
 
 ## Planned
 
@@ -42,9 +46,7 @@ Global light/dark mode remains controlled by `assets/js/theme.js`, with a small 
 astakula-tools/
 ├── assets/
 │   ├── css/
-│   │   ├── tokens.css
-│   │   ├── base.css
-│   │   └── components.css
+│   │   └── astakula.css
 │   └── js/
 │       └── theme.js
 ├── qr/
