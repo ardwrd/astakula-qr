@@ -8,14 +8,18 @@ Live site: https://tools.astakula.com/
 
 - QR Generator — https://tools.astakula.com/qr/
 - JSON Formatter — https://tools.astakula.com/json/
+- Base64 — https://tools.astakula.com/base64/
 
 The QR Generator supports URL, plain text, WhatsApp, Wi-Fi, email, phone, SMS, vCard, location, and calendar event payloads, with PNG and SVG export.
 
-The JSON Formatter supports formatting, minifying, validation, copy, download, drag-and-drop `.json` files, and 2/4-space indentation. Processing happens locally in the browser.
+The JSON Formatter supports formatting, minifying, validation, copy, download, drag-and-drop and pasted `.json` files, input/output swap, and 2/4-space indentation.
+
+The Base64 tool supports UTF-8 text encode/decode, input/output swap, file-to-Base64 encoding, optional Data URL output, pasted or dropped files up to 20 MB, and Base64/Data URL decoding back to downloadable files.
+
+All three tools process data locally in the browser.
 
 ## Planned
 
-- Base64
 - UUID Generator
 - Hash Generator
 - Image Tools
@@ -27,15 +31,21 @@ The JSON Formatter supports formatting, minifying, validation, copy, download, d
 ```text
 astakula-tools/
 ├── assets/
-│   └── css/
-│       ├── tokens.css
-│       ├── base.css
-│       └── components.css
+│   ├── css/
+│   │   ├── tokens.css
+│   │   ├── base.css
+│   │   └── components.css
+│   └── js/
+│       └── theme.js
 ├── qr/
 │   ├── index.html
 │   ├── style.css
 │   └── js/
 ├── json/
+│   ├── index.html
+│   ├── style.css
+│   └── js/
+├── base64/
 │   ├── index.html
 │   ├── style.css
 │   └── js/
