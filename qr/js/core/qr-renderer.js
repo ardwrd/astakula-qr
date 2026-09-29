@@ -343,13 +343,18 @@ class QRRenderer {
          *
          * Canvas remains the visible preview.
          */
-        this.svgElement.hidden =
-            true;
-
+        this.svgElement.setAttribute(
+            "hidden",
+            ""
+        );
+        
         this.svgElement.setAttribute(
             "aria-hidden",
             "true"
         );
+        
+        this.svgElement.style.display =
+            "none";
 
         this.container.appendChild(
             this.svgElement
