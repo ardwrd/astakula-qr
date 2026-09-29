@@ -1,14 +1,16 @@
-/* Tools Astakula adapter layer.
-   BRUT UI is loaded from CDN before this file. Keep this file limited to
-   Astakula aliases, global chrome, theme bridging, and compatibility rules. */
+/* Tools Astakula shared adapter.
+   BRUT UI is the CDN foundation. This file owns the Astakula token bridge,
+   global chrome, accessibility states, dark mode normalization, and shared
+   compatibility rules used by every tool. */
 
 :root {
     --ta-bg: var(--bg-1, #faf7f0);
     --ta-surface: var(--bg-3, #ffffff);
     --ta-text: var(--fg-1, #000000);
     --ta-muted: var(--fg-2, #4f4d45);
-    --ta-border: var(--border, #000000);
+    --ta-border: var(--ink, #000000);
     --ta-on-accent: #111111;
+    --ta-focus: #111111;
 
     --ta-yellow: var(--primary, #ffd23f);
     --ta-yellow-hover: var(--primary-deep, #e0b400);
@@ -24,26 +26,28 @@
 
     --ta-border-width: 2px;
     --ta-border-heavy: 3px;
-    --ta-shadow-sm: var(--shadow-sm, 4px 4px 0 #000000);
-    --ta-shadow-md: var(--shadow-md, 6px 6px 0 #000000);
-    --ta-shadow-lg: var(--shadow-lg, 8px 8px 0 #000000);
+    --ta-shadow-sm: 4px 4px 0 #111111;
+    --ta-shadow-md: 6px 6px 0 #111111;
+    --ta-shadow-lg: 8px 8px 0 #111111;
 
     --ta-container: 1240px;
     --ta-font: var(--font-sans, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif);
     --ta-transition: 120ms ease;
 
-    /* Compatibility aliases for existing tool CSS. */
-    --bg: var(--ta-bg);
-    --surface: var(--ta-surface);
-    --text: var(--ta-text);
-    --muted: var(--ta-muted);
-    --border: var(--ta-border);
-    --yellow: var(--ta-yellow);
-    --blue: var(--ta-blue);
-    --green: var(--ta-green);
-    --pink: var(--ta-pink);
-    --orange: var(--ta-orange);
-    --purple: var(--ta-purple);
+    /* Existing pages still use these aliases. Keep colors authoritative here
+       so legacy page-level :root blocks cannot drift away from the shared UI. */
+    --bg: var(--ta-bg) !important;
+    --surface: var(--ta-surface) !important;
+    --text: var(--ta-text) !important;
+    --muted: var(--ta-muted) !important;
+    --border: var(--ta-border) !important;
+    --yellow: var(--ta-yellow) !important;
+    --blue: var(--ta-blue) !important;
+    --green: var(--ta-green) !important;
+    --pink: var(--ta-pink) !important;
+    --orange: var(--ta-orange) !important;
+    --purple: var(--ta-purple) !important;
+
     --border-width: var(--ta-border-width);
     --border-heavy: var(--ta-border-heavy);
     --shadow-sm: var(--ta-shadow-sm);
@@ -53,21 +57,21 @@
     --font: var(--ta-font);
     --transition: var(--ta-transition);
 
-    --color-bg: var(--ta-bg);
-    --color-surface: var(--ta-surface);
-    --color-text: var(--ta-text);
-    --color-muted: var(--ta-muted);
-    --color-primary: var(--ta-yellow);
-    --color-primary-hover: var(--ta-yellow-hover);
-    --color-blue: var(--ta-blue);
-    --color-blue-hover: var(--ta-blue-hover);
-    --color-green: var(--ta-green);
-    --color-pink: var(--ta-pink);
-    --color-orange: var(--ta-orange);
-    --color-purple: var(--ta-purple);
-    --color-error: var(--ta-error);
-    --color-error-light: var(--ta-error-light);
-    --color-border: var(--ta-border);
+    --color-bg: var(--ta-bg) !important;
+    --color-surface: var(--ta-surface) !important;
+    --color-text: var(--ta-text) !important;
+    --color-muted: var(--ta-muted) !important;
+    --color-primary: var(--ta-yellow) !important;
+    --color-primary-hover: var(--ta-yellow-hover) !important;
+    --color-blue: var(--ta-blue) !important;
+    --color-blue-hover: var(--ta-blue-hover) !important;
+    --color-green: var(--ta-green) !important;
+    --color-pink: var(--ta-pink) !important;
+    --color-orange: var(--ta-orange) !important;
+    --color-purple: var(--ta-purple) !important;
+    --color-error: var(--ta-error) !important;
+    --color-error-light: var(--ta-error-light) !important;
+    --color-border: var(--ta-border) !important;
     --border-width-heavy: var(--ta-border-heavy);
     --font-family: var(--ta-font);
     --container-width: var(--ta-container);
@@ -81,7 +85,7 @@ html[data-theme="light"] {
 html[data-theme="dark"] {
     color-scheme: dark;
 
-    /* BRUT semantic token bridge for the global Astakula dark theme. */
+    /* BRUT semantic palette. */
     --ink: #d8d4cc;
     --paper: #101214;
     --paper-2: #15181a;
@@ -109,7 +113,6 @@ html[data-theme="dark"] {
     --fg-1: #f1eee7;
     --fg-2: #aaa69f;
     --fg-3: #777b80;
-    --border: #777b80;
     --accent: var(--primary);
     --accent-soft: var(--primary-soft);
     --accent-deep: var(--primary-deep);
@@ -122,58 +125,30 @@ html[data-theme="dark"] {
     --shadow-xl: 12px 12px 0 0 #050607;
     --shadow-2xl: 16px 16px 0 0 #050607;
 
-    --ta-bg: var(--bg-1);
-    --ta-surface: var(--bg-3);
-    --ta-text: var(--fg-1);
-    --ta-muted: var(--fg-2);
-    --ta-border: var(--border);
-    --ta-on-accent: #f5f1e9;
+    /* Important on purpose: JSON still contains an older local dark token
+       block. The shared theme must remain the single source of truth. */
+    --ta-bg: #101214 !important;
+    --ta-surface: #1b1e21 !important;
+    --ta-text: #f1eee7 !important;
+    --ta-muted: #aaa69f !important;
+    --ta-border: #777b80 !important;
+    --ta-on-accent: #f5f1e9 !important;
+    --ta-focus: #f5f1e9 !important;
 
-    --ta-yellow: var(--primary);
-    --ta-yellow-hover: var(--primary-soft);
-    --ta-blue: var(--pop-blue);
-    --ta-blue-hover: #3d6d89;
-    --ta-green: var(--pop-mint);
-    --ta-pink: var(--pop-pink);
-    --ta-orange: var(--pop-orange);
-    --ta-purple: var(--pop-purple);
+    --ta-yellow: #75611f !important;
+    --ta-yellow-hover: #8a7228 !important;
+    --ta-blue: #315a72 !important;
+    --ta-blue-hover: #3d6d89 !important;
+    --ta-green: #3b6549 !important;
+    --ta-pink: #744458 !important;
+    --ta-orange: #7c4d30 !important;
+    --ta-purple: #594976 !important;
 
-    --ta-error: var(--danger);
-    --ta-error-light: var(--danger-bg);
-    --ta-shadow-sm: var(--shadow-sm);
-    --ta-shadow-md: var(--shadow-md);
-    --ta-shadow-lg: var(--shadow-lg);
-
-    --bg: var(--ta-bg);
-    --surface: var(--ta-surface);
-    --text: var(--ta-text);
-    --muted: var(--ta-muted);
-    --border: var(--ta-border);
-    --yellow: var(--ta-yellow);
-    --blue: var(--ta-blue);
-    --green: var(--ta-green);
-    --pink: var(--ta-pink);
-    --orange: var(--ta-orange);
-    --purple: var(--ta-purple);
-    --shadow-sm: var(--ta-shadow-sm);
-    --shadow-md: var(--ta-shadow-md);
-    --shadow-lg: var(--ta-shadow-lg);
-
-    --color-bg: var(--ta-bg);
-    --color-surface: var(--ta-surface);
-    --color-text: var(--ta-text);
-    --color-muted: var(--ta-muted);
-    --color-primary: var(--ta-yellow);
-    --color-primary-hover: var(--ta-yellow-hover);
-    --color-blue: var(--ta-blue);
-    --color-blue-hover: var(--ta-blue-hover);
-    --color-green: var(--ta-green);
-    --color-pink: var(--ta-pink);
-    --color-orange: var(--ta-orange);
-    --color-purple: var(--ta-purple);
-    --color-error: var(--ta-error);
-    --color-error-light: var(--ta-error-light);
-    --color-border: var(--ta-border);
+    --ta-error: #bd5d5d !important;
+    --ta-error-light: #3c2525 !important;
+    --ta-shadow-sm: 4px 4px 0 #050607 !important;
+    --ta-shadow-md: 6px 6px 0 #050607 !important;
+    --ta-shadow-lg: 8px 8px 0 #050607 !important;
 }
 
 *,
@@ -229,6 +204,18 @@ textarea {
     display: none !important;
 }
 
+.visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
 .page-shell {
     min-height: 100vh;
     display: flex;
@@ -279,6 +266,11 @@ textarea {
     gap: 10px;
 }
 
+.header-badge {
+    color: var(--ta-on-accent);
+    border-radius: 0;
+}
+
 .theme-toggle {
     min-height: 36px;
     padding: 6px 12px;
@@ -313,8 +305,7 @@ textarea {
     letter-spacing: 0.14em;
 }
 
-/* Existing tool markup keeps these compatibility hooks while BRUT provides
-   the underlying design-system tokens and future component primitives. */
+/* Shared legacy buttons. */
 .button,
 .ta-button {
     min-height: 46px;
@@ -344,15 +335,90 @@ textarea {
     box-shadow: 1px 1px 0 var(--ta-border);
 }
 
-.button:focus-visible,
-.ta-button:focus-visible,
-.theme-toggle:focus-visible,
-a:focus-visible,
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible {
-    outline: 4px solid var(--ta-blue);
-    outline-offset: 3px;
+.button:disabled,
+.ta-button:disabled {
+    cursor: not-allowed;
+    opacity: .5;
+}
+
+/* BRUT components are normalized here instead of per-tool. */
+.brut-btn {
+    min-height: 46px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 18px;
+    cursor: pointer;
+    background: var(--ta-surface);
+    color: var(--ta-text);
+    border: var(--ta-border-width) solid var(--ta-border);
+    border-radius: 0;
+    box-shadow: var(--ta-shadow-sm);
+    font: inherit;
+    font-size: 13px;
+    font-weight: 850;
+    line-height: 1.2;
+    transition: transform var(--ta-transition), box-shadow var(--ta-transition), background var(--ta-transition), color var(--ta-transition);
+}
+
+.brut-btn:hover:not(:disabled) {
+    background: var(--ta-blue);
+    color: var(--ta-on-accent);
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--ta-border);
+}
+
+.brut-btn:active:not(:disabled) {
+    transform: translate(3px, 3px);
+    box-shadow: 1px 1px 0 var(--ta-border);
+}
+
+.brut-btn:disabled {
+    cursor: not-allowed;
+    opacity: .5;
+}
+
+.brut-btn--primary {
+    background: var(--ta-yellow);
+    color: var(--ta-on-accent);
+}
+
+.brut-btn--primary:hover:not(:disabled) {
+    background: var(--ta-yellow-hover);
+    color: var(--ta-on-accent);
+}
+
+.brut-btn--sm {
+    min-height: 36px;
+    padding: 7px 12px;
+    font-size: 11px;
+}
+
+.brut-input,
+.brut-select {
+    width: 100%;
+    min-height: 46px;
+    padding: 10px 12px;
+    background-color: var(--ta-surface);
+    color: var(--ta-text);
+    border: var(--ta-border-width) solid var(--ta-border);
+    border-radius: 0;
+    outline: none;
+    box-shadow: 3px 3px 0 #111111;
+    font: inherit;
+    font-size: 13px;
+}
+
+/* One keyboard-focus language across BRUT and all legacy controls.
+   Accent colors remain for hover/active states, not focus outlines. */
+:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+    outline: 3px solid var(--ta-focus) !important;
+    outline-offset: 3px !important;
+}
+
+:where(.form-control, .compact-select, .brut-input, .brut-select, .json-editor, .code-editor, .uuid-output, .hash-output, .payload-output):focus {
+    box-shadow: 4px 4px 0 var(--ta-border) !important;
 }
 
 .site-footer {
@@ -383,6 +449,8 @@ select:focus-visible {
     color: #bdbdbd;
 }
 
+/* Dark-mode normalization for page-level styles that pre-date the shared
+   theme adapter. */
 html[data-theme="dark"] .site-footer {
     background: #090b0c;
     color: var(--ta-text);
@@ -396,11 +464,16 @@ html[data-theme="dark"] .site-footer p:last-child {
 html[data-theme="dark"] body .hero-section,
 html[data-theme="dark"] body .header-badge,
 html[data-theme="dark"] body .code-mark,
+html[data-theme="dark"] body .image-mark,
 html[data-theme="dark"] body .info-card,
 html[data-theme="dark"] body .tool-card:not(.tool-white),
 html[data-theme="dark"] body .drop-zone,
 html[data-theme="dark"] body .status-box.is-success,
+html[data-theme="dark"] body .status-box.is-working,
 html[data-theme="dark"] body .button-primary,
+html[data-theme="dark"] body .brut-btn--primary,
+html[data-theme="dark"] body .mode-tab.is-active,
+html[data-theme="dark"] body .version-tab.is-active,
 html[data-theme="dark"] body .generator-selector-button.is-active,
 html[data-theme="dark"] body .generator-selector-button:hover {
     color: var(--ta-on-accent);
@@ -417,9 +490,9 @@ html[data-theme="dark"] body .tool-white p {
 }
 
 html[data-theme="dark"] body .tool-status {
-    background: rgba(5, 6, 7, 0.24);
+    background: rgba(5, 6, 7, .24);
     color: var(--ta-on-accent);
-    border-color: rgba(245, 241, 233, 0.42);
+    border-color: rgba(245, 241, 233, .42);
 }
 
 html[data-theme="dark"] body .tool-status.available {
@@ -431,15 +504,26 @@ html[data-theme="dark"] body .tool-status.available {
 html[data-theme="dark"] body .eyebrow,
 html[data-theme="dark"] body .button-secondary,
 html[data-theme="dark"] body .theme-toggle,
-html[data-theme="dark"] body .compact-select {
+html[data-theme="dark"] body .compact-select,
+html[data-theme="dark"] body .brut-btn {
     background: var(--ta-surface);
     color: var(--ta-text);
 }
 
+html[data-theme="dark"] body .brut-btn--primary {
+    background: var(--ta-yellow);
+    color: var(--ta-on-accent);
+}
+
 html[data-theme="dark"] body .button-secondary:hover:not(:disabled),
-html[data-theme="dark"] body .theme-toggle:hover {
+html[data-theme="dark"] body .theme-toggle:hover,
+html[data-theme="dark"] body .brut-btn:hover:not(:disabled) {
     background: var(--ta-blue);
     color: var(--ta-on-accent);
+}
+
+html[data-theme="dark"] body .brut-btn--primary:hover:not(:disabled) {
+    background: var(--ta-yellow-hover);
 }
 
 html[data-theme="dark"] body .preview-panel,
@@ -450,34 +534,48 @@ html[data-theme="dark"] body .output-panel {
 
 html[data-theme="dark"] body .workspace-panel,
 html[data-theme="dark"] body .toolbar-section,
+html[data-theme="dark"] body .controls-section,
+html[data-theme="dark"] body .settings-section,
+html[data-theme="dark"] body .queue-panel,
+html[data-theme="dark"] body .result-card,
 html[data-theme="dark"] body .about-section,
 html[data-theme="dark"] body .status-box.is-neutral {
     background: var(--ta-surface);
     color: var(--ta-text);
 }
 
-html[data-theme="dark"] body .form-control {
-    background: #171a1c;
-    color: var(--ta-text);
+html[data-theme="dark"] body .form-control,
+html[data-theme="dark"] body .compact-select,
+html[data-theme="dark"] body .brut-input,
+html[data-theme="dark"] body .brut-select {
+    background-color: #171a1c !important;
+    color: var(--ta-text) !important;
+    border-color: var(--ta-border) !important;
     box-shadow: 3px 3px 0 #070809;
 }
 
 html[data-theme="dark"] body .form-control:hover,
-html[data-theme="dark"] body .form-control:focus {
-    background: #1f2326;
-    color: var(--ta-text);
+html[data-theme="dark"] body .form-control:focus,
+html[data-theme="dark"] body .brut-input:hover,
+html[data-theme="dark"] body .brut-input:focus,
+html[data-theme="dark"] body .brut-select:hover,
+html[data-theme="dark"] body .brut-select:focus {
+    background-color: #1f2326 !important;
+    color: var(--ta-text) !important;
 }
 
 html[data-theme="dark"] body .form-control::placeholder,
-html[data-theme="dark"] body .json-editor::placeholder {
+html[data-theme="dark"] body .brut-input::placeholder,
+html[data-theme="dark"] body .json-editor::placeholder,
+html[data-theme="dark"] body .code-editor::placeholder {
     color: #858a8e;
 }
 
-html[data-theme="dark"] body .compact-select {
-    box-shadow: 3px 3px 0 #070809;
-}
-
-html[data-theme="dark"] body .json-editor {
+html[data-theme="dark"] body .json-editor,
+html[data-theme="dark"] body .code-editor,
+html[data-theme="dark"] body .uuid-output,
+html[data-theme="dark"] body .hash-output,
+html[data-theme="dark"] body .payload-output {
     background: #0b0d0e;
     color: #ece8df;
     border-color: var(--ta-border);
@@ -538,8 +636,8 @@ html[data-theme="dark"] body .qr-preview-card {
     *,
     *::before,
     *::after {
-        animation-duration: 0.01ms !important;
+        animation-duration: .01ms !important;
         animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
+        transition-duration: .01ms !important;
     }
 }
