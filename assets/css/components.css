@@ -143,6 +143,33 @@ html[data-theme="dark"] .site-footer p:last-child {
     color: var(--ta-muted);
 }
 
+/* Shared dark-mode normalization for bright neobrutalist surfaces. */
+html[data-theme="dark"] .hero-section,
+html[data-theme="dark"] .header-badge,
+html[data-theme="dark"] .info-card,
+html[data-theme="dark"] .tool-card:not(.tool-white) {
+    color: #111111;
+}
+
+html[data-theme="dark"] .tool-card:not(.tool-white) p {
+    color: #242424;
+}
+
+html[data-theme="dark"] .tool-white,
+html[data-theme="dark"] .tool-white p {
+    color: var(--ta-text);
+}
+
+html[data-theme="dark"] .tool-status.available {
+    background: #111111;
+    color: #ffffff;
+    border-color: #111111;
+}
+
+html[data-theme="dark"] .preview-panel {
+    background: #1b2930;
+}
+
 @media (max-width: 600px) {
     .site-header-inner,
     .site-footer-inner {
