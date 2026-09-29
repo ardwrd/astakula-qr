@@ -4,6 +4,8 @@
     --ta-text: #111111;
     --ta-muted: #66645f;
     --ta-border: #111111;
+    --ta-on-accent: #111111;
+
     --ta-yellow: #ffd84d;
     --ta-yellow-hover: #ffcc19;
     --ta-blue: #8ec5ff;
@@ -12,13 +14,16 @@
     --ta-pink: #ff9eb5;
     --ta-orange: #ffad66;
     --ta-purple: #c8adff;
+
     --ta-error: #ff7f7f;
     --ta-error-light: #ffe1e1;
+
     --ta-border-width: 2px;
     --ta-border-heavy: 3px;
     --ta-shadow-sm: 4px 4px 0 #111111;
     --ta-shadow-md: 6px 6px 0 #111111;
     --ta-shadow-lg: 8px 8px 0 #111111;
+
     --ta-container: 1240px;
     --ta-font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     --ta-transition: 120ms ease;
@@ -68,22 +73,43 @@
 html[data-theme="dark"] {
     color-scheme: dark;
 
-    --ta-bg: #171717;
-    --ta-surface: #232323;
-    --ta-text: #f3f0e8;
-    --ta-muted: #b8b4aa;
-    --ta-border: #f3f0e8;
-    --ta-error-light: #442525;
-    --ta-shadow-sm: 4px 4px 0 #f3f0e8;
-    --ta-shadow-md: 6px 6px 0 #f3f0e8;
-    --ta-shadow-lg: 8px 8px 0 #f3f0e8;
+    /* Neutral foundation: darker surfaces, softer borders, black shadows. */
+    --ta-bg: #101214;
+    --ta-surface: #1b1e21;
+    --ta-text: #f1eee7;
+    --ta-muted: #aaa69f;
+    --ta-border: #777b80;
+    --ta-on-accent: #f5f1e9;
 
-    /* Keep legacy aliases synced even on pages with local :root declarations. */
+    /* Muted accents keep the neobrutalist identity without neon collisions. */
+    --ta-yellow: #75611f;
+    --ta-yellow-hover: #8a7228;
+    --ta-blue: #315a72;
+    --ta-blue-hover: #3d6d89;
+    --ta-green: #3b6549;
+    --ta-pink: #744458;
+    --ta-orange: #7c4d30;
+    --ta-purple: #594976;
+
+    --ta-error: #bd5d5d;
+    --ta-error-light: #3c2525;
+
+    --ta-shadow-sm: 4px 4px 0 #050607;
+    --ta-shadow-md: 6px 6px 0 #050607;
+    --ta-shadow-lg: 8px 8px 0 #050607;
+
+    /* Keep legacy aliases synchronized with the dark palette. */
     --bg: var(--ta-bg);
     --surface: var(--ta-surface);
     --text: var(--ta-text);
     --muted: var(--ta-muted);
     --border: var(--ta-border);
+    --yellow: var(--ta-yellow);
+    --blue: var(--ta-blue);
+    --green: var(--ta-green);
+    --pink: var(--ta-pink);
+    --orange: var(--ta-orange);
+    --purple: var(--ta-purple);
     --border-width: var(--ta-border-width);
     --border-heavy: var(--ta-border-heavy);
     --shadow-sm: var(--ta-shadow-sm);
@@ -94,6 +120,15 @@ html[data-theme="dark"] {
     --color-surface: var(--ta-surface);
     --color-text: var(--ta-text);
     --color-muted: var(--ta-muted);
+    --color-primary: var(--ta-yellow);
+    --color-primary-hover: var(--ta-yellow-hover);
+    --color-blue: var(--ta-blue);
+    --color-blue-hover: var(--ta-blue-hover);
+    --color-green: var(--ta-green);
+    --color-pink: var(--ta-pink);
+    --color-orange: var(--ta-orange);
+    --color-purple: var(--ta-purple);
+    --color-error: var(--ta-error);
     --color-error-light: var(--ta-error-light);
     --color-border: var(--ta-border);
 }
