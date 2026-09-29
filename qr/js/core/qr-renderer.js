@@ -333,32 +333,31 @@ class QRRenderer {
                 this.qrModel
             );
 
-        this.container.appendChild(
-            this.canvas
-        );
-
-        /*
-         * SVG is kept in DOM as an export
-         * representation, but is not displayed.
-         *
-         * Canvas remains the visible preview.
-         */
-        this.svgElement.setAttribute(
-            "hidden",
-            ""
-        );
-        
-        this.svgElement.setAttribute(
-            "aria-hidden",
-            "true"
-        );
-        
-        this.svgElement.style.display =
-            "none";
-
-        this.container.appendChild(
-            this.svgElement
-        );
+            this.container.appendChild(
+                this.canvas
+            );
+            
+            /*
+             * SVG disimpan hanya sebagai representasi
+             * untuk export dan tidak ditampilkan
+             * pada preview.
+             */
+            this.svgElement.setAttribute(
+                "hidden",
+                ""
+            );
+            
+            this.svgElement.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+            
+            this.svgElement.style.display =
+                "none";
+            
+            this.container.appendChild(
+                this.svgElement
+            );
 
         return {
             canvas:
