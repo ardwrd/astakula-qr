@@ -3,29 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Convert, resize, and compress images directly in your browser with Tools Astakula.">
+    <meta name="description" content="Compress, resize, crop, convert, optimize, and inspect images locally in your browser with Tools Astakula.">
     <meta name="robots" content="index,follow">
     <meta name="theme-color" content="#f3f0e8">
-
     <link rel="canonical" href="https://tools.astakula.com/image/">
     <link rel="icon" href="../favicon.svg" type="image/svg+xml">
-
     <meta property="og:type" content="website">
     <meta property="og:title" content="Image Tools — Tools Astakula">
-    <meta property="og:description" content="Convert, resize, and compress images locally in your browser.">
+    <meta property="og:description" content="Compress, resize, crop, convert, optimize, and inspect images locally in your browser.">
     <meta property="og:url" content="https://tools.astakula.com/image/">
     <meta property="og:site_name" content="Tools Astakula">
-
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Image Tools — Tools Astakula">
-    <meta name="twitter:description" content="Convert, resize, and compress images locally in your browser.">
-
+    <meta name="twitter:description" content="A complete browser-based image utility suite.">
     <title>Image Tools — Tools Astakula</title>
-
     <script src="../assets/js/theme.js?v=2"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sprtn/ui@1.3.2/dist/brut.css">
     <link rel="stylesheet" href="../assets/css/astakula.css?v=2">
-    <link rel="stylesheet" href="./style.css?v=2">
+    <link rel="stylesheet" href="./style.css?v=3">
 </head>
 <body>
     <div class="page-shell">
@@ -42,30 +37,23 @@
         <main class="main-content">
             <section class="hero-section">
                 <div class="hero-copy">
-                    <p class="eyebrow">IMAGE TOOLS</p>
-                    <h1>Work with images.</h1>
-                    <p class="hero-description">Convert, resize, and compress one or several images without uploading them anywhere.</p>
+                    <p class="eyebrow">IMAGE UTILITY SUITE</p>
+                    <h1>One place for image work.</h1>
+                    <p class="hero-description">Compress, resize, crop, convert, optimize, and inspect images without uploading them anywhere.</p>
                 </div>
-                <div class="hero-decoration" aria-hidden="true">
-                    <span class="image-mark">IMG</span>
-                </div>
+                <div class="hero-decoration" aria-hidden="true"><span class="image-mark">IMG</span></div>
             </section>
 
             <section class="upload-section" aria-labelledby="upload-heading">
                 <div class="section-heading">
-                    <div>
-                        <p class="section-number">01</p>
-                        <h2 id="upload-heading">Choose images</h2>
-                    </div>
+                    <div><p class="section-number">01</p><h2 id="upload-heading">Choose images</h2></div>
                     <p>PNG, JPEG, WebP, or AVIF. Up to 20 files, 25 MB each.</p>
                 </div>
-
                 <label id="dropZone" class="drop-zone" for="imageInput">
                     <strong>Drop, paste, or choose images</strong>
-                    <span>Files are read directly in your browser.</span>
+                    <span>Everything runs locally in your browser.</span>
                 </label>
                 <input id="imageInput" class="visually-hidden" type="file" accept="image/png,image/jpeg,image/webp,image/avif" multiple>
-
                 <div id="queuePanel" class="queue-panel hidden" aria-live="polite">
                     <div class="queue-heading">
                         <span id="queueMeta">0 files</span>
@@ -75,52 +63,98 @@
                 </div>
             </section>
 
-            <section class="settings-section" aria-labelledby="settings-heading">
-                <div class="section-heading">
-                    <div>
-                        <p class="section-number">02</p>
-                        <h2 id="settings-heading">Output settings</h2>
+            <section class="workspace-section" aria-labelledby="workspace-heading">
+                <div class="section-heading compact-heading">
+                    <div><p class="section-number">02</p><h2 id="workspace-heading">Choose a tool</h2></div>
+                    <p>Settings are scoped to the selected workflow.</p>
+                </div>
+
+                <div class="tool-tabs" role="tablist" aria-label="Image tools">
+                    <button class="tool-tab is-active" type="button" role="tab" aria-selected="true" data-tab="compress">Compress</button>
+                    <button class="tool-tab" type="button" role="tab" aria-selected="false" data-tab="resize">Resize</button>
+                    <button class="tool-tab" type="button" role="tab" aria-selected="false" data-tab="crop">Crop</button>
+                    <button class="tool-tab" type="button" role="tab" aria-selected="false" data-tab="convert">Convert</button>
+                    <button class="tool-tab" type="button" role="tab" aria-selected="false" data-tab="optimize">Optimize</button>
+                    <button class="tool-tab" type="button" role="tab" aria-selected="false" data-tab="info">Info</button>
+                </div>
+
+                <div class="tool-panel is-active" data-panel="compress">
+                    <div class="panel-copy"><h3>Compress</h3><p>Reduce file size while keeping the original dimensions.</p></div>
+                    <div class="settings-grid">
+                        <label class="setting-field"><span>Output format</span><select id="compressFormat" class="brut-select"><option value="same">Keep original format</option><option value="image/webp" selected>WebP</option><option value="image/jpeg">JPEG</option><option value="image/png">PNG</option></select></label>
+                        <label class="setting-field"><span>Quality <strong id="compressQualityValue">82%</strong></span><input id="compressQuality" class="quality-range" type="range" min="20" max="100" value="82"></label>
                     </div>
-                    <p>Leave both size fields empty to keep the original dimensions.</p>
+                    <p class="settings-note">PNG export is lossless; the quality slider does not affect PNG.</p>
                 </div>
 
-                <div class="settings-grid">
-                    <label class="setting-field" for="formatSelect">
-                        <span>Format</span>
-                        <select id="formatSelect" class="brut-select">
-                            <option value="image/webp" selected>WebP</option>
-                            <option value="image/jpeg">JPEG</option>
-                            <option value="image/png">PNG</option>
-                        </select>
-                    </label>
-
-                    <label class="setting-field" for="qualityInput">
-                        <span>Quality <strong id="qualityValue">85%</strong></span>
-                        <input id="qualityInput" class="quality-range" type="range" min="10" max="100" step="1" value="85">
-                    </label>
-
-                    <label class="setting-field" for="maxWidthInput">
-                        <span>Max width</span>
-                        <div class="input-with-unit">
-                            <input id="maxWidthInput" class="brut-input" type="number" min="1" max="12000" step="1" inputmode="numeric" placeholder="Original">
-                            <span>px</span>
-                        </div>
-                    </label>
-
-                    <label class="setting-field" for="maxHeightInput">
-                        <span>Max height</span>
-                        <div class="input-with-unit">
-                            <input id="maxHeightInput" class="brut-input" type="number" min="1" max="12000" step="1" inputmode="numeric" placeholder="Original">
-                            <span>px</span>
-                        </div>
-                    </label>
+                <div class="tool-panel" data-panel="resize" hidden>
+                    <div class="panel-copy"><h3>Resize</h3><p>Resize by maximum dimensions, percentage, or a ready-made preset.</p></div>
+                    <div class="preset-row" id="resizePresets">
+                        <button type="button" data-preset="1080x1080">Square 1080</button>
+                        <button type="button" data-preset="1080x1350">Feed 4:5</button>
+                        <button type="button" data-preset="1080x1920">Story 9:16</button>
+                        <button type="button" data-preset="1200x630">OG 1200×630</button>
+                        <button type="button" data-preset="1920x1080">Full HD</button>
+                    </div>
+                    <div class="settings-grid three-col">
+                        <label class="setting-field"><span>Max width</span><div class="input-with-unit"><input id="resizeWidth" class="brut-input" type="number" min="1" max="12000" placeholder="Original"><span>px</span></div></label>
+                        <label class="setting-field"><span>Max height</span><div class="input-with-unit"><input id="resizeHeight" class="brut-input" type="number" min="1" max="12000" placeholder="Original"><span>px</span></div></label>
+                        <label class="setting-field"><span>Scale</span><div class="input-with-unit"><input id="resizePercent" class="brut-input" type="number" min="1" max="400" value="100"><span>%</span></div></label>
+                        <label class="setting-field"><span>Output format</span><select id="resizeFormat" class="brut-select"><option value="same" selected>Keep original format</option><option value="image/webp">WebP</option><option value="image/jpeg">JPEG</option><option value="image/png">PNG</option></select></label>
+                        <label class="check-field"><input id="preventUpscale" type="checkbox" checked><span>Prevent upscaling</span></label>
+                    </div>
+                    <p class="settings-note">Aspect ratio is always preserved. Width and height act as a bounding box.</p>
                 </div>
 
-                <p class="settings-note">Images are fitted inside the width/height limits without changing their aspect ratio. Images are not enlarged.</p>
+                <div class="tool-panel" data-panel="crop" hidden>
+                    <div class="panel-copy"><h3>Crop</h3><p>Crop to a common aspect ratio and move the crop window horizontally or vertically.</p></div>
+                    <div class="crop-layout">
+                        <div>
+                            <div class="preset-row" id="cropPresets">
+                                <button type="button" data-ratio="free" class="is-active">Free</button>
+                                <button type="button" data-ratio="1:1">1:1</button>
+                                <button type="button" data-ratio="4:5">4:5</button>
+                                <button type="button" data-ratio="16:9">16:9</button>
+                                <button type="button" data-ratio="9:16">9:16</button>
+                            </div>
+                            <div class="settings-grid">
+                                <label class="setting-field"><span>Crop size <strong id="cropScaleValue">80%</strong></span><input id="cropScale" class="quality-range" type="range" min="20" max="100" value="80"></label>
+                                <label class="setting-field"><span>Horizontal position <strong id="cropXValue">50%</strong></span><input id="cropX" class="quality-range" type="range" min="0" max="100" value="50"></label>
+                                <label class="setting-field"><span>Vertical position <strong id="cropYValue">50%</strong></span><input id="cropY" class="quality-range" type="range" min="0" max="100" value="50"></label>
+                                <label class="setting-field"><span>Output format</span><select id="cropFormat" class="brut-select"><option value="same" selected>Keep original format</option><option value="image/webp">WebP</option><option value="image/jpeg">JPEG</option><option value="image/png">PNG</option></select></label>
+                            </div>
+                        </div>
+                        <div class="crop-preview-wrap"><canvas id="cropPreview" width="720" height="420" aria-label="Crop preview"></canvas><p id="cropPreviewNote">Choose an image to preview the crop.</p></div>
+                    </div>
+                </div>
 
-                <div class="settings-actions">
-                    <button id="processButton" class="brut-btn brut-btn--primary" type="button">Process images</button>
-                    <button id="resetSettingsButton" class="brut-btn" type="button">Reset settings</button>
+                <div class="tool-panel" data-panel="convert" hidden>
+                    <div class="panel-copy"><h3>Convert</h3><p>Convert images to another browser-supported format.</p></div>
+                    <div class="settings-grid">
+                        <label class="setting-field"><span>Target format</span><select id="convertFormat" class="brut-select"><option value="image/webp" selected>WebP</option><option value="image/jpeg">JPEG</option><option value="image/png">PNG</option><option value="image/avif">AVIF (browser support varies)</option></select></label>
+                        <label class="setting-field"><span>Quality <strong id="convertQualityValue">90%</strong></span><input id="convertQuality" class="quality-range" type="range" min="20" max="100" value="90"></label>
+                        <label class="setting-field"><span>JPEG background</span><input id="jpegBackground" class="brut-input color-input" type="color" value="#ffffff"></label>
+                    </div>
+                </div>
+
+                <div class="tool-panel" data-panel="optimize" hidden>
+                    <div class="panel-copy"><h3>Optimize</h3><p>Re-encode images, strip embedded metadata, and optionally limit oversized photos.</p></div>
+                    <div class="settings-grid">
+                        <label class="setting-field"><span>Preset</span><select id="optimizePreset" class="brut-select"><option value="balanced" selected>Balanced</option><option value="small">Small file</option><option value="quality">High quality</option></select></label>
+                        <label class="setting-field"><span>Maximum megapixels</span><select id="optimizeMegapixels" class="brut-select"><option value="0">Keep dimensions</option><option value="12">12 MP</option><option value="8" selected>8 MP</option><option value="4">4 MP</option><option value="2">2 MP</option></select></label>
+                        <label class="setting-field"><span>Output format</span><select id="optimizeFormat" class="brut-select"><option value="image/webp" selected>WebP</option><option value="image/jpeg">JPEG</option></select></label>
+                        <label class="check-field"><input id="stripMetadata" type="checkbox" checked disabled><span>Strip metadata on export</span></label>
+                    </div>
+                </div>
+
+                <div class="tool-panel" data-panel="info" hidden>
+                    <div class="panel-copy"><h3>Info</h3><p>Inspect basic image properties without creating a new file.</p></div>
+                    <div id="infoGrid" class="info-grid"><p class="empty-copy">Choose one or more images to inspect them.</p></div>
+                </div>
+
+                <div class="workspace-actions" id="workspaceActions">
+                    <button id="processButton" class="brut-btn brut-btn--primary" type="button">Compress images</button>
+                    <button id="resetSettingsButton" class="brut-btn" type="button">Reset current tool</button>
                 </div>
             </section>
 
@@ -128,46 +162,21 @@
 
             <section id="resultsSection" class="results-section hidden" aria-labelledby="results-heading">
                 <div class="section-heading results-heading">
-                    <div>
-                        <p class="section-number">03</p>
-                        <h2 id="results-heading">Results</h2>
-                    </div>
-                    <div class="results-actions">
-                        <span id="resultsMeta">0 ready</span>
-                        <button id="downloadAllButton" class="brut-btn brut-btn--primary brut-btn--sm" type="button">Download all</button>
-                    </div>
+                    <div><p class="section-number">03</p><h2 id="results-heading">Results</h2></div>
+                    <div class="results-actions"><span id="resultsMeta">0 ready</span><button id="downloadAllButton" class="brut-btn brut-btn--primary brut-btn--sm" type="button">Download all</button></div>
                 </div>
-
                 <div id="resultsGrid" class="results-grid"></div>
             </section>
 
             <section class="info-section">
-                <article class="info-card">
-                    <span class="info-number">01</span>
-                    <h3>Local processing</h3>
-                    <p>Images stay in the browser. They are not uploaded to an Astakula server.</p>
-                </article>
-                <article class="info-card">
-                    <span class="info-number">02</span>
-                    <h3>Batch friendly</h3>
-                    <p>Process up to 20 images sequentially to keep browser memory usage under control.</p>
-                </article>
-                <article class="info-card">
-                    <span class="info-number">03</span>
-                    <h3>Clean output</h3>
-                    <p>Canvas export strips most embedded metadata while creating the new file.</p>
-                </article>
+                <article class="info-card"><span class="info-number">01</span><h3>Private by design</h3><p>Files stay on your device. Processing uses browser APIs and does not upload to Astakula.</p></article>
+                <article class="info-card"><span class="info-number">02</span><h3>Batch friendly</h3><p>Process up to 20 images sequentially so memory use stays predictable.</p></article>
+                <article class="info-card"><span class="info-number">03</span><h3>Clean exports</h3><p>Re-encoding through canvas removes most embedded metadata from the output.</p></article>
             </section>
         </main>
 
-        <footer class="site-footer">
-            <div class="site-footer-inner">
-                <p>Tools Astakula</p>
-                <p>astakula.com</p>
-            </div>
-        </footer>
+        <footer class="site-footer"><div class="site-footer-inner"><p>Tools Astakula</p><p>astakula.com</p></div></footer>
     </div>
-
-    <script type="module" src="./js/app.js?v=1"></script>
+    <script type="module" src="./js/app.js?v=3"></script>
 </body>
 </html>
