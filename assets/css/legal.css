@@ -427,7 +427,7 @@ html[data-theme="dark"] body .legal-summary-item strong {
 
     .legal-hero {
         min-height: 0;
-        padding: 28px 22px;
+        padding: 34px 26px;
         box-shadow: 6px 6px 0 var(--ta-border);
     }
 
@@ -495,5 +495,33 @@ html[data-theme="dark"] body .legal-summary-item strong {
     .legal-data-table-wrap {
         margin-left: 0;
         margin-right: 0;
+    }
+}
+
+/* Keep legal-page headers identical to the established tool header pattern. */
+.header-badge {
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+    padding: 6px 14px;
+    background: var(--ta-blue);
+    color: #111318;
+    border: var(--ta-border-width) solid var(--ta-border);
+    box-shadow: 3px 3px 0 var(--ta-border);
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+    .header-badge {
+        min-height: 32px;
+        max-width: 132px;
+        padding: 5px 8px;
+        overflow: hidden;
+        font-size: 9px;
+        text-overflow: ellipsis;
     }
 }
