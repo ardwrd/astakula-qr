@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Privacy Policy for Astakula Tools, including browser-side processing, theme preferences, external libraries, and DNS Inspector requests.">
+    <meta name="robots" content="index,follow">
+    <meta name="author" content="Ariyo Ardiwardana">
+    <meta name="theme-color" content="#f3f0e8">
+    <link rel="canonical" href="https://tools.astakula.com/privacy/">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Privacy Policy — Astakula Tools">
+    <meta property="og:description" content="How Astakula Tools processes tool inputs, theme preferences, external library requests, and DNS lookups.">
+    <meta property="og:url" content="https://tools.astakula.com/privacy/">
+    <meta property="og:site_name" content="Astakula Tools">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Privacy Policy — Astakula Tools">
+    <meta name="twitter:description" content="How Astakula Tools processes tool inputs and external requests.">
+    <title>Privacy Policy — Astakula Tools</title>
+    <script type="application/ld+json">
+    {
+      "@context":"https://schema.org",
+      "@graph":[
+        {"@type":"Organization","@id":"https://astakula.com/#organization","name":"Astakula","url":"https://astakula.com/"},
+        {"@type":"Person","@id":"https://tools.astakula.com/#ariyo-ardiwardana","name":"Ariyo Ardiwardana","affiliation":{"@id":"https://astakula.com/#organization"}},
+        {"@type":"WebPage","@id":"https://tools.astakula.com/privacy/#webpage","url":"https://tools.astakula.com/privacy/","name":"Privacy Policy — Astakula Tools","description":"Privacy information for Astakula Tools.","inLanguage":"en","author":{"@id":"https://tools.astakula.com/#ariyo-ardiwardana"},"publisher":{"@id":"https://astakula.com/#organization"}}
+      ]
+    }
+    </script>
+    <script src="../assets/js/theme.js?v=4"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sprtn/ui@1.3.2/dist/brut.css">
+    <link rel="stylesheet" href="../assets/css/astakula.css?v=2">
+</head>
+<body>
+<div class="page-shell">
+    <header class="site-header"><div class="site-header-inner"><a class="brand" href="../" aria-label="Astakula Tools Home">Astakula Tools</a><div class="header-actions"><button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme">Dark</button><span class="header-badge">Privacy</span></div></div></header>
+    <main class="legal-main">
+        <section class="legal-hero">
+            <p class="section-number">ASTAKULA TOOLS</p>
+            <h1>Privacy Policy</h1>
+            <p>This page explains how the current Astakula Tools implementation handles tool inputs, browser preferences, and external network requests.</p>
+        </section>
+
+        <section class="legal-card">
+            <p class="legal-meta"><strong>Effective date:</strong> October 3, 2026 · <strong>Developer:</strong> Ariyo Ardiwardana · <strong>Parent brand:</strong> Astakula</p>
+            <h2>1. Scope</h2>
+            <p>This Privacy Policy applies to the public website at <strong>tools.astakula.com</strong>. Astakula Tools is a collection of browser-based utilities developed by Ariyo Ardiwardana under Astakula.</p>
+
+            <h2>2. Tool inputs and processing</h2>
+            <p>The current repository does not contain an Astakula application backend, account system, or database for storing tool inputs. QR, JSON, Base64, UUID, hash, image, PDF, GIF, favicon, and spreadsheet operations are implemented in the browser.</p>
+            <p>Network Tools also performs its subnet, range, IPv4, MAC, bandwidth, and port-reference operations in the browser. The DNS Inspector is different: when you run a DNS lookup, the requested domain and record type are sent to Cloudflare's public DNS-over-HTTPS resolver so the lookup can be completed.</p>
+
+            <h2>3. Local browser storage</h2>
+            <p>Astakula Tools stores the selected light or dark theme preference in your browser's <code>localStorage</code>. This preference remains on the device until it is changed, cleared by the browser, or otherwise removed by the user.</p>
+
+            <h2>4. External libraries and delivery services</h2>
+            <p>Some pages load browser libraries and the shared UI package from jsDelivr. Examples in the current source include QR rendering, PDF processing, GIF encoding, ZIP creation, and spreadsheet parsing libraries. Loading these assets creates normal web requests to the external delivery service; tool input is not intentionally sent to jsDelivr by the Astakula Tools application code.</p>
+
+            <h2>5. Hosting and connection data</h2>
+            <p>Like other public websites, requests for pages and assets can expose standard connection information such as an IP address, user agent, requested URL, and request time to hosting, CDN, DNS, or network providers involved in delivering the site. Those providers operate under their own terms and privacy practices.</p>
+
+            <h2>6. Analytics, advertising, and application cookies</h2>
+            <p>No analytics service, advertising tracker, account login, or application-level tracking cookie was identified in the current repository during the October 2026 source audit. If these systems are added later, this policy should be updated before relying on the current statement.</p>
+
+            <h2>7. Downloads and generated output</h2>
+            <p>Generated files are created for you to download. You are responsible for where downloaded files are stored, shared, or uploaded after they leave the browser workflow.</p>
+
+            <h2>8. Changes to this policy</h2>
+            <p>This policy may be revised when the tools, data flows, hosting setup, or external services change. The effective date above indicates the version represented by this page.</p>
+
+            <h2>9. Contact</h2>
+            <p>For questions about Astakula Tools, use the contact information published by <a href="https://astakula.com/" target="_blank" rel="noopener noreferrer">Astakula</a>.</p>
+        </section>
+    </main>
+    <footer class="site-footer"><div class="site-footer-inner"><p>Astakula Tools</p><p>astakula.com</p><nav class="ta-footer-links" data-footer-links="true" aria-label="Legal and site links"><a href="../">Tools</a><a href="../privacy/" aria-current="page">Privacy Policy</a><a href="../terms/">Terms of Service</a><a href="https://astakula.com/" target="_blank" rel="noopener noreferrer">Astakula</a></nav></div></footer>
+</div>
+</body>
+</html>
