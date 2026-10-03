@@ -31,54 +31,159 @@
     <script src="../assets/js/theme.js?v=4"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sprtn/ui@1.3.2/dist/brut.css">
     <link rel="stylesheet" href="../assets/css/astakula.css?v=2">
+    <link rel="stylesheet" href="../assets/css/legal.css?v=1">
 </head>
 <body>
 <div class="page-shell">
-    <header class="site-header"><div class="site-header-inner"><a class="brand" href="../" aria-label="Astakula Tools Home">Astakula Tools</a><div class="header-actions"><button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme">Dark</button><span class="header-badge">Terms</span></div></div></header>
+    <header class="site-header">
+        <div class="site-header-inner">
+            <a class="brand" href="../" aria-label="Astakula Tools Home">Astakula Tools</a>
+            <div class="header-actions">
+                <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme">Dark</button>
+                <span class="header-badge">Terms</span>
+            </div>
+        </div>
+    </header>
+
     <main class="legal-main">
+        <nav class="legal-breadcrumb" aria-label="Breadcrumb">
+            <a href="../">Astakula Tools</a><span aria-hidden="true">/</span><span>Terms of Service</span>
+        </nav>
+
         <section class="legal-hero">
             <p class="section-number">ASTAKULA TOOLS</p>
             <h1>Terms of Service</h1>
             <p>These terms govern use of the public utilities available through Astakula Tools.</p>
         </section>
 
-        <section class="legal-card">
-            <p class="legal-meta"><strong>Effective date:</strong> October 3, 2026 · <strong>Developer:</strong> Ariyo Ardiwardana · <strong>Parent brand:</strong> Astakula</p>
-            <h2>1. Service</h2>
-            <p>Astakula Tools provides browser-based utilities for tasks such as QR generation, data formatting and encoding, hashing, image and PDF processing, GIF and favicon generation, spreadsheet work, and network calculations. Features can be changed, corrected, added, or removed as the project evolves.</p>
+        <div class="legal-layout">
+            <aside class="legal-toc" aria-label="Terms of Service contents">
+                <p class="legal-toc-label">On this page</p>
+                <nav>
+                    <a href="#service">Service</a>
+                    <a href="#permitted-use">Permitted use</a>
+                    <a href="#inputs-outputs">Inputs & outputs</a>
+                    <a href="#suitability">Suitability</a>
+                    <a href="#availability">Availability</a>
+                    <a href="#third-parties">Third parties</a>
+                    <a href="#intellectual-property">Intellectual property</a>
+                    <a href="#disclaimer">Disclaimer</a>
+                    <a href="#privacy">Privacy</a>
+                    <a href="#changes">Changes</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+                <div class="legal-toc-meta">
+                    <div><strong>Effective date</strong>October 3, 2026</div>
+                    <div><strong>Developer</strong>Ariyo Ardiwardana</div>
+                    <div><strong>Parent brand</strong>Astakula</div>
+                </div>
+            </aside>
 
-            <h2>2. Permitted use</h2>
-            <p>You may use the public tools for lawful personal, educational, creative, administrative, and development tasks. You must not use the service to violate applicable law, infringe another party's rights, disrupt the website, or intentionally abuse external services used by a tool.</p>
+            <article class="legal-document">
+                <section class="legal-summary" aria-labelledby="terms-summary-heading">
+                    <h2 id="terms-summary-heading">At a glance</h2>
+                    <p>These terms are intended to set clear expectations for using Astakula Tools.</p>
+                    <div class="legal-summary-grid">
+                        <div class="legal-summary-item">
+                            <span>Use</span>
+                            <strong>Use the tools for lawful purposes and do not disrupt the service.</strong>
+                        </div>
+                        <div class="legal-summary-item">
+                            <span>Results</span>
+                            <strong>Review generated output before relying on or sharing it.</strong>
+                        </div>
+                        <div class="legal-summary-item">
+                            <span>Availability</span>
+                            <strong>Features, compatibility, and third-party services can change.</strong>
+                        </div>
+                    </div>
+                </section>
 
-            <h2>3. Your inputs and outputs</h2>
-            <p>You are responsible for the data, files, addresses, domains, and other content you provide to a tool, including whether you have the right to use that material. You are also responsible for reviewing generated output before relying on it or sharing it elsewhere.</p>
+                <section class="legal-section" id="service">
+                    <div class="legal-section-heading"><span class="legal-section-number">01</span><h2>Service</h2></div>
+                    <p>Astakula Tools provides browser-based utilities for tasks such as QR generation, data formatting and encoding, hashing, image and PDF processing, GIF and favicon generation, spreadsheet work, and network calculations.</p>
+                    <p>Features may be changed, corrected, added, or removed as the project evolves.</p>
+                </section>
 
-            <h2>4. No guarantee of suitability</h2>
-            <p>The tools are provided as practical utilities, not as professional legal, financial, medical, compliance, cybersecurity, or other regulated advice. Results can be affected by browser support, input quality, file format behavior, third-party libraries, and external services.</p>
+                <section class="legal-section" id="permitted-use">
+                    <div class="legal-section-heading"><span class="legal-section-number">02</span><h2>Permitted use</h2></div>
+                    <p>You may use the public tools for lawful personal, educational, creative, administrative, and development tasks.</p>
+                    <p>You must not use Astakula Tools to:</p>
+                    <ul>
+                        <li>violate applicable law;</li>
+                        <li>infringe another party's rights;</li>
+                        <li>disrupt or intentionally overload the website; or</li>
+                        <li>intentionally abuse external services used by a tool.</li>
+                    </ul>
+                </section>
 
-            <h2>5. Availability and changes</h2>
-            <p>Astakula does not guarantee uninterrupted availability, permanent retention of any feature, or compatibility with every browser, file, network, or future format. Maintenance, hosting issues, browser changes, or dependency changes can affect availability.</p>
+                <section class="legal-section" id="inputs-outputs">
+                    <div class="legal-section-heading"><span class="legal-section-number">03</span><h2>Your inputs and generated outputs</h2></div>
+                    <p>You are responsible for the data, files, addresses, domains, and other content you provide to a tool, including whether you have the right to use that material.</p>
+                    <p>You are also responsible for reviewing generated output before relying on it, distributing it, or using it in another system.</p>
+                </section>
 
-            <h2>6. Third-party services and libraries</h2>
-            <p>Some features depend on third-party browser libraries delivered through jsDelivr. DNS Inspector sends requested DNS queries to Cloudflare's public DNS-over-HTTPS resolver. Third-party services are governed by their own terms and policies.</p>
+                <section class="legal-section" id="suitability">
+                    <div class="legal-section-heading"><span class="legal-section-number">04</span><h2>No guarantee of suitability</h2></div>
+                    <p>The tools are practical utilities. They are not professional legal, financial, medical, compliance, cybersecurity, or other regulated advice.</p>
+                    <p>Results can be affected by browser support, input quality, file-format behavior, third-party libraries, and external services.</p>
+                </section>
 
-            <h2>7. Intellectual property</h2>
-            <p>The Astakula and Astakula Tools names, site presentation, and project-specific materials remain subject to their applicable ownership and license terms. The public repository also contains third-party libraries or dependencies distributed under their own licenses.</p>
+                <section class="legal-section" id="availability">
+                    <div class="legal-section-heading"><span class="legal-section-number">05</span><h2>Availability and changes</h2></div>
+                    <p>Astakula does not guarantee uninterrupted availability, permanent retention of any feature, or compatibility with every browser, file, network, or future format.</p>
+                    <p>Maintenance, hosting issues, browser changes, or dependency changes can affect service availability or tool behavior.</p>
+                </section>
 
-            <h2>8. Disclaimer and limitation</h2>
-            <p>The service is provided on an “as is” and “as available” basis to the extent permitted by applicable law. Astakula and the developer do not promise that every result will be error-free or suitable for a particular purpose. To the extent permitted by applicable law, Astakula and the developer are not liable for indirect or consequential loss arising from reliance on the tools, generated output, service interruption, or third-party services.</p>
+                <section class="legal-section" id="third-parties">
+                    <div class="legal-section-heading"><span class="legal-section-number">06</span><h2>Third-party services and libraries</h2></div>
+                    <p>Some features depend on third-party browser libraries delivered through jsDelivr. DNS Inspector sends requested DNS queries to Cloudflare's public DNS-over-HTTPS resolver.</p>
+                    <p>Third-party services and libraries are governed by their own terms, licenses, and privacy practices.</p>
+                </section>
 
-            <h2>9. Privacy</h2>
-            <p>How the current implementation handles browser processing, external requests, and local theme preferences is described in the <a href="../privacy/">Privacy Policy</a>.</p>
+                <section class="legal-section" id="intellectual-property">
+                    <div class="legal-section-heading"><span class="legal-section-number">07</span><h2>Intellectual property</h2></div>
+                    <p>The Astakula and Astakula Tools names, site presentation, and project-specific materials remain subject to their applicable ownership and license terms.</p>
+                    <p>The public repository also uses third-party libraries or dependencies distributed under their own licenses.</p>
+                </section>
 
-            <h2>10. Changes to these terms</h2>
-            <p>These terms may be revised when the project, service model, or legal requirements change. The effective date above indicates the version represented by this page.</p>
+                <section class="legal-section" id="disclaimer">
+                    <div class="legal-section-heading"><span class="legal-section-number">08</span><h2>Disclaimer and limitation</h2></div>
+                    <p>The service is provided on an “as is” and “as available” basis to the extent permitted by applicable law. Astakula and the developer do not promise that every result will be error-free or suitable for a particular purpose.</p>
+                    <p>To the extent permitted by applicable law, Astakula and the developer are not liable for indirect or consequential loss arising from reliance on the tools, generated output, service interruption, or third-party services.</p>
+                    <p class="legal-note">For important or regulated decisions, independently verify the result and use an appropriate qualified professional or authoritative source when needed.</p>
+                </section>
 
-            <h2>11. Contact</h2>
-            <p>For questions about these terms or Astakula Tools, use the contact information published by <a href="https://astakula.com/" target="_blank" rel="noopener noreferrer">Astakula</a>.</p>
-        </section>
+                <section class="legal-section" id="privacy">
+                    <div class="legal-section-heading"><span class="legal-section-number">09</span><h2>Privacy</h2></div>
+                    <p>How the current implementation handles browser processing, external requests, and local theme preferences is described in the <a href="../privacy/">Privacy Policy</a>.</p>
+                </section>
+
+                <section class="legal-section" id="changes">
+                    <div class="legal-section-heading"><span class="legal-section-number">10</span><h2>Changes to these terms</h2></div>
+                    <p>These terms may be revised when the project, service model, or legal requirements change. The effective date shown on this page identifies the version currently represented here.</p>
+                </section>
+
+                <section class="legal-section" id="contact">
+                    <div class="legal-section-heading"><span class="legal-section-number">11</span><h2>Contact</h2></div>
+                    <p>For questions about these terms or Astakula Tools, use the contact information published by <a href="https://astakula.com/" target="_blank" rel="noopener noreferrer">Astakula</a>.</p>
+                </section>
+            </article>
+        </div>
     </main>
-    <footer class="site-footer"><div class="site-footer-inner"><p>Astakula Tools</p><p>astakula.com</p><nav class="ta-footer-links" data-footer-links="true" aria-label="Legal and site links"><a href="../">Tools</a><a href="../privacy/">Privacy Policy</a><a href="../terms/" aria-current="page">Terms of Service</a><a href="https://astakula.com/" target="_blank" rel="noopener noreferrer">Astakula</a></nav></div></footer>
+
+    <footer class="site-footer">
+        <div class="site-footer-inner">
+            <p>Astakula Tools</p>
+            <p>astakula.com</p>
+            <nav class="ta-footer-links" data-footer-links="true" aria-label="Legal and site links">
+                <a href="../">Tools</a>
+                <a href="../privacy/">Privacy Policy</a>
+                <a href="../terms/" aria-current="page">Terms of Service</a>
+                <a href="https://astakula.com/" target="_blank" rel="noopener noreferrer">Astakula</a>
+            </nav>
+        </div>
+    </footer>
 </div>
 </body>
 </html>
