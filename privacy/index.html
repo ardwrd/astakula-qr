@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Privacy Policy for Astakula Tools, including browser-side processing, theme preferences, external libraries, and DNS Inspector requests.">
+    <meta name="description" content="Privacy Policy for Astakula Tools, including browser-side processing, local browser storage, external libraries, and DNS Inspector requests.">
     <meta name="robots" content="index,follow">
     <meta name="author" content="Ariyo Ardiwardana">
     <meta name="theme-color" content="#f3f0e8">
@@ -11,12 +11,12 @@
     <link rel="icon" href="../favicon.svg" type="image/svg+xml">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Privacy Policy — Astakula Tools">
-    <meta property="og:description" content="How Astakula Tools processes tool inputs, theme preferences, external library requests, and DNS lookups.">
+    <meta property="og:description" content="How Astakula Tools processes tool inputs, local browser data, external library requests, and DNS lookups.">
     <meta property="og:url" content="https://tools.astakula.com/privacy/">
     <meta property="og:site_name" content="Astakula Tools">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Privacy Policy — Astakula Tools">
-    <meta name="twitter:description" content="How Astakula Tools processes tool inputs and external requests.">
+    <meta name="twitter:description" content="How Astakula Tools processes tool inputs and local browser data.">
     <title>Privacy Policy — Astakula Tools</title>
     <script type="application/ld+json">
     {
@@ -53,7 +53,7 @@
         <section class="legal-hero">
             <p class="section-number">ASTAKULA TOOLS</p>
             <h1>Privacy Policy</h1>
-            <p>This page explains how the current Astakula Tools implementation handles tool inputs, browser preferences, and external network requests.</p>
+            <p>This page explains how the current Astakula Tools implementation handles tool inputs, browser preferences, locally saved projects, and external network requests.</p>
         </section>
 
         <div class="legal-layout">
@@ -92,7 +92,7 @@
                         </div>
                         <div class="legal-summary-item">
                             <span>Browser storage</span>
-                            <strong>Saves the selected light or dark theme in localStorage.</strong>
+                            <strong>Stores theme preference in localStorage and Work Schedule projects in IndexedDB on the device.</strong>
                         </div>
                     </div>
                 </section>
@@ -105,13 +105,15 @@
 
                 <section class="legal-section" id="processing">
                     <div class="legal-section-heading"><span class="legal-section-number">02</span><h2>How tool inputs are processed</h2></div>
-                    <p>The current repository does not contain an Astakula application backend, account system, or database for storing tool inputs.</p>
+                    <p>The current repository does not contain an Astakula application backend, account system, or server-side database for storing tool inputs. Some tools can intentionally persist editable data in browser storage on the user's device.</p>
                     <div class="legal-data-table-wrap">
                         <table class="legal-data-table">
                             <thead><tr><th>Tool group</th><th>Processing location</th><th>External request caused by tool input</th></tr></thead>
                             <tbody>
                                 <tr><td>QR, JSON, Base64, UUID, Hash</td><td>Browser</td><td>No Astakula application backend request identified</td></tr>
                                 <tr><td>Image, PDF, GIF, Favicon, Excel</td><td>Browser</td><td>No Astakula application backend request identified</td></tr>
+                                <tr><td>Social Media Tools</td><td>Browser</td><td>No Astakula application backend request identified</td></tr>
+                                <tr><td>Work Schedule Generator</td><td>Browser + local IndexedDB</td><td>No Astakula application backend request identified; schedule projects are saved locally in this browser</td></tr>
                                 <tr><td>Subnet, range, IPv4, MAC, bandwidth, port reference</td><td>Browser</td><td>No external lookup required for the calculation itself</td></tr>
                                 <tr><td>DNS Inspector</td><td>Browser + public resolver</td><td>Requested domain and record type are sent to Cloudflare DNS-over-HTTPS</td></tr>
                             </tbody>
@@ -122,6 +124,8 @@
                 <section class="legal-section" id="storage">
                     <div class="legal-section-heading"><span class="legal-section-number">03</span><h2>Local browser storage</h2></div>
                     <p>Astakula Tools stores the selected light or dark theme preference in the browser's <code>localStorage</code>. That preference remains on the device until it is changed, cleared by the browser, or otherwise removed by the user.</p>
+                    <p>The Work Schedule Generator uses <code>IndexedDB</code> to keep editable schedule projects on the user's current browser profile. A saved project can include the selected month, team or department name, employee names and roles, employee day-off requests and optional request notes, shift definitions, scheduling rules, generated or manually adjusted assignments, validation results, and update timestamps.</p>
+                    <p>Schedule projects are not synchronized between devices or browser profiles by the current implementation. They can become unavailable if the browser's site data is cleared, the user changes browser profile or device, private browsing discards storage, or the browser removes stored site data. The tool therefore provides a downloadable project backup for transferring or preserving editable schedule data.</p>
                 </section>
 
                 <section class="legal-section" id="third-parties">
@@ -132,9 +136,9 @@
                         <li>PDF processing;</li>
                         <li>GIF encoding;</li>
                         <li>ZIP creation; and</li>
-                        <li>spreadsheet parsing and writing.</li>
+                        <li>spreadsheet parsing and writing, including Work Schedule Excel export.</li>
                     </ul>
-                    <p>Loading those assets creates normal web requests to the external delivery service. Astakula Tools application code does not intentionally send the contents of tool inputs to jsDelivr.</p>
+                    <p>Loading those assets creates normal web requests to the external delivery service. Astakula Tools application code does not intentionally send the contents of tool inputs or locally saved schedule projects to jsDelivr.</p>
                 </section>
 
                 <section class="legal-section" id="connection-data">
@@ -150,12 +154,12 @@
 
                 <section class="legal-section" id="downloads">
                     <div class="legal-section-heading"><span class="legal-section-number">07</span><h2>Downloads and generated output</h2></div>
-                    <p>Generated files are created for you to download. You are responsible for where downloaded files are stored, shared, or uploaded after they leave the browser workflow.</p>
+                    <p>Generated files are created for you to download. This includes outputs such as spreadsheets, images, PDFs, and Work Schedule Excel or JSON project-backup files. You are responsible for where downloaded files are stored, shared, or uploaded after they leave the browser workflow.</p>
                 </section>
 
                 <section class="legal-section" id="changes">
                     <div class="legal-section-heading"><span class="legal-section-number">08</span><h2>Changes to this policy</h2></div>
-                    <p>This policy may be revised when the tools, data flows, hosting setup, or external services change. The effective date shown on this page identifies the version currently represented here.</p>
+                    <p>This policy may be revised when the tools, data flows, browser-storage behavior, hosting setup, or external services change. The effective date shown on this page identifies the version currently represented here.</p>
                 </section>
 
                 <section class="legal-section" id="contact">
