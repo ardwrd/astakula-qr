@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Generate certificates in bulk from your own certificate design and participant spreadsheet, then export PNG files or a multi-page PDF directly in the browser.">
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+    <meta name="author" content="Ariyo Ardiwardana">
+    <meta name="theme-color" content="#f3f0e8">
+    <link rel="canonical" href="https://tools.astakula.com/certificate/">
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Bulk Certificate Generator — Astakula Tools">
+    <meta property="og:description" content="Upload a finished certificate design and an Excel or CSV participant list, place dynamic fields, and generate certificates in bulk.">
+    <meta property="og:url" content="https://tools.astakula.com/certificate/">
+    <meta property="og:site_name" content="Astakula Tools">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Bulk Certificate Generator — Astakula Tools">
+    <meta name="twitter:description" content="Generate certificates in bulk from your own design and participant spreadsheet.">
+    <title>Bulk Certificate Generator — Astakula Tools</title>
+    <script type="application/ld+json">
+    {
+      "@context":"https://schema.org",
+      "@graph":[
+        {"@type":"Organization","@id":"https://astakula.com/#organization","name":"Astakula","url":"https://astakula.com/"},
+        {"@type":"Person","@id":"https://tools.astakula.com/#ariyo-ardiwardana","name":"Ariyo Ardiwardana","affiliation":{"@id":"https://astakula.com/#organization"}},
+        {"@type":"BreadcrumbList","itemListElement":[
+          {"@type":"ListItem","position":1,"name":"Astakula Tools","item":"https://tools.astakula.com/"},
+          {"@type":"ListItem","position":2,"name":"Bulk Certificate Generator","item":"https://tools.astakula.com/certificate/"}
+        ]},
+        {"@type":"WebApplication","name":"Bulk Certificate Generator","url":"https://tools.astakula.com/certificate/","description":"Generate certificates in bulk from a user-supplied certificate design and XLSX or CSV participant data.","applicationCategory":"BusinessApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript and a modern web browser","isAccessibleForFree":true,"creator":{"@id":"https://tools.astakula.com/#ariyo-ardiwardana"},"publisher":{"@id":"https://astakula.com/#organization"}},
+        {"@type":"FAQPage","mainEntity":[
+          {"@type":"Question","name":"What should the uploaded certificate template contain?","acceptedAnswer":{"@type":"Answer","text":"Upload an almost-finished certificate design containing the static elements such as background, logo, title, event details, signatures, and decorations. Leave blank areas for participant-specific values such as the recipient name or certificate number."}},
+          {"@type":"Question","name":"Do I have to use the Astakula Excel template?","acceptedAnswer":{"@type":"Answer","text":"No. The downloadable spreadsheet is a recommended starting format. The generator can also read your own XLSX or CSV file and exposes its detected columns as dynamic fields."}},
+          {"@type":"Question","name":"Are my certificate template and participant list uploaded to Astakula?","acceptedAnswer":{"@type":"Answer","text":"No Astakula application backend receives the certificate template or participant spreadsheet. They are processed in the browser. Selecting a Google Font causes the browser to request that font from Google Fonts."}}
+        ]}
+      ]
+    }
+    </script>
+    <script src="../assets/js/theme.js?v=4"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sprtn/ui@1.3.2/dist/brut.css">
+    <link rel="stylesheet" href="../assets/css/astakula.css?v=2">
+    <link rel="stylesheet" href="./style.css?v=1">
+</head>
+<body>
+<div class="page-shell">
+    <header class="site-header">
+        <div class="site-header-inner">
+            <a href="../" class="brand" aria-label="Astakula Tools Home">Astakula Tools</a>
+            <div class="header-actions">
+                <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch color theme">Dark</button>
+                <span class="header-badge">Certificate Generator</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content certificate-main">
+        <section class="certificate-hero">
+            <div>
+                <p class="section-number">BULK CERTIFICATE GENERATOR</p>
+                <h1>Your design.<br>Every recipient.</h1>
+                <p>Upload a finished certificate design, add participant data from Excel or CSV, position the changing fields once, then generate the whole batch.</p>
+            </div>
+            <div class="certificate-mark" aria-hidden="true">100×</div>
+        </section>
+
+        <section class="privacy-strip" aria-label="Processing information">
+            <div><strong>Browser processing</strong><span>Template and participant data are not sent to an Astakula application backend.</span></div>
+            <div><strong>Use your own design</strong><span>Static certificate text, logos, signatures, and decorations stay in your uploaded template.</span></div>
+            <div><strong>Google Fonts</strong><span>Selected web fonts are loaded from Google Fonts before preview and export.</span></div>
+        </section>
+
+        <section class="setup-grid">
+            <article class="panel upload-panel">
+                <div class="panel-heading"><div><p class="section-number">01</p><h2>Certificate design</h2></div><span id="templateState" class="state-pill">Required</span></div>
+                <p class="panel-copy">Upload an almost-finished certificate. Leave blank space only for values that change for each recipient.</p>
+                <label class="drop-zone" id="templateDrop" for="templateInput">
+                    <strong>Choose certificate template</strong>
+                    <span>PNG, JPG, WebP, or PDF · first PDF page is used</span>
+                </label>
+                <input id="templateInput" class="visually-hidden" type="file" accept="image/png,image/jpeg,image/webp,application/pdf,.png,.jpg,.jpeg,.webp,.pdf">
+                <div id="templateMeta" class="file-meta hidden"></div>
+            </article>
+
+            <article class="panel data-panel">
+                <div class="panel-heading"><div><p class="section-number">02</p><h2>Participant data</h2></div><span id="dataState" class="state-pill">Required</span></div>
+                <p class="panel-copy">Use our spreadsheet format or upload an existing list. Every detected column can become a field on the certificate.</p>
+                <div class="button-row">
+                    <button id="downloadTemplateButton" class="brut-btn" type="button">Download Excel Template</button>
+                    <button id="sampleButton" class="brut-btn" type="button">Use Sample Data</button>
+                </div>
+                <label class="drop-zone compact" id="dataDrop" for="dataInput">
+                    <strong>Upload XLSX or CSV</strong>
+                    <span>Recommended maximum: 500 participant rows</span>
+                </label>
+                <input id="dataInput" class="visually-hidden" type="file" accept=".xlsx,.xls,.csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,text/csv">
+                <div id="dataMeta" class="file-meta hidden"></div>
+            </article>
+        </section>
+
+        <section class="panel data-preview-panel" id="dataPreviewPanel" hidden>
+            <div class="panel-heading split-heading"><div><p class="section-number">03</p><h2>Detected data</h2></div><p id="rowCountText">0 participants</p></div>
+            <div id="columnChips" class="column-chips"></div>
+            <div class="table-wrap"><table id="dataTable"></table></div>
+        </section>
+
+        <section class="editor-section" id="editorSection" hidden>
+            <div class="editor-heading">
+                <div><p class="section-number">04</p><h2>Place dynamic fields</h2></div>
+                <p>Click a spreadsheet column to add it, then drag the field to its position on the certificate.</p>
+            </div>
+
+            <div class="editor-layout">
+                <aside class="panel field-sidebar">
+                    <h3>Spreadsheet fields</h3>
+                    <p class="small-note">Add only values that change between recipients.</p>
+                    <div id="fieldButtons" class="field-buttons"></div>
+                    <hr>
+                    <div id="fieldControls" class="field-controls is-disabled">
+                        <div class="control-heading"><h3>Selected field</h3><button id="removeFieldButton" class="text-button" type="button" disabled>Remove</button></div>
+                        <label class="field"><span>Column</span><input id="selectedColumn" class="brut-input" type="text" readonly></label>
+                        <label class="field"><span>Font</span><select id="fontSelect" class="brut-select"></select></label>
+                        <div class="form-grid two">
+                            <label class="field"><span>Weight</span><select id="weightSelect" class="brut-select"></select></label>
+                            <label class="field"><span>Size</span><input id="fontSize" class="brut-input" type="number" min="8" max="240" value="52"></label>
+                        </div>
+                        <div class="form-grid two">
+                            <label class="field"><span>Color</span><input id="fontColor" class="color-input" type="color" value="#161616"></label>
+                            <label class="field"><span>Alignment</span><select id="alignSelect" class="brut-select"><option value="left">Left</option><option value="center" selected>Center</option><option value="right">Right</option></select></label>
+                        </div>
+                        <label class="field"><span>Maximum text width (px)</span><input id="maxWidth" class="brut-input" type="number" min="40" max="5000" value="900"></label>
+                        <label class="check-row"><input id="autoFit" type="checkbox" checked><span><strong>Auto-fit long text</strong><small>Reduce font size when a value exceeds the maximum width.</small></span></label>
+                    </div>
+                </aside>
+
+                <div class="preview-column">
+                    <div class="preview-toolbar">
+                        <div class="preview-navigation">
+                            <button id="prevParticipant" class="brut-btn brut-btn--sm" type="button">←</button>
+                            <label for="participantSelect"><span>Preview recipient</span><select id="participantSelect" class="brut-select"></select></label>
+                            <button id="nextParticipant" class="brut-btn brut-btn--sm" type="button">→</button>
+                        </div>
+                        <span id="previewStatus">Ready</span>
+                    </div>
+                    <div class="canvas-shell">
+                        <div id="certificateStage" class="certificate-stage">
+                            <canvas id="previewCanvas"></canvas>
+                            <div id="overlayLayer" class="overlay-layer"></div>
+                        </div>
+                    </div>
+                    <p class="drag-help">Drag fields directly on the certificate. The dashed selection border is editor-only and is not included in exports.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="panel export-panel" id="exportPanel" hidden>
+            <div class="panel-heading split-heading"><div><p class="section-number">05</p><h2>Generate certificates</h2></div><span id="exportSummary">0 recipients · 0 fields</span></div>
+            <div id="statusBox" class="status-box" role="status" aria-live="polite">Add at least one dynamic field before generating the batch.</div>
+            <div class="export-actions">
+                <button id="downloadCurrentButton" class="brut-btn" type="button">Download Current PNG</button>
+                <button id="generateZipButton" class="brut-btn brut-btn--primary" type="button">Generate PNG ZIP</button>
+                <button id="generatePdfButton" class="brut-btn brut-btn--primary" type="button">Generate PDF</button>
+            </div>
+            <p class="small-note">Bulk rendering can take a moment for large participant lists. Keep this tab open until the download starts.</p>
+        </section>
+
+        <section class="info-grid">
+            <article class="info-card"><h2>How should I prepare the certificate design?</h2><p>Keep all static elements in the template: background, border, logos, title, event text, date, signatures, names of signatories, and decorations. Leave blank areas for recipient-specific data such as a name, company, role, award, or certificate number.</p></article>
+            <article class="info-card"><h2>Spreadsheet format</h2><p>The provided Excel template includes common columns, but it is not mandatory. Your own XLSX or CSV headers are detected automatically and become available as fields in the editor. A participant name is the usual minimum, but the generator does not force a specific header name.</p></article>
+            <article class="info-card faq-card"><h2>Frequently asked questions</h2><details><summary>Do I need to redesign the certificate here?</summary><p>No. This tool is intentionally not a full design editor. Prepare the static design elsewhere, upload it, and use Astakula Tools for the changing recipient data.</p></details><details><summary>Where are my files processed?</summary><p>The certificate template and participant spreadsheet are processed in this browser. They are not intentionally uploaded to an Astakula application backend.</p></details><details><summary>Why does the tool connect to Google Fonts?</summary><p>When you choose a font, the browser loads its stylesheet and font file from Google Fonts. The generator waits for the selected font to load before rendering the certificate.</p></details><details><summary>Can I use my existing Excel file?</summary><p>Yes. Upload an XLSX or CSV file with headers in the first row. Each detected column can be added directly to the certificate.</p></details></article>
+        </section>
+    </main>
+
+    <footer class="site-footer"><div class="site-footer-inner"><p>Astakula Tools</p><p>astakula.com</p><nav class="ta-footer-links" data-footer-links="true" aria-label="Legal and site links"><a href="../">Tools</a><a href="../privacy/">Privacy Policy</a><a href="../terms/">Terms of Service</a><a href="https://astakula.com/" target="_blank" rel="noopener noreferrer">Astakula</a></nav></div></footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js"></script>
+<script type="module" src="./app.js?v=1"></script>
+</body>
+</html>
